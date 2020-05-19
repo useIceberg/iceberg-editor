@@ -93,26 +93,27 @@ const LicenseActivation = createHigherOrderComponent( ( FilteredComponent ) => {
 					</Button>
 				</div>
 
-				{ typeof license !== 'undefined' && typeof license.license !== 'undefined' && license.license === 'invalid' && (
-					<Notice isDismissible={ false } status="error">
-						<p>
-							{ __(
-								'Invalid or expired license',
-								'iceberg'
-							) }
-						</p>
-					</Notice>
-				) }
-				{ typeof license !== 'undefined' && typeof license.license !== 'undefined' && license.license === 'valid' && (
-					<Notice isDismissible={ false } status="success">
-						<p>
-							{ __(
-								'Successfully activated!',
-								'iceberg'
-							) }
-						</p>
-					</Notice>
-				) }
+				{ typeof license !== 'undefined' &&
+					typeof license.license !== 'undefined' &&
+					license.license === 'invalid' && (
+						<Notice isDismissible={ false } status="error">
+							<p>
+								{ __(
+									'Invalid or expired license',
+									'iceberg'
+								) }
+							</p>
+						</Notice>
+					) }
+				{ typeof license !== 'undefined' &&
+					typeof license.license !== 'undefined' &&
+					license.license === 'valid' && (
+						<Notice isDismissible={ false } status="success">
+							<p>
+								{ __( 'Successfully activated!', 'iceberg' ) }
+							</p>
+						</Notice>
+					) }
 			</Fragment>
 		);
 	} );

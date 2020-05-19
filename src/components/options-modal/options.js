@@ -90,10 +90,7 @@ class Options extends Component {
 							optionType="ui"
 						/>
 						<EnablePanelOption
-							label={ __(
-								'Document information',
-								'iceberg'
-							) }
+							label={ __( 'Document information', 'iceberg' ) }
 							panelName="documentInformation"
 							optionType="ui"
 						/>
