@@ -45,7 +45,7 @@ class Shortcuts extends Component {
 		const element = document.querySelector(
 			'.components-iceberg-shortcuts'
 		);
-		if (element) {
+		if ( element ) {
 			element.parentElement.style.display = 'block';
 		}
 	}
