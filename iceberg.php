@@ -7,6 +7,7 @@
  * Author: Iceberg
  * Author URI: https://useiceberg.com/
  * Text Domain: iceberg
+ * Tested up to: 5.4.1
  * Domain Path: /languages/
  *
  * @package Iceberg
