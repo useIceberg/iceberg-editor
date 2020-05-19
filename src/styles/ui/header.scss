@@ -60,3 +60,11 @@
 		width: 18px;
 	}
 }
+
+// Supporting core.
+&:not(.is-gutenberg) {
+	.components-button.editor-post-save-draft {
+		margin-right: 5px !important;
+	}
+}
+
