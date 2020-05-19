@@ -6,8 +6,6 @@ With [Iceberg](https://useiceberg.com/), you get what you need to write beautifu
 
 ![Iceberg editor for publishers using WordPress](https://user-images.githubusercontent.com/1813435/77789961-597d0100-703a-11ea-8a9b-f412917360f4.png)
 
-![PHP Code Sniffer](https://github.com/useiceberg/iceberg-os/workflows/PHP%20Code%20Sniffer/badge.svg)
-![JS/SCSS Linter](https://github.com/useiceberg/iceberg-os/workflows/Lint%20JS%20and%20SCSS/badge.svg)
 ![Generate translations](https://github.com/useIceberg/iceberg-os/workflows/i18n/badge.svg)
 ![Deploy demo](https://github.com/useIceberg/iceberg-os/workflows/Deploy%20demo/badge.svg)
 
