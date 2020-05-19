@@ -1,8 +1,6 @@
 # Iceberg editor for WordPress
 
-With [Iceberg](https://useiceberg.com/), you get what you need to write beautifully in [WordPress](https://wordpress.org), along with many delightful extras you’d never expect. Your next favorite writing application just may be WordPress + Iceberg. Iceberg allows you to write within the WordPress block editor in a way that feels much more natural than working with “blocks”. 
-
-Our goal is not to remove blocks, but rather to deemphasize them – and any non-essential elements within the editor – to promote a focus on writing.
+With [Iceberg](https://useiceberg.com/), you get what you need to write beautifully in [WordPress](https://wordpress.org), along with many delightful extras you’d never expect. Your next favorite writing application just may be WordPress + Iceberg. Iceberg allows you to write within the WordPress block editor in a way that feels much more natural than working with “blocks”. Our goal is not to remove blocks, but rather to deemphasize them – and any non-essential elements within the editor – to promote a focus on writing.
 
 [Read more about Iceberg &rarr;](https://richtabor.com/iceberg)
 
