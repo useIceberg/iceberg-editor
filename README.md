@@ -4,6 +4,8 @@ With [Iceberg](https://useiceberg.com/), you get what you need to write beautifu
 
 Our goal is not to remove blocks, but rather to deemphasize them – and any non-essential elements within the editor – to promote a focus on writing.
 
+[Read more about Iceberg &rarr;](https://richtabor.com/iceberg)
+
 ![Iceberg editor for publishers using WordPress](https://user-images.githubusercontent.com/1813435/77789961-597d0100-703a-11ea-8a9b-f412917360f4.png)
 
 ![PHP Code Sniffer](https://github.com/useiceberg/iceberg-os/workflows/PHP%20Code%20Sniffer/badge.svg)
