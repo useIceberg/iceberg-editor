@@ -1,6 +1,8 @@
 # Iceberg editor for WordPress
 
-With [Iceberg](https://useiceberg.com/), you get what you need to write beautifully in [WordPress](https://wordpress.org), along with many delightful extras you’d never expect. Your next favorite writing application just may be WordPress + Iceberg.
+With [Iceberg](https://useiceberg.com/), you get what you need to write beautifully in [WordPress](https://wordpress.org), along with many delightful extras you’d never expect. Your next favorite writing application just may be WordPress + Iceberg. Iceberg allows you to write within the WordPress block editor in a way that feels much more natural than working with “blocks”. 
+
+Our goal is not to remove blocks, but rather to deemphasize them – and any non-essential elements within the editor – to promote a focus on writing.
 
 ![Iceberg editor for publishers using WordPress](https://user-images.githubusercontent.com/1813435/77789961-597d0100-703a-11ea-8a9b-f412917360f4.png)
 
@@ -13,9 +15,8 @@ With [Iceberg](https://useiceberg.com/), you get what you need to write beautifu
 
 1. Download or clone this GitHub repository into your local site's `wp-content/plugins` directory
 2. Browse to the folder using the command line
-3. Run `npm install` to install dependencies
+3. Run `npm setup` to install dependencies
 4. Run `npm start` for development
-5. Run the `npm run build` command to process build files and generate a zip
 
 ## Contributing
 
