@@ -1,0 +1,33 @@
+{
+	"name": "useiceberg/iceberg",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"description": "",
+	"homepage": "https://useiceberg.com",
+	"keywords": [
+		"gutenberg", "wordpress", "editor", "wp", "react", "javascript"
+	],
+	"support": {
+		"issues": "https://github.com/useiceberg/iceberg/issues"
+	},
+	"require": {
+		"composer/installers": "~1.0"
+	},
+	"config": {
+		"platform": {
+			"php": "5.6"
+		}
+	},
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+		"squizlabs/php_codesniffer": "^3.4.2",
+		"phpcompatibility/php-compatibility": "^9.2.0",
+		"wp-coding-standards/wpcs": "^2.1.1",
+		"sirbrillig/phpcs-variable-analysis": "^2.7",
+		"phpcompatibility/phpcompatibility-wp": "*"
+	},
+	"scripts": {
+		"format": "phpcbf --standard=phpcs.xml.dist --report-summary --report-source",
+		"lint": "phpcs --standard=phpcs.xml.dist --report-full --report-source"
+	}
+}
