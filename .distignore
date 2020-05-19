@@ -1,0 +1,12 @@
+.DS_Store
+.git
+.gitignore
+.editorconfig
+behat.yml
+circle.yml
+utils/
+*.zip
+*.tar.gz
+*.swp
+*.txt
+*.log

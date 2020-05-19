@@ -1,0 +1,58 @@
+$defaulWidth: 150px;
+
+// Minimized image option, scoped with .is-iceberg
+&.has-minimized-images {
+
+	.wp-block-image {
+
+		.aligncenter,
+		.alignleft,
+		.alignright,
+		&.is-resized {
+			display: block;
+		}
+
+		.components-resizable-box__container,
+		> div:not(.components-placeholder),
+		&.alignfull,
+		&.alignwide {
+			display: block;
+			max-width: var(--iceberg--minimized-image--width, $defaulWidth);
+			height: auto !important;
+
+			img {
+				width: var(--iceberg--minimized-image--width, $defaulWidth);
+			}
+		}
+
+		.components-drop-zone {
+			width: var(--iceberg--minimized-image--width, $defaulWidth);
+		}
+
+		&.alignfull,
+		&.alignwide {
+			max-width: var(--iceberg--typography--line-width, 40rem);
+			margin-left: auto !important;
+			margin-right: auto !important;
+		}
+	}
+
+	.block-editor-media-placeholder {
+		padding-left: 1.3em;
+		padding-right: 1.3em;
+		max-width: 235px;
+
+		.block-editor-media-placeholder__url-input-container {
+			display: none;
+		}
+	}
+
+	// Inline images within paragraph blocks
+	p[data-type="core/paragraph"] {
+
+		img {
+			display: block;
+			width: var(--iceberg--minimized-image--width, $defaulWidth);
+		}
+	}
+}

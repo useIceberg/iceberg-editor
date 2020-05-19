@@ -1,0 +1,39 @@
+name: PHP Code Sniffer
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+    paths:
+      - 'includes/*.php'
+      - '*.php'
+
+jobs:
+  phpcs:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Detecting PHP Code Standards Violations
+        run: composer run-script lint
+
+      # - name: Auto Correct PHP Code Standards Violations
+      #   id: phpcbf
+      #   run: composer run-script format
+      #   continue-on-error: true
+
+      # - uses: stefanzweifel/git-auto-commit-action@v2.1.0
+      #   with:
+      #     commit_message: Apply phpcbf fixes
+      #     branch: ${{ github.head_ref }}
+
+      #     # Optional commit user and author settings
+      #     commit_user_name: Code Fixer
+      #     commit_author: Code Fixer <actions@github.com>

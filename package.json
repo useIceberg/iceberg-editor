@@ -1,0 +1,87 @@
+{
+	"name": "iceberg",
+	"version": "1.0.0",
+	"description": "Iceberg is a beautiful, themeable, flexible editor for the Gutenberg block editor.",
+	"author": "IceBerg",
+	"license": "GPL-2.0",
+	"keywords": [
+		"WordPress",
+		"gutenberg",
+		"editor"
+	],
+	"homepage": "https://useiceberg.com",
+	"scripts": {
+		"build": "./bin/build-plugin-zip.sh",
+		"build:assets": "wp-scripts build && npm run make-pot",
+		"check-licenses": "wp-scripts check-licenses",
+		"format:js": "wp-scripts format-js",
+		"lint": "npm run lint:php && npm run lint:css && npm run lint:js",
+		"lint:css": "wp-scripts lint-style",
+		"lint:css-fix": "wp-scripts lint-style '**/*.scss' --fix",
+		"lint:js": "wp-scripts lint-js",
+		"lint:js-fix": "wp-scripts lint-js '**/*.js' --fix",
+		"lint:php": "composer run-script lint",
+		"lint:php-fix": "composer run-script format",
+		"lint:pkg-json": "wp-scripts lint-pkg-json",
+		"make-pot": "wp i18n make-pot . --skip-audit --exclude=\".github,.wordpress-org,build,dist,node_modules,vendor,wordpress\" --headers='{\"Last-Translator\":\"hi@useiceberg.com\",\"Report-Msgid-Bugs-To\":\"https://github.com/useiceberg/iceberg/issues\"}' --file-comment=\"Copyright (c) $(date +'%Y') Iceberg\" languages/iceberg.pot && wp i18n make-json languages",
+		"packages-update": "wp-scripts packages-update",
+		"setup": "composer install && npm install && NODE_ENV=development wp-scripts start",
+		"start": "NODE_ENV=development wp-scripts start",
+		"test:e2e": "wp-scripts test-e2e",
+		"test:unit": "wp-scripts test-unit-js"
+	},
+	"devDependencies": {
+		"@wordpress/babel-preset-default": "^4.12.1",
+		"@wordpress/blocks": "^6.15.0",
+		"@wordpress/components": "^9.5.0",
+		"@wordpress/compose": "^3.14.0",
+		"@wordpress/data": "^4.17.0",
+		"@wordpress/edit-post": "^3.16.0",
+		"@wordpress/element": "^2.13.1",
+		"@wordpress/eslint-plugin": "^4.1.0",
+		"@wordpress/hooks": "^2.8.0",
+		"@wordpress/i18n": "^3.12.0",
+		"@wordpress/icons": "^1.4.0",
+		"@wordpress/keycodes": "^2.12.0",
+		"@wordpress/plugins": "^2.15.0",
+		"@wordpress/rich-text": "^3.15.0",
+		"@wordpress/scripts": "^7.2.0",
+		"@wordpress/wordcount": "^2.8.0",
+		"browser-sync-webpack-plugin": "^2.2.2",
+		"classnames": "^2.2.6",
+		"color": "^3.1.2",
+		"cross-env": "^7.0.2",
+		"css-loader": "^3.5.3",
+		"dom-scroll-into-view": "^2.0.1",
+		"eslint-plugin-eslint-comments": "^3.1.2",
+		"ignore-emit-webpack-plugin": "^2.0.2",
+		"lodash": "^4.17.15",
+		"mini-css-extract-plugin": "^0.9.0",
+		"node-sass": "^4.14.0",
+		"optimize-css-assets-webpack-plugin": "^5.0.3",
+		"path": "^0.12.7",
+		"postcss-loader": "^3.0.0",
+		"postcss-preset-env": "^6.7.0",
+		"prettier": "npm:wp-prettier@1.19.1",
+		"replace-in-file-webpack-plugin": "^1.0.6",
+		"sass-loader": "^8.0.2",
+		"stylelint-config-wordpress": "13.1.0",
+		"webpack-fix-style-only-entries": "^0.4.0",
+		"webpack-merge": "^4.2.2"
+	},
+	"dependencies": {
+		"browser-sync": "^2.26.7",
+		"wp-cli": "0.0.5"
+	},
+	"lint-staged": {
+		"*.scss": [
+			"npm run lint:css"
+		],
+		"*.js": [
+			"npm run lint:js"
+		],
+		"*.php": [
+			"composer run-script lint"
+		]
+	}
+}

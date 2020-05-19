@@ -1,0 +1,30 @@
+name: i18n
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '*.php'
+      - '*.js'
+      - 'includes/**/*.php'
+      - 'src/**/*.js'
+
+jobs:
+  make-pot:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install WP CLI
+        run: curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && sudo mv wp-cli.phar /usr/local/bin/wp
+
+      - name: Run make-pot script
+        run: npm run make-pot
+
+      - uses: stefanzweifel/git-auto-commit-action@v4.1.1
+        with:
+          commit_message: Update iceberg.pot
+          commit_user_name: Iceberg i18n

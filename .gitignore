@@ -1,0 +1,16 @@
+**/build/**
+**/dist/**
+**/languages/*
+**/node_modules/**
+**/vendor/**
+*.cache
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+.vscode
+.vscode/
+coverage
+cypress
+local.json
+node_modules
+package
