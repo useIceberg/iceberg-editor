@@ -41,6 +41,15 @@ class Shortcuts extends Component {
 		}
 	}
 
+	componentDidUpdate() {
+		const element = document.querySelector(
+			'.components-iceberg-shortcuts'
+		);
+		if ( element ) {
+			element.parentElement.style.display = 'block';
+		}
+	}
+
 	render() {
 		const { postType } = this.props;
 

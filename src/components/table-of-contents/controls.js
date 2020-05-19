@@ -54,6 +54,7 @@ class TableOfContents extends Component {
 					) );
 
 			tableOfContents.style.top = topPosition + 'px';
+			tableOfContents.parentElement.style.display = 'block';
 		}
 	}
 
