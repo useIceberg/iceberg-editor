@@ -25,9 +25,9 @@ export default compose(
 				panelName
 			);
 
-			setTimeout(function () {
+			setTimeout( function() {
 				UpdateTitleHeight();
-			}, 100);
+			}, 100 );
 		},
 	} ) )
 )( BaseOption );
