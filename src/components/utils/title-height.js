@@ -3,11 +3,11 @@
  */
 
 function UpdateTitleHeight() {
-	const title = document.querySelector('.editor-post-title__input'); 
-	if ( title ){
-		title.dispatchEvent( new Event('autosize:update') );
-	};
-	
+	const title = document.querySelector( '.editor-post-title__input' );
+	if ( title ) {
+		title.dispatchEvent( new Event( 'autosize:update' ) );
+	}
+
 	return false;
 }
 
