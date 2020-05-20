@@ -10,6 +10,7 @@ import Shortcuts from '../shortcuts';
 import RegisterShortcuts from '../shortcuts/shortcuts';
 import DocumentInfo from '../document-info';
 import FeedbackPopover from '../feedback';
+import UpdateTitleHeight from '../utils/title-height';
 
 /**
  * WordPress dependencies
@@ -318,10 +319,7 @@ export default compose( [
 			}
 
 			setTimeout( function() {
-				// fix title height : https://wordpress.slack.com/archives/C02QB2JS7/p1589311097095200
-				document
-					.querySelector( '.editor-post-title__input' )
-					.dispatchEvent( new Event( 'autosize:update' ) );
+				UpdateTitleHeight();
 			}, 100 );
 		},
 		saveDefaultEditor() {

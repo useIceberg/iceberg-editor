@@ -8,6 +8,7 @@ import { withSelect, withDispatch } from '@wordpress/data';
  * Internal dependencies
  */
 import BaseOption from './base';
+import UpdateTitleHeight from '../utils/title-height';
 
 export default compose(
 	withSelect( ( select, { panelName } ) => {
@@ -23,6 +24,10 @@ export default compose(
 			dispatch( 'iceberg-settings' ).toggleEditorPanelEnabled(
 				panelName
 			);
+
+			setTimeout(function () {
+				UpdateTitleHeight();
+			}, 100);
 		},
 	} ) )
 )( BaseOption );
