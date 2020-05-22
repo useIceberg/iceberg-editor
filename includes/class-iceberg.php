@@ -40,14 +40,14 @@ final class Iceberg {
 	 * Cloning is forbidden.
 	 */
 	public function __clone() {
-		wc_doing_it_wrong( __FUNCTION__, __( 'Cloning is forbidden.', 'iceberg' ), ICEBERG_VERSION );
+		_doing_it_wrong( __FUNCTION__, __( 'Cloning is forbidden.', 'iceberg' ), ICEBERG_VERSION );
 	}
 
 	/**
 	 * Unserializing instances of this class is forbidden.
 	 */
 	public function __wakeup() {
-		wc_doing_it_wrong( __FUNCTION__, __( 'Unserializing instances of this class is forbidden.', 'iceberg' ), ICEBERG_VERSION );
+		_doing_it_wrong( __FUNCTION__, __( 'Unserializing instances of this class is forbidden.', 'iceberg' ), ICEBERG_VERSION );
 	}
 
 	/**
