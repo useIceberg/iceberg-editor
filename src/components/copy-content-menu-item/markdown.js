@@ -1,4 +1,13 @@
 /**
+ * External dependencies
+ */
+import showdown from 'showdown';
+
+/**
+ * Internal dependencies
+ */
+import stripHTMLComments from '../utils/stripHTMLComments';
+/**
  * WordPress dependencies
  */
 import { ClipboardButton } from '@wordpress/components';
@@ -6,16 +15,31 @@ import { withDispatch, withSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import { withState, compose } from '@wordpress/compose';
 
-function CopyContentMenuItem( {
+function CopyContentMarkdownMenuItem( {
 	createNotice,
 	editedPostContent,
 	hasCopied,
 	setState,
 } ) {
+	const parseContent = () => {
+		const converter = new showdown.Converter();
+		let text = stripHTMLComments( editedPostContent );
+
+		// Strip selected html tags
+		text = text.replace( /<div[^>]*>|<\/div>$/g, '' );
+		text = text.replace( /<figcaption[^>]*>.*?<\/figcaption>/gi, '' );
+		text = text.replace(
+			/<figure[^>]*>([\w\W]*?)<\/figure>/g,
+			'<p>$1</p>'
+		);
+
+		const md = converter.makeMarkdown( text );
+		return md;
+	};
 	return (
 		editedPostContent.length > 0 && (
 			<ClipboardButton
-				text={ editedPostContent }
+				text={ parseContent }
 				role="menuitem"
 				className="components-menu-item__button"
 				onCopy={ () => {
@@ -33,7 +57,7 @@ function CopyContentMenuItem( {
 			>
 				{ hasCopied
 					? __( 'Copied' )
-					: __( 'Copy content as html', 'iceberg' ) }
+					: __( 'Copy content as markdown', 'iceberg' ) }
 			</ClipboardButton>
 		)
 	);
@@ -53,4 +77,4 @@ export default compose(
 		};
 	} ),
 	withState( { hasCopied: false } )
-)( CopyContentMenuItem );
+)( CopyContentMarkdownMenuItem );
