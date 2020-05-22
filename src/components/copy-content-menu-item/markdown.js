@@ -17,6 +17,7 @@ import { withState, compose } from '@wordpress/compose';
 
 function CopyContentMarkdownMenuItem( {
 	createNotice,
+	editedPostTitle,
 	editedPostContent,
 	hasCopied,
 	setState,
@@ -33,13 +34,16 @@ function CopyContentMarkdownMenuItem( {
 			'<p>$1</p>'
 		);
 
-		const md = converter.makeMarkdown( text );
+		const md = converter.makeMarkdown(
+			'<h1>' + editedPostTitle + '</h1>' + text
+		);
 		return md;
 	};
+
 	return (
 		editedPostContent.length > 0 && (
 			<ClipboardButton
-				text={ parseContent }
+				text={ parseContent() }
 				role="menuitem"
 				className="components-menu-item__button"
 				onCopy={ () => {
@@ -65,6 +69,9 @@ function CopyContentMarkdownMenuItem( {
 
 export default compose(
 	withSelect( ( select ) => ( {
+		editedPostTitle: select( 'core/editor' ).getEditedPostAttribute(
+			'title'
+		),
 		editedPostContent: select( 'core/editor' ).getEditedPostAttribute(
 			'content'
 		),
