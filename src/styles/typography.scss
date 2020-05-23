@@ -103,10 +103,10 @@
 		line-height: var(--iceberg--typography--line-height, 2.25) !important;
 		text-align: left;
 		text-transform: none;
-		padding-bottom: 0;
 		border: 0;
 		margin: 0;
 		box-shadow: none !important;
+		padding-bottom: var(--iceberg--typography--spacing, 2.85rem) !important;
 	}
 
 	.edit-post-visual-editor__post-title-wrapper {
@@ -163,34 +163,38 @@
 
 	// Block/paragraph spacing.
 	.block-editor-block-list__block {
-		margin-bottom: var(--iceberg--typography--spacing, 2.85rem);
-		margin-top: var(--iceberg--typography--spacing, 2.85rem);
+		margin-bottom: 0 !important;
+		margin-top: 0 !important;
+		padding-bottom: var(--iceberg--typography--spacing, 2.85rem);
 
 		&.wp-block {
-			margin-bottom: var(--iceberg--typography--spacing, 2.85rem) !important;
-			margin-top: var(--iceberg--typography--spacing, 2.85rem) !important;
+			margin-bottom: 0 !important;
+			margin-top: 0 !important;
+			padding-bottom: var(--iceberg--typography--spacing, 2.85rem) !important;
 		}
 	}
 
 	.wp-block[data-align="wide"],
 	.wp-block[data-align="full"] {
-		margin-bottom: var(--iceberg--typography--spacing, 2.85rem);
-		margin-top: var(--iceberg--typography--spacing, 2.85rem);
+		margin-bottom: 0 !important;
+		margin-top: 0 !important;
+		padding-bottom: var(--iceberg--typography--spacing, 2.85rem);
 	}
 
 	.wp-block[data-type="core/heading"] + .wp-block[data-type="core/image"],
 	.wp-block[data-type="core/heading"] + .wp-block[data-type="core/paragraph"] {
-		margin-top: var(--iceberg--typography--spacing, 2.85rem) !important;
+		padding-bottom: var(--iceberg--typography--spacing, 2.85rem) !important;
 	}
 
 	.block-editor-default-block-appender {
-		margin-top: var(--iceberg--typography--spacing, 2.85rem);
+		margin-top: 0 !important;
 	}
 
 	// Add additional spacing for images.
 	.wp-block-image,
 	p[data-type="core/paragraph"] img {
-		margin-top: calc(var(--iceberg--typography--spacing, 2.85rem) + 14px) !important;
+		padding-top: 0 !important;
+		margin-top: 0 !important;
 	}
 
 	// Add additional spacing for code.
