@@ -33,11 +33,12 @@ function CopyContentMarkdownMenuItem( {
 			/<figure[^>]*>([\w\W]*?)<\/figure>/g,
 			'<p>$1</p>'
 		);
+		text = text.replace( /<cite[^>]*>([\w\W]*?)<\/cite>/g, '<p>$1</p>' );
 
 		const md = converter.makeMarkdown(
 			'<h1>' + editedPostTitle + '</h1>' + text
 		);
-		return md;
+		return stripHTMLComments( md ).replace( /\n\s*\n\s*\n/g, '\n\n' );
 	};
 
 	return (
