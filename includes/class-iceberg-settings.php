@@ -17,7 +17,6 @@ class Iceberg_Settings {
 	 */
 	public static function init() {
 		add_action( 'init', array( __CLASS__, 'register_settings' ) );
-		add_action( 'rest_api_init', array( __CLASS__, 'send_email' ) );
 	}
 
 	/**
@@ -90,38 +89,6 @@ class Iceberg_Settings {
 	 */
 	private static function auth_callback() {
 		return current_user_can( 'read' );
-	}
-
-	/**
-	 * Process sending of emails for the feedback component.
-	 */
-	public static function send_email() {
-		register_rest_route(
-			'iceberg/v1',
-			'/send',
-			array(
-				'methods'  => 'POST',
-				'callback' => function( $data ) {
-					$name = wp_strip_all_tags( trim( $data->get_param( 'name' ) ) );
-					$message = wp_strip_all_tags( trim( $data->get_param( 'message' ) ) );
-					$email = 'support@useiceberg.helpscoutapp.com';
-
-					$subject = __( 'Iceberg Feedback', 'iceberg' );
-					$headers = 'From: ' . $email . "\r\n" .
-						'Reply-To: ' . $email . "\r\n";
-
-					$sent = wp_mail( $email, $subject, wp_strip_all_tags( $message ), $headers );
-
-					if ( $sent ) {
-						echo wp_json_encode( array( 'email_sent' => true ) );
-					} else {
-						echo wp_json_encode( array( 'email_sent' => false ) );
-					}
-
-					die();
-				},
-			)
-		);
 	}
 }
 
