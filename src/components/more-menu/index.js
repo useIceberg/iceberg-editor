@@ -10,6 +10,7 @@ import { get } from 'lodash';
  */
 import CopyContentMenuItem from '../copy-content-menu-item';
 import Options from '../options-modal/options';
+import LivePreview from '../preview';
 import icons from '../icons';
 
 /**
@@ -163,6 +164,7 @@ class MoreMenu extends Component {
 									<BaseControl className="components-iceberg-menu-title">
 										{ __( 'Tools', 'iceberg' ) }
 									</BaseControl>
+									<LivePreview isMenu={ true } />
 									<MenuItem
 										className="components-iceberg-more-menu__new"
 										shortcut={ displayShortcut.primaryShift(

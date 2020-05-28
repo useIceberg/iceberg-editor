@@ -10,6 +10,7 @@ import Shortcuts from '../shortcuts';
 import RegisterShortcuts from '../shortcuts/shortcuts';
 import DocumentInfo from '../document-info';
 import FeedbackPopover from '../feedback';
+import LivePreview from '../preview';
 
 /**
  * WordPress dependencies
@@ -214,6 +215,7 @@ class IcebergEditor extends Component {
 					<DocumentInfo isActive={ isActive } />
 				) }
 				{ isBeta && isActive && <FeedbackPopover /> }
+				{ isActive && <LivePreview isMenu={ false } /> }
 			</Fragment>
 		);
 	}
