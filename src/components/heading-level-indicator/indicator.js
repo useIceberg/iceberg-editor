@@ -8,6 +8,7 @@ import { range } from 'lodash';
  * Internal dependencies
  */
 import HeadingLevelIcon from './heading-level-icon';
+import CopyLinkMenuItem from './copy-link-menu-item';
 import icons from '../icons';
 
 /**
@@ -40,7 +41,15 @@ class HeadingLevelIndicator extends Component {
 	}
 
 	render() {
-		const { isActive, clientId, attributes, onTransform } = this.props;
+		const {
+			isActive,
+			clientId,
+			attributes,
+			onTransform,
+			updateBlockAttributes,
+		} = this.props;
+
+		const { anchor } = attributes;
 
 		if ( ! isActive ) {
 			return false;
@@ -134,6 +143,13 @@ class HeadingLevelIndicator extends Component {
 									{ __( 'Change to paragraph', 'iceberg' ) }
 									{ icons.paragraph }
 								</MenuItem>
+								<CopyLinkMenuItem
+									clientId={ clientId }
+									anchor={ anchor }
+									updateBlockAttributes={
+										updateBlockAttributes
+									}
+								/>
 							</MenuGroup>
 						</Fragment>
 					) }
