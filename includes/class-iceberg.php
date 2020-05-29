@@ -15,7 +15,7 @@ final class Iceberg {
 	/**
 	 * The single instance of the class.
 	 *
-	 * @var Iceberg
+	 * @var self|null
 	 */
 	protected static $instance = null;
 
@@ -26,7 +26,7 @@ final class Iceberg {
 	 *
 	 * @static
 	 * @see Iceberg()
-	 * @return Iceberg - Main instance.
+	 * @return self Main instance.
 	 */
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
