@@ -15,47 +15,76 @@ import { range } from 'lodash';
  */
 import { __, sprintf } from '@wordpress/i18n';
 import { getRectangleFromRange } from '@wordpress/dom';
-import { Component, Fragment, useMemo } from '@wordpress/element';
+import { Component, Fragment, useMemo, createRef } from '@wordpress/element';
 import { withSelect, withDispatch } from '@wordpress/data';
 import { compose, withInstanceId, ifCondition } from '@wordpress/compose';
 import { switchToBlockType } from '@wordpress/blocks';
-import { BlockToolbar } from '@wordpress/block-editor';
+import { BlockFormatControls } from '@wordpress/block-editor';
 import {
 	withSpokenMessages,
 	DropdownMenu,
 	MenuGroup,
 	MenuItem,
 	Popover,
+	Toolbar,
+	ToolbarGroup,
+	Slot,
 } from '@wordpress/components';
 
 class ContextualToolbar extends Component {
 	constructor() {
 		super( ...arguments );
 		this.onSelectionChange = this.onSelectionChange.bind( this );
+		this.onSelectionStart = this.onSelectionStart.bind( this );
+		this.onSelectionEnd = this.onSelectionEnd.bind( this );
+		this.containerRef = createRef();
 
 		this.state = {
 			anchorRef: null,
 			isVisible: false,
+			isSelecting: false,
 		};
 	}
 
 	componentDidMount() {
 		document.addEventListener( 'selectionchange', this.onSelectionChange );
+		document.addEventListener( 'selectstart', this.onSelectionStart );
+		document.addEventListener( 'mouseup', this.onSelectionEnd );
 	}
 
-	onSelectionChange(){
+	onSelectionStart() {
+		this.setState( { isSelecting: true } );
+	}
+
+	onSelectionEnd() {
+		const { isSelecting } = this.state;
+
+		if ( isSelecting ){
+			setTimeout(
+				function() {
+					this.setState( { isSelecting: false, isVisible: true } );
+				}.bind( this ),
+				200
+			); 
+			
+		}
+	}
+
+	onSelectionChange(event) {
 		const selection = window.getSelection();
+		const { isSelecting, isVisible } = this.state;
 		const range =
 			selection.rangeCount > 0 ? selection.getRangeAt( 0 ) : null;
 		if ( ! range ) {
 			return;
 		}
-
+		
 		if ( selection.isCollapsed ) {
+			this.setState( { isVisible: false, anchorRef: null } );
 			return;
 		}
 
-		this.setState( { anchorRef: range, isVisible: true } );
+		this.setState( { anchorRef: range } );
 
 		return false;
 	}
@@ -69,19 +98,35 @@ class ContextualToolbar extends Component {
 		}
 
 		if ( anchorRef && isVisible ) {
-			console.log( anchorRef );
+			// console.log( <BlockToolbar /> );
 			return (
 				<Fragment>
 					<Popover
+						ref={ this.containerRef }
+						className="component-iceberg-contextual-toolbar"
+						position="top center"
+						focusOnMount={ false }
 						anchorRef={ anchorRef }
-						onClose={ () => {
-							this.setState( {
-								isVisible: false,
-							} );
+						onFocusOutside={ ( event ) => {
+							const containerElement = document.querySelector(
+								'.component-iceberg-contextual-toolbar'
+							);
+							if( containerElement && ! containerElement.contains(event.target) ){
+								this.setState( {
+									isVisible: false,
+								} );
+							}
+							
 						} }
 					>
-						asdf
-						{ /* <BlockToolbar hideDragHandle /> */ }
+						<Toolbar>
+							{ [ 'bold', 'italic', 'link' ].map( ( format ) => (
+								<Slot
+									name={ `RichText.ToolbarControls.${ format }` }
+									key={ format }
+								/>
+							) ) }
+						</Toolbar>
 					</Popover>
 				</Fragment>
 			);
