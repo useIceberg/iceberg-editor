@@ -1,33 +1,13 @@
 /**
- * External dependencies
- */
-import classnames from 'classnames';
-import { range } from 'lodash';
-
-/**
- * Internal dependencies
- */
-// import HeadingLevelIcon from './heading-level-icon';
-// import icons from '../icons';
-
-/**
  * WordPress dependencies
  */
-import { __, sprintf } from '@wordpress/i18n';
-import { getRectangleFromRange } from '@wordpress/dom';
-import { Component, Fragment, useMemo, createRef } from '@wordpress/element';
-import { withSelect, withDispatch } from '@wordpress/data';
-import { compose, withInstanceId, ifCondition } from '@wordpress/compose';
-import { switchToBlockType } from '@wordpress/blocks';
-import { BlockFormatControls } from '@wordpress/block-editor';
+import { Component, Fragment, createRef } from '@wordpress/element';
+import { withSelect } from '@wordpress/data';
+import { compose, withInstanceId } from '@wordpress/compose';
 import {
 	withSpokenMessages,
-	DropdownMenu,
-	MenuGroup,
-	MenuItem,
 	Popover,
 	Toolbar,
-	ToolbarGroup,
 	Slot,
 } from '@wordpress/components';
 
@@ -59,38 +39,44 @@ class ContextualToolbar extends Component {
 	onSelectionEnd() {
 		const { isSelecting } = this.state;
 
-		if ( isSelecting ){
+		if ( isSelecting ) {
 			setTimeout(
 				function() {
 					this.setState( { isSelecting: false, isVisible: true } );
 				}.bind( this ),
-				200
-			); 
-			
+				150
+			);
 		}
 	}
 
-	onSelectionChange(event) {
+	onSelectionChange() {
 		const selection = window.getSelection();
-		const { isSelecting, isVisible } = this.state;
 		const range =
 			selection.rangeCount > 0 ? selection.getRangeAt( 0 ) : null;
 		if ( ! range ) {
 			return;
 		}
-		
+
 		if ( selection.isCollapsed ) {
 			this.setState( { isVisible: false, anchorRef: null } );
 			return;
 		}
 
-		this.setState( { anchorRef: range } );
+		if (
+			range.startContainer.parentNode.classList.contains( 'wp-block' ) ||
+			range.startContainer.parentNode.classList.contains( 'rich-text' ) ||
+			range.startContainer.parentNode.hasAttribute(
+				'data-rich-text-format-boundary'
+			)
+		) {
+			this.setState( { anchorRef: range } );
+		}
 
 		return false;
 	}
 
 	render() {
-		const { isActive, clientId, attributes, onTransform } = this.props;
+		const { isActive } = this.props;
 		const { anchorRef, isVisible } = this.state;
 
 		if ( ! isActive ) {
@@ -98,7 +84,6 @@ class ContextualToolbar extends Component {
 		}
 
 		if ( anchorRef && isVisible ) {
-			// console.log( <BlockToolbar /> );
 			return (
 				<Fragment>
 					<Popover
@@ -122,14 +107,12 @@ class ContextualToolbar extends Component {
 						} }
 					>
 						<Toolbar>
-							{ [ 'bold', 'italic', 'link' ].map(
-								( format ) => (
-									<Slot
-										name={ `RichText.ToolbarControls.${ format }` }
-										key={ format }
-									/>
-								)
-							) }
+							{ [ 'bold', 'italic', 'link' ].map( ( format ) => (
+								<Slot
+									name={ `RichText.ToolbarControls.${ format }` }
+									key={ format }
+								/>
+							) ) }
 						</Toolbar>
 					</Popover>
 				</Fragment>
@@ -146,22 +129,6 @@ export default compose( [
 		isActive: select( 'core/edit-post' ).isFeatureActive(
 			'icebergWritingMode'
 		),
-		isEnabled: select( 'iceberg-settings' ).isEditorPanelEnabled(
-			'headingIndicators'
-		),
 	} ) ),
-	withDispatch( ( dispatch ) => ( {
-		updateBlockAttributes: dispatch( 'core/block-editor' )
-			.updateBlockAttributes,
-		onTransform( clientId, blocks, name ) {
-			dispatch( 'core/block-editor' ).replaceBlocks(
-				clientId,
-				switchToBlockType( blocks, name )
-			);
-		},
-	} ) ),
-	// ifCondition( ( props ) => {
-	// 	return props.isEnabled;
-	// } ),
 	withSpokenMessages,
 ] )( ContextualToolbar );

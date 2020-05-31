@@ -19,7 +19,6 @@ import { createHigherOrderComponent } from '@wordpress/compose';
 const withToolbar = createHigherOrderComponent( ( BlockEdit ) => {
 	return ( props ) => {
 		const { isSelected } = props;
-		console.log( props );
 		return (
 			<Fragment>
 				{ isSelected && <ContextualToolbar { ...{ ...props } } /> }

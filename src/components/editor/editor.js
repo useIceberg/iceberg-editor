@@ -228,6 +228,7 @@ export default compose( [
 			isActive: isFeatureActive( 'icebergWritingMode' ),
 			isFocusMode: isFeatureActive( 'focusMode' ),
 			isFullscreenMode: isFeatureActive( 'fullscreenMode' ),
+			isFixedToolbar: isFeatureActive( 'fixedToolbar' ),
 			disableFullscreenMode: isFeatureActive(
 				'icebergDisableFullscreenMode'
 			),
@@ -311,6 +312,10 @@ export default compose( [
 
 			if ( ! ownProps.isFullscreenMode ) {
 				dispatch( 'core/edit-post' ).toggleFeature( 'fullscreenMode' );
+			}
+
+			if ( ! ownProps.isFixedToolbar ) {
+				dispatch( 'core/edit-post' ).toggleFeature( 'fixedToolbar' );
 			}
 
 			if ( ownProps.isWelcomeGuide ) {
