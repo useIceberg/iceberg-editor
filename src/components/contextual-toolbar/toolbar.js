@@ -65,6 +65,12 @@ class ContextualToolbar extends Component {
 		if (
 			range.startContainer.parentNode.classList.contains( 'wp-block' ) ||
 			range.startContainer.parentNode.classList.contains( 'rich-text' ) ||
+			range.startContainer.parentNode.parentNode.classList.contains(
+				'wp-block'
+			) ||
+			range.startContainer.parentNode.parentNode.classList.contains(
+				'rich-text'
+			) ||
 			range.startContainer.parentNode.hasAttribute(
 				'data-rich-text-format-boundary'
 			)
