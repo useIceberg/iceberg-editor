@@ -1,0 +1,22 @@
+.component-iceberg-contextual-toolbar{
+	
+	.components-button{
+		height: 40px;
+		background: transparent !important;
+		color: #fff !important;
+	}
+
+	.components-toolbar{
+		background: #111;
+		border-radius: 5px;
+		display: flex;
+		flex-wrap: nowrap;
+		position: relative;
+		min-height: 40px;
+	}
+	.components-popover__content{
+		background: transparent !important;
+		border: 0px !important;
+		min-width: auto !important;
+	}
+}

@@ -111,21 +111,25 @@ class ContextualToolbar extends Component {
 							const containerElement = document.querySelector(
 								'.component-iceberg-contextual-toolbar'
 							);
-							if( containerElement && ! containerElement.contains(event.target) ){
+							if (
+								containerElement &&
+								! containerElement.contains( event.target )
+							) {
 								this.setState( {
 									isVisible: false,
 								} );
 							}
-							
 						} }
 					>
 						<Toolbar>
-							{ [ 'bold', 'italic', 'link' ].map( ( format ) => (
-								<Slot
-									name={ `RichText.ToolbarControls.${ format }` }
-									key={ format }
-								/>
-							) ) }
+							{ [ 'bold', 'italic', 'link' ].map(
+								( format ) => (
+									<Slot
+										name={ `RichText.ToolbarControls.${ format }` }
+										key={ format }
+									/>
+								)
+							) }
 						</Toolbar>
 					</Popover>
 				</Fragment>
