@@ -20,3 +20,9 @@
 		min-width: auto !important;
 	}
 }
+
+&.mobile{
+	.component-iceberg-contextual-toolbar{
+		display: none;
+	}
+}
