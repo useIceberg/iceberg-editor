@@ -10,6 +10,7 @@ import Shortcuts from '../shortcuts';
 import RegisterShortcuts from '../shortcuts/shortcuts';
 import DocumentInfo from '../document-info';
 import FeedbackPopover from '../feedback';
+import PostSettings from '../post-settings';
 
 /**
  * WordPress dependencies
@@ -214,6 +215,7 @@ class IcebergEditor extends Component {
 					<DocumentInfo isActive={ isActive } />
 				) }
 				{ isBeta && isActive && <FeedbackPopover /> }
+				{ <PostSettings isActive={ isActive } /> }
 			</Fragment>
 		);
 	}
