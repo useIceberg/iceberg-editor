@@ -2,6 +2,7 @@
  * Internal dependencies
  */
 import PostLink from './components/post-link';
+import PostTrash from './components/post-trash';
 
 /**
  * WordPress dependencies
@@ -71,6 +72,7 @@ class PostSettings extends Component {
 										<PostFeaturedImage />
 									</PostFeaturedImageCheck>
 									<PostLink />
+									<PostTrash />
 								</MenuGroup>
 							</Fragment>
 						) }

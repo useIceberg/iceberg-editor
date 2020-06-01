@@ -1,3 +1,11 @@
 #components-iceberg-settings-pinned-button{
 	display: flex !important;
 }
+
+.editor-post-trash-container{
+	margin-top: 20px;
+	.components-button{
+		color: #f05230 !important;
+		padding: 0 !important;
+	}
+}
