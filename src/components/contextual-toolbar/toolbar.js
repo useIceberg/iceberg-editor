@@ -3,6 +3,7 @@
  */
 import { Component, Fragment, createRef } from '@wordpress/element';
 import { withSelect } from '@wordpress/data';
+import { ESCAPE } from '@wordpress/keycodes';
 import { compose, withInstanceId } from '@wordpress/compose';
 import {
 	withSpokenMessages,
@@ -15,7 +16,6 @@ class ContextualToolbar extends Component {
 	constructor() {
 		super( ...arguments );
 		this.onSelectionChange = this.onSelectionChange.bind( this );
-		this.onSelectionStart = this.onSelectionStart.bind( this );
 		this.onSelectionEnd = this.onSelectionEnd.bind( this );
 		this.containerRef = createRef();
 
@@ -28,18 +28,14 @@ class ContextualToolbar extends Component {
 
 	componentDidMount() {
 		document.addEventListener( 'selectionchange', this.onSelectionChange );
-		document.addEventListener( 'selectstart', this.onSelectionStart );
 		document.addEventListener( 'mouseup', this.onSelectionEnd );
+		document.addEventListener( 'keyup', this.onSelectionEnd );
 	}
 
-	onSelectionStart() {
-		this.setState( { isSelecting: true } );
-	}
-
-	onSelectionEnd() {
-		const { isSelecting } = this.state;
-
-		if ( isSelecting ) {
+	onSelectionEnd( event ) {
+		const { isSelecting, isVisible } = this.state;
+		const { keyCode } = event;
+		if ( isSelecting && ! event.shiftKey ) {
 			setTimeout(
 				function() {
 					this.setState( { isSelecting: false, isVisible: true } );
@@ -47,14 +43,23 @@ class ContextualToolbar extends Component {
 				150
 			);
 		}
+
+		if ( ESCAPE === keyCode && isVisible ) {
+			this.setState( { isVisible: false } );
+		}
 	}
 
 	onSelectionChange() {
+		const { isSelecting } = this.state;
 		const selection = window.getSelection();
 		const range =
 			selection.rangeCount > 0 ? selection.getRangeAt( 0 ) : null;
 		if ( ! range ) {
 			return;
+		}
+
+		if ( ! isSelecting && range.startOffset !== range.endOffset ) {
+			this.setState( { isSelecting: true } );
 		}
 
 		if ( selection.isCollapsed ) {
@@ -96,7 +101,7 @@ class ContextualToolbar extends Component {
 						ref={ this.containerRef }
 						className="component-iceberg-contextual-toolbar"
 						position="top center"
-						focusOnMount={ false }
+						focusOnMount="container"
 						anchorRef={ anchorRef }
 						onFocusOutside={ ( event ) => {
 							const containerElement = document.querySelector(
