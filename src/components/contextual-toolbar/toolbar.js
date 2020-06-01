@@ -35,6 +35,11 @@ class ContextualToolbar extends Component {
 	onSelectionEnd( event ) {
 		const { isSelecting, isVisible } = this.state;
 		const { keyCode } = event;
+
+		if ( ( ESCAPE === keyCode || event.shiftKey ) && isVisible ) {
+			this.setState( { isVisible: false } );
+		}
+
 		if ( isSelecting && ! event.shiftKey ) {
 			setTimeout(
 				function() {
@@ -42,10 +47,6 @@ class ContextualToolbar extends Component {
 				}.bind( this ),
 				150
 			);
-		}
-
-		if ( ESCAPE === keyCode && isVisible ) {
-			this.setState( { isVisible: false } );
 		}
 	}
 
