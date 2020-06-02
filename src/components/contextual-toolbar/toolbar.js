@@ -3,7 +3,7 @@
  */
 import { Component, Fragment, createRef } from '@wordpress/element';
 import { withSelect, withDispatch } from '@wordpress/data';
-import { ESCAPE } from '@wordpress/keycodes';
+import { ESCAPE, displayShortcut } from '@wordpress/keycodes';
 import { compose, withInstanceId } from '@wordpress/compose';
 import { switchToBlockType } from '@wordpress/blocks';
 import {
@@ -15,6 +15,7 @@ import {
 	Path,
 	Button,
 } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 class ContextualToolbar extends Component {
 	constructor() {
@@ -150,6 +151,10 @@ class ContextualToolbar extends Component {
 									<Button
 										isPressed={ name === 'core/heading' }
 										icon={ titleIcon }
+										label={ __( 'Heading Two', 'iceberg' ) }
+										shortcut={ displayShortcut.primaryAlt(
+											'2'
+										) }
 										onClick={ () => {
 											onTransform(
 												clientId,
@@ -164,6 +169,7 @@ class ContextualToolbar extends Component {
 									<Button
 										isPressed={ name === 'core/quote' }
 										icon="editor-quote"
+										label={ __( 'Quote', 'iceberg' ) }
 										onClick={ () => {
 											onTransform(
 												clientId,
