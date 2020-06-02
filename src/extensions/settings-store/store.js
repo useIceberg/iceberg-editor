@@ -133,19 +133,6 @@ export default function createIcebergStore() {
 			storeChanged();
 			dispatch( 'core/edit-post' ).toggleFeature( name );
 		},
-		sendBetaFeedback( name, message ) {
-			apiFetch( {
-				path: '/iceberg/v1/send/',
-				method: 'POST',
-				headers: {
-					'X-WP-Nonce': settingsNonce,
-				},
-				data: {
-					name,
-					message,
-				},
-			} );
-		},
 		handleLicenseActivation( action, licenseKey, setState ) {
 			apiFetch( {
 				path: '/iceberg/v1/license/' + action + '/' + licenseKey,

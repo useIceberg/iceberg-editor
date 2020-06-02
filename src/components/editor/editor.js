@@ -9,7 +9,6 @@ import MoreMenu from '../more-menu';
 import Shortcuts from '../shortcuts';
 import RegisterShortcuts from '../shortcuts/shortcuts';
 import DocumentInfo from '../document-info';
-import FeedbackPopover from '../feedback';
 import ShortcutButton from '../shortcut-button';
 
 /**
@@ -132,7 +131,7 @@ class IcebergEditor extends Component {
 			document.body.classList.add( 'invalid-iceberg-license' );
 		}
 
-		if ( isDocumentInformation && ! icebergSettings.isBeta ) {
+		if ( isDocumentInformation ) {
 			document.body.classList.add( 'has-document-info' );
 		} else {
 			document.body.classList.remove( 'has-document-info' );
@@ -171,7 +170,6 @@ class IcebergEditor extends Component {
 			isThemesUI,
 			isDocumentInformation,
 		} = this.props;
-		const isBeta = icebergSettings.isBeta;
 
 		const icon = (
 			<SVG
@@ -211,10 +209,9 @@ class IcebergEditor extends Component {
 				<MoreMenu isActive={ isActive } />
 				<BlockLimiter isActive={ isActive } />
 				<ThemeSwitcher isActive={ isActive } isEnabled={ isThemesUI } />
-				{ ! isBeta && isActive && isDocumentInformation && (
+				{ isActive && isDocumentInformation && (
 					<DocumentInfo isActive={ isActive } />
 				) }
-				{ isBeta && isActive && <FeedbackPopover /> }
 				{ ! isActive && <ShortcutButton onToggle={ onToggle } /> }
 			</Fragment>
 		);
