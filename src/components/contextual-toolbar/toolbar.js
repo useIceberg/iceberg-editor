@@ -111,7 +111,7 @@ class ContextualToolbar extends Component {
 			</SVG>
 		);
 
-		if ( anchorRef && isVisible ) {
+		if ( anchorRef && isVisible && ! [ 'core/code' ].includes( name ) ) {
 			return (
 				<Fragment>
 					<Popover
@@ -141,33 +141,41 @@ class ContextualToolbar extends Component {
 									key={ format }
 								/>
 							) ) }
-							<Button
-								isPressed={ name === 'core/heading' }
-								icon={ titleIcon }
-								onClick={ () => {
-									onTransform(
-										clientId,
-										this.props,
-										name === 'core/heading'
-											? 'core/paragraph'
-											: 'core/heading'
-									);
-								} }
-							></Button>
+							{ [
+								'core/heading',
+								'core/paragraph',
+								'core/quote',
+							].includes( name ) && (
+								<Fragment>
+									<Button
+										isPressed={ name === 'core/heading' }
+										icon={ titleIcon }
+										onClick={ () => {
+											onTransform(
+												clientId,
+												this.props,
+												name === 'core/heading'
+													? 'core/paragraph'
+													: 'core/heading'
+											);
+										} }
+									></Button>
 
-							<Button
-								isPressed={ name === 'core/quote' }
-								icon="editor-quote"
-								onClick={ () => {
-									onTransform(
-										clientId,
-										this.props,
-										name === 'core/quote'
-											? 'core/paragraph'
-											: 'core/quote'
-									);
-								} }
-							></Button>
+									<Button
+										isPressed={ name === 'core/quote' }
+										icon="editor-quote"
+										onClick={ () => {
+											onTransform(
+												clientId,
+												this.props,
+												name === 'core/quote'
+													? 'core/paragraph'
+													: 'core/quote'
+											);
+										} }
+									></Button>
+								</Fragment>
+							) }
 						</Toolbar>
 					</Popover>
 				</Fragment>
