@@ -28,6 +28,7 @@ export default function createIcebergStore() {
 		uiToc: ! isFeatureActive( 'icebergUiToc' ),
 		uiShortcuts: ! isFeatureActive( 'icebergUiShortcuts' ),
 		uiBackTo: ! isFeatureActive( 'icebergUiBackTo' ),
+		uiSwitchTo: ! isFeatureActive( 'icebergUiSwitchTo' ),
 		emoji: ! isFeatureActive( 'icebergEmoji' ),
 		isDefaultEditor: isFeatureActive( 'icebergIsDefaultEditor' ),
 		documentInformation: isFeatureActive( 'icebergDocumentInformation' ),

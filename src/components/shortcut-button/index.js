@@ -22,7 +22,7 @@ class ShortcutButton extends Component {
 	}
 
 	addPinnedButton() {
-		const { isActive, onToggle } = this.props;
+		const { isActive, onToggle, isEnabled } = this.props;
 
 		const icon = (
 			<SVG
@@ -57,6 +57,7 @@ class ShortcutButton extends Component {
 		const moreMenuButton = document.querySelector( '.edit-post-more-menu' );
 
 		if (
+			isEnabled &&
 			! isActive &&
 			! document.getElementById(
 				'components-iceberg-shortcut-pinned-button'
@@ -73,10 +74,14 @@ class ShortcutButton extends Component {
 					'components-iceberg-shortcut-pinned-button'
 				)
 			);
-		} else if ( isActive ) {
-			document
-				.getElementById( 'components-iceberg-shortcut-pinned-button' )
-				.remove();
+		} else if ( isActive || ! isEnabled ) {
+			const icebergButton = document.getElementById(
+				'components-iceberg-shortcut-pinned-button'
+			);
+
+			if ( icebergButton ) {
+				icebergButton.remove();
+			}
 		}
 	}
 

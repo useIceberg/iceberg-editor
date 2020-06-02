@@ -88,6 +88,14 @@ class Options extends Component {
 							optionType="ui"
 						/>
 						<EnablePanelOption
+							label={ __(
+								'"Switch to Iceberg" button',
+								'iceberg'
+							) }
+							panelName="uiSwitchTo"
+							optionType="ui"
+						/>
+						<EnablePanelOption
 							label={ __( 'Document information', 'iceberg' ) }
 							panelName="documentInformation"
 							optionType="ui"
