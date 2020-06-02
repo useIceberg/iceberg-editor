@@ -154,6 +154,20 @@ class ContextualToolbar extends Component {
 									);
 								} }
 							></Button>
+
+							<Button
+								isPressed={ name === 'core/quote' }
+								icon="editor-quote"
+								onClick={ () => {
+									onTransform(
+										clientId,
+										this.props,
+										name === 'core/quote'
+											? 'core/paragraph'
+											: 'core/quote'
+									);
+								} }
+							></Button>
 						</Toolbar>
 					</Popover>
 				</Fragment>
