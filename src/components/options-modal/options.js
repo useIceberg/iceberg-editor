@@ -1,5 +1,3 @@
-/*global icebergSettings*/
-
 /**
  * WordPress dependencies
  */

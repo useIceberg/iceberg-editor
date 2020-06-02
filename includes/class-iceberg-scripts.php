@@ -58,7 +58,6 @@ class Iceberg_Scripts {
 				'siteurl'              => wp_parse_url( get_bloginfo( 'url' ) ),
 				'icebergSettingsNonce' => wp_create_nonce( 'wp_rest' ),
 				'isDefaultEditor'      => get_option( 'iceberg_is_default_editor' ),
-				'isBeta'               => false,
 				'customThemes'         => ( false !== $iceberg_theme ) ? $iceberg_theme : '',
 				'license'              => get_option( 'iceberg_license_active' ),
 				'isGutenberg'          => defined( 'GUTENBERG_VERSION' ) || ( function_exists( 'is_plugin_active' ) && is_plugin_active( 'gutenberg/gutenberg.php' ) ) ? true : false,

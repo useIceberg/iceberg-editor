@@ -192,15 +192,13 @@ class MoreMenu extends Component {
 										) }
 									</MenuItem>
 									<CopyContentMenuItem />
-									{ ! icebergSettings.isBeta && (
-										<MenuItem
-											role="menuitem"
-											href="https://useiceberg.com/"
-											target="_new"
-										>
-											{ __( 'Help', 'iceberg' ) }
-										</MenuItem>
-									) }
+									<MenuItem
+										role="menuitem"
+										href="https://useiceberg.com/"
+										target="_new"
+									>
+										{ __( 'Help', 'iceberg' ) }
+									</MenuItem>
 								</MenuGroup>
 								<MenuGroup>
 									<MenuItem
