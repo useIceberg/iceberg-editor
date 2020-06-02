@@ -2,14 +2,18 @@
  * WordPress dependencies
  */
 import { Component, Fragment, createRef } from '@wordpress/element';
-import { withSelect } from '@wordpress/data';
+import { withSelect, withDispatch } from '@wordpress/data';
 import { ESCAPE } from '@wordpress/keycodes';
 import { compose, withInstanceId } from '@wordpress/compose';
+import { switchToBlockType } from '@wordpress/blocks';
 import {
 	withSpokenMessages,
 	Popover,
 	Toolbar,
 	Slot,
+	SVG,
+	Path,
+	Button,
 } from '@wordpress/components';
 
 class ContextualToolbar extends Component {
@@ -88,12 +92,24 @@ class ContextualToolbar extends Component {
 	}
 
 	render() {
-		const { isActive } = this.props;
+		const { isActive, clientId, onTransform, name } = this.props;
 		const { anchorRef, isVisible } = this.state;
 
 		if ( ! isActive ) {
 			return false;
 		}
+
+		const titleIcon = (
+			<SVG
+				xmlns="http://www.w3.org/2000/svg"
+				height="24"
+				viewBox="0 0 24 24"
+				width="24"
+			>
+				<Path d="M0 0h24v24H0V0z" fill="none" />
+				<Path d="M5 4v3h5.5v12h3V7H19V4z" />
+			</SVG>
+		);
 
 		if ( anchorRef && isVisible ) {
 			return (
@@ -125,6 +141,19 @@ class ContextualToolbar extends Component {
 									key={ format }
 								/>
 							) ) }
+							<Button
+								isPressed={ name === 'core/heading' }
+								icon={ titleIcon }
+								onClick={ () => {
+									onTransform(
+										clientId,
+										this.props,
+										name === 'core/heading'
+											? 'core/paragraph'
+											: 'core/heading'
+									);
+								} }
+							></Button>
 						</Toolbar>
 					</Popover>
 				</Fragment>
@@ -141,6 +170,14 @@ export default compose( [
 		isActive: select( 'core/edit-post' ).isFeatureActive(
 			'icebergWritingMode'
 		),
+	} ) ),
+	withDispatch( ( dispatch ) => ( {
+		onTransform( clientId, blocks, name ) {
+			dispatch( 'core/block-editor' ).replaceBlocks(
+				clientId,
+				switchToBlockType( blocks, name )
+			);
+		},
 	} ) ),
 	withSpokenMessages,
 ] )( ContextualToolbar );
