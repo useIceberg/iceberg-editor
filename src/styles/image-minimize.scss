@@ -17,7 +17,7 @@ $defaulWidth: 150px;
 		&.alignfull,
 		&.alignwide {
 			display: block;
-			max-width: var(--iceberg--minimized-image--width, $defaulWidth);
+			max-width: var(--iceberg--minimized-image--width, $defaulWidth) !important;
 			height: auto !important;
 
 			img {
