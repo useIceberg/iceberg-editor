@@ -57,10 +57,10 @@ class MediaToolbar extends Component {
 
 	render() {
 		const { isActive, attributes } = this.props;
-		const { align } = attributes;
+		const { align, id } = attributes;
 		const { anchorRef } = this.state;
 
-		if ( ! isActive ) {
+		if ( ! isActive || ! id ) {
 			return false;
 		}
 
