@@ -3,7 +3,6 @@
  */
 import { Component, Fragment } from '@wordpress/element';
 import { withSelect, withDispatch } from '@wordpress/data';
-import { getRectangleFromRange } from '@wordpress/dom';
 import { compose, withInstanceId } from '@wordpress/compose';
 import { BlockAlignmentToolbar } from '@wordpress/block-editor';
 import { withSpokenMessages, Popover, Toolbar } from '@wordpress/components';
@@ -29,7 +28,8 @@ class MediaToolbar extends Component {
 	}
 
 	syncPosition() {
-		const { clientId } = this.props;
+		const { clientId, attributes } = this.props;
+		const { id } = attributes;
 		const { isUpdated } = this.state;
 		const range = document.createRange();
 		const elementRect = document.querySelector(
@@ -37,7 +37,7 @@ class MediaToolbar extends Component {
 		);
 		range.selectNodeContents( elementRect );
 
-		if ( ! isUpdated ) {
+		if ( ! isUpdated && id ) {
 			this.setState( { anchorRef: range, isUpdated: true } );
 		}
 	}
