@@ -51,13 +51,13 @@ class MediaToolbar extends Component {
 		const { clientId, attributes } = this.props;
 		const { id } = attributes;
 		const { isUpdated } = this.state;
-		const range = document.createRange();
-		const elementRect = document.querySelector(
-			'[data-block="' + clientId + '"]'
-		);
-		range.selectNodeContents( elementRect );
-
 		if ( ! isUpdated && id ) {
+			const range = document.createRange();
+			const elementRect = document.querySelector(
+				'[data-block="' + clientId + '"] div:first-of-type'
+			);
+			range.selectNodeContents( elementRect );
+
 			this.setState( { anchorRef: range, isUpdated: true } );
 		}
 	}
