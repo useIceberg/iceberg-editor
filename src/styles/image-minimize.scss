@@ -37,6 +37,17 @@ $defaulWidth: 150px;
 		}
 	}
 
+	.wp-block {
+		height: auto;
+
+		&[data-align="left"],
+		&[data-align="right"] {
+			> * {
+				float: none;
+			}
+		}
+	}
+
 	.block-editor-media-placeholder {
 		padding-left: 1.3em;
 		padding-right: 1.3em;
