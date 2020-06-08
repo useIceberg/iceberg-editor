@@ -3,7 +3,7 @@
  */
 import { Component, Fragment, createRef } from '@wordpress/element';
 import { withSelect, withDispatch } from '@wordpress/data';
-import { ESCAPE, displayShortcut } from '@wordpress/keycodes';
+import { ESCAPE, BACKSPACE, displayShortcut } from '@wordpress/keycodes';
 import { compose, withInstanceId } from '@wordpress/compose';
 import { switchToBlockType } from '@wordpress/blocks';
 import {
@@ -41,7 +41,10 @@ class ContextualToolbar extends Component {
 		const { isSelecting, isVisible } = this.state;
 		const { keyCode } = event;
 
-		if ( ( ESCAPE === keyCode || event.shiftKey ) && isVisible ) {
+		if (
+			( ESCAPE === keyCode || BACKSPACE === keyCode || event.shiftKey ) &&
+			isVisible
+		) {
 			this.setState( { isVisible: false } );
 		}
 
@@ -119,7 +122,7 @@ class ContextualToolbar extends Component {
 						ref={ this.containerRef }
 						className="component-iceberg-contextual-toolbar"
 						position="top center"
-						focusOnMount="container"
+						focusOnMount={ false }
 						anchorRef={ anchorRef }
 						onFocusOutside={ ( event ) => {
 							const containerElement = document.querySelector(
