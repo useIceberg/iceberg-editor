@@ -9,6 +9,7 @@ import { map, merge, assign, get } from 'lodash';
 import defaults from '../theme-editor/default';
 import EditorThemes from '../theme-editor/editor-themes';
 import ThemeEditor from '../theme-editor';
+import ThemeImportExport from '../theme-import-export';
 import icons from '../icons';
 import { assignVariables } from './variables';
 import difference from './utils/difference';
@@ -47,6 +48,7 @@ class ThemeSwitcher extends Component {
 			isEditorThemeLoaded: false,
 			isEditingTheme: false,
 			isEditingTypography: false,
+			isImportExport: false,
 		};
 	}
 
@@ -162,7 +164,10 @@ class ThemeSwitcher extends Component {
 				}
 			}
 
-			this.setState( { isEditingTypography: false } );
+			this.setState( {
+				isEditingTypography: false,
+				isImportExport: false,
+			} );
 			updateThemeSettings( this.state.themeSettings );
 		};
 
@@ -269,7 +274,8 @@ class ThemeSwitcher extends Component {
 						renderContent={ ( { onToggle } ) => (
 							<Fragment>
 								{ ! this.state.isEditingTheme &&
-								! this.state.isEditingTypography ? (
+								! this.state.isEditingTypography &&
+								! this.state.isImportExport ? (
 									<Fragment>
 										<MenuGroup>
 											{ map(
@@ -358,9 +364,30 @@ class ThemeSwitcher extends Component {
 												) }
 												{ icons.typography }
 											</MenuItem>
+											<MenuItem
+												className="components-iceberg-theme-switcher__export"
+												onClick={ () => {
+													this.setState( {
+														isEditingTheme: false,
+														isEditingTypography: false,
+														isImportExport: true,
+													} );
+													this.onEditTheme(
+														onToggle,
+														'isImportExport'
+													);
+												} }
+											>
+												{ __(
+													'Import / Export',
+													'iceberg'
+												) }
+											</MenuItem>
 										</MenuGroup>
 									</Fragment>
-								) : (
+								) : null }
+								{ ! this.state.isEditingTheme &&
+								! this.state.isEditingTypography ? null : (
 									<ThemeEditor
 										onToggle={ onToggle }
 										loadConfig={ this.loadConfig }
@@ -374,6 +401,19 @@ class ThemeSwitcher extends Component {
 										themeSettings={
 											this.state.themeSettings
 										}
+										onClose={ () => {
+											this.setState( {
+												isEditingTheme: false,
+												isEditingTypography: false,
+											} );
+											this.onExitEditTheme( onToggle );
+										} }
+									/>
+								) }
+
+								{ this.state.isImportExport && (
+									<ThemeImportExport
+										onToggle={ onToggle }
 										onClose={ () => {
 											this.setState( {
 												isEditingTheme: false,
