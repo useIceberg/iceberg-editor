@@ -413,11 +413,14 @@ class ThemeSwitcher extends Component {
 
 								{ this.state.isImportExport && (
 									<ThemeImportExport
+										loadConfig={ this.loadConfig }
+										updateState={ this.updateState }
 										onToggle={ onToggle }
 										onClose={ () => {
 											this.setState( {
 												isEditingTheme: false,
 												isEditingTypography: false,
+												isImportExport: false,
 											} );
 											this.onExitEditTheme( onToggle );
 										} }

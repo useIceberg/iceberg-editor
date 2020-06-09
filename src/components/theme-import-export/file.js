@@ -23,3 +23,37 @@ export function download( fileName, content, contentType ) {
 		document.body.removeChild( a );
 	}
 }
+
+/**
+ * Reads the textual content of the given file.
+ *
+ * @param  {File} file        File.
+ * @return {Promise<string>}  Content of the file.
+ */
+export function readTextFile( file ) {
+	const reader = new window.FileReader();
+	return new Promise( ( resolve ) => {
+		reader.onload = function() {
+			resolve( reader.result );
+		};
+		reader.readAsText( file );
+	} );
+}
+
+/**
+ * Import a reusable block from a JSON file.
+ *
+ * @param {File}     file File.
+ * @return {Promise} Promise returning the imported reusable block.
+ */
+export async function importThemeSettings( file ) {
+	const fileContent = await readTextFile( file );
+	let parsedContent;
+	try {
+		parsedContent = JSON.parse( fileContent );
+	} catch ( e ) {
+		throw new Error( 'Invalid JSON file' );
+	}
+
+	return parsedContent;
+}

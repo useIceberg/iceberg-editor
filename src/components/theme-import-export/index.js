@@ -1,7 +1,8 @@
 /**
  * Internal dependencies
  */
-import { download } from './file';
+import { download, importThemeSettings } from './file';
+import icons from '../icons';
 
 /**
  * WordPress dependencies
@@ -11,11 +12,11 @@ import { Fragment, Component } from '@wordpress/element';
 import { withDispatch, withSelect } from '@wordpress/data';
 import { compose, withInstanceId } from '@wordpress/compose';
 import {
+	BaseControl,
 	MenuGroup,
 	MenuItem,
-	BaseControl,
-	RangeControl,
-	SelectControl,
+	DropZoneProvider,
+	DropZone,
 	withSpokenMessages,
 	Button,
 } from '@wordpress/components';
@@ -25,6 +26,10 @@ class ThemeImportExport extends Component {
 		super( ...arguments );
 
 		this.exportAsJSON = this.exportAsJSON.bind( this );
+		this.onFilesUpload = this.onFilesUpload.bind( this );
+		this.state = {
+			isImported: false,
+		};
 	}
 
 	exportAsJSON() {
@@ -37,15 +42,35 @@ class ThemeImportExport extends Component {
 		download( fileName, fileContent, 'application/json' );
 	}
 
+	onFilesUpload( files ) {
+		const { updateThemeSettings, loadConfig, updateState } = this.props;
+		let file = files[ 0 ];
+
+		if ( files.target ) {
+			file = event.target.files[ 0 ];
+		}
+
+		if ( ! file ) {
+			return;
+		}
+
+		importThemeSettings( file )
+			.then( ( importedSettings ) => {
+				updateState( 'themeSettings', importedSettings );
+				updateState( 'theme', importedSettings.theme );
+				updateThemeSettings( importedSettings );
+				this.setState( { isImported: true } );
+
+				// reload variables
+				loadConfig( importedSettings.theme, importedSettings );
+			} )
+			.catch( () => {
+				this.setState( { error: true } );
+			} );
+	}
+
 	render() {
-		const {
-			onToggle,
-			onClose,
-			themeSettings,
-			loadConfig,
-			isEditingTypography,
-			updateState,
-		} = this.props;
+		const { onToggle, onClose } = this.props;
 
 		return (
 			<Fragment>
@@ -63,7 +88,40 @@ class ThemeImportExport extends Component {
 					</Button>
 
 					<BaseControl>{ __( 'Import', 'iceberg' ) }</BaseControl>
+					<DropZoneProvider>
+						<div>
+							{ __(
+								'Drag and drop iceberg-theme-settings.json file in here.',
+								'iceberg'
+							) }
+							<DropZone
+								onFilesDrop={ this.onFilesUpload }
+								onHTMLDrop={ this.onFilesUpload }
+								onDrop={ this.onFilesUpload }
+							/>
+						</div>
+					</DropZoneProvider>
 				</div>
+				<MenuGroup>
+					<MenuItem
+						className="components-iceberg-theme-switcher__back"
+						onClick={ () => {
+							onClose();
+							onToggle();
+							onToggle();
+
+							// focus manually to fix closing outside bug
+							document
+								.querySelector(
+									'.components-iceberg-theme-switcher__content .components-popover__content'
+								)
+								.focus();
+						} }
+					>
+						{ __( 'Back to editor themes', 'iceberg' ) }
+						{ icons.back }
+					</MenuItem>
+				</MenuGroup>
 			</Fragment>
 		);
 	}
