@@ -111,6 +111,7 @@ final class Iceberg {
 		include_once ICEBERG_ABSPATH . 'includes/class-iceberg-render-block.php';
 		include_once ICEBERG_ABSPATH . 'includes/class-iceberg-license-handler.php';
 		include_once ICEBERG_ABSPATH . 'includes/class-iceberg-post-actions.php';
+		include_once ICEBERG_ABSPATH . 'includes/class-iceberg-editorial-calendar.php';
 	}
 
 	/**
