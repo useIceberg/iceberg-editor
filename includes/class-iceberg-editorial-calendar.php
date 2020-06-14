@@ -20,12 +20,7 @@ class Iceberg_Editorial_Calendar {
 	}
 
 	/**
-	 * Add `Edit with Iceberg`
-	 *
-	 * @param array  $actions An array of row action links.
-	 * @param object $post The post object.
-	 *
-	 * @return mixed Returns the array of row action links.
+	 * Add `Calendar` submenu page under a custom post type parent.
 	 */
 	public static function add_post_menu() {
 		$post_types = apply_filters( 'iceberg_editorial_calendar_post_types', array( 'post', 'page' ) );
@@ -44,6 +39,9 @@ class Iceberg_Editorial_Calendar {
 		}
 	}
 
+	/**
+	 * Display callback for the submenu page.
+	 */
 	public static function render_editorial_calendar() {
 		$post_type = isset( $_GET['post_type'] ) ? sanitize_text_field( $_GET['post_type'] ) : 'post';
 		?>
