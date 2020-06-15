@@ -66,7 +66,7 @@ class IcebergEditor extends Component {
 
 		this.sync();
 
-		if ( isActive ){
+		if ( isActive ) {
 			setTimeout( function() {
 				UpdateTitleHeight();
 			}, 100 );
