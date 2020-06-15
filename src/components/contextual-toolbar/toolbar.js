@@ -3,7 +3,7 @@
  */
 import { Component, Fragment, createRef } from '@wordpress/element';
 import { withSelect, withDispatch } from '@wordpress/data';
-import { ESCAPE, BACKSPACE, displayShortcut } from '@wordpress/keycodes';
+import { ESCAPE, BACKSPACE } from '@wordpress/keycodes';
 import { compose, withInstanceId } from '@wordpress/compose';
 import { switchToBlockType } from '@wordpress/blocks';
 import {
@@ -11,11 +11,7 @@ import {
 	Popover,
 	Toolbar,
 	Slot,
-	SVG,
-	Path,
-	Button,
 } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
 
 class ContextualToolbar extends Component {
 	constructor() {
@@ -96,7 +92,7 @@ class ContextualToolbar extends Component {
 	}
 
 	render() {
-		const { isActive, clientId, onTransform, name } = this.props;
+		const { isActive, name } = this.props;
 		const { anchorRef, isVisible } = this.state;
 
 		if ( ! isActive ) {
