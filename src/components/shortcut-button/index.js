@@ -54,7 +54,9 @@ class ShortcutButton extends Component {
 			);
 		};
 		//edit-post-header-toolbar edit-post-header-toolbar__block-toolbar
-		const moreMenuButton = document.querySelector( '.edit-post-header-toolbar' );
+		const moreMenuButton = document.querySelector(
+			'.edit-post-header-toolbar'
+		);
 
 		if (
 			isEnabled &&
