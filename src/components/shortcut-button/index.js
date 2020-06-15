@@ -44,7 +44,7 @@ class ShortcutButton extends Component {
 				<Fragment>
 					<Button
 						icon={ icon }
-						label={ __( 'Iceberg mode', 'iceberg' ) }
+						label={ __( 'Switch to Iceberg', 'iceberg' ) }
 						shortcut={ displayShortcut.secondary( 'i' ) }
 						onClick={ () => {
 							onToggle();
@@ -53,8 +53,8 @@ class ShortcutButton extends Component {
 				</Fragment>
 			);
 		};
-
-		const moreMenuButton = document.querySelector( '.edit-post-more-menu' );
+		//edit-post-header-toolbar edit-post-header-toolbar__block-toolbar
+		const moreMenuButton = document.querySelector( '.edit-post-header-toolbar' );
 
 		if (
 			isEnabled &&
@@ -64,7 +64,7 @@ class ShortcutButton extends Component {
 			)
 		) {
 			moreMenuButton.insertAdjacentHTML(
-				'beforebegin',
+				'beforeend',
 				'<div id="components-iceberg-shortcut-pinned-button"></div>'
 			);
 
