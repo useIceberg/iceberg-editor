@@ -92,10 +92,14 @@ class ContextualToolbar extends Component {
 	}
 
 	render() {
-		const { isActive, name } = this.props;
+		const { isActive, name, isEnabled } = this.props;
 		const { anchorRef, isVisible } = this.state;
 
 		if ( ! isActive ) {
+			return false;
+		}
+
+		if ( ! isEnabled ) {
 			return false;
 		}
 
@@ -141,11 +145,16 @@ class ContextualToolbar extends Component {
 
 export default compose( [
 	withInstanceId,
-	withSelect( ( select ) => ( {
-		isActive: select( 'core/edit-post' ).isFeatureActive(
-			'icebergWritingMode'
-		),
-	} ) ),
+	withSelect( ( select ) => {
+		const { isEditorPanelEnabled } = select( 'iceberg-settings' );
+
+		return {
+			isActive: select( 'core/edit-post' ).isFeatureActive(
+				'icebergWritingMode'
+			),
+			isEnabled: isEditorPanelEnabled( 'contextualToolbar' ),
+		};
+	} ),
 	withDispatch( ( dispatch ) => ( {
 		onTransform( clientId, blocks, name ) {
 			dispatch( 'core/block-editor' ).replaceBlocks(

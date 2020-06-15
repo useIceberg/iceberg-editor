@@ -57,6 +57,13 @@ class Options extends Component {
 						/>
 						<EnablePanelOption
 							label={ __(
+								'Contextual inline toolbars',
+								'iceberg'
+							) }
+							panelName="contextualToolbar"
+						/>
+						<EnablePanelOption
+							label={ __(
 								'Set Iceberg as the default editor for posts',
 								'iceberg'
 							) }
