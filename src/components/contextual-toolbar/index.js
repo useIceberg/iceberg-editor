@@ -2,7 +2,6 @@
  * Internal dependencies
  */
 import ContextualToolbar from './toolbar';
-import MediaToolbar from './media-toolbar';
 
 /**
  * WordPress dependencies
@@ -19,13 +18,10 @@ import { createHigherOrderComponent } from '@wordpress/compose';
  */
 const withToolbar = createHigherOrderComponent( ( BlockEdit ) => {
 	return ( props ) => {
-		const { isSelected, name } = props;
+		const { isSelected } = props;
 		return (
 			<Fragment>
 				{ isSelected && <ContextualToolbar { ...{ ...props } } /> }
-				{ isSelected && [ 'core/image' ].includes( name ) && (
-					<MediaToolbar { ...{ ...props } } />
-				) }
 				<BlockEdit { ...props } />
 			</Fragment>
 		);
