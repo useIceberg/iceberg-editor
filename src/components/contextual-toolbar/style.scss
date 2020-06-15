@@ -1,20 +1,43 @@
 .component-iceberg-contextual-toolbar {
 
 	.components-button {
-		height: 40px;
 		background: transparent !important;
-		color: #fff !important;
+		color: var(--iceberg--color--background) !important;
+		height: 40px;
+
+		&:hover,
+		&:focus {
+			color: var(--iceberg--color--background--light) !important;
+		}
+
+		&.is-pressed {
+			color: var(--iceberg--color--background--light) !important;
+		}
+
+		&.is-pressed::before {
+			background: var(--iceberg--color--background) !important;
+			opacity: 0.1;
+		}
+	}
+
+	.components-toolbar div:first-child .components-button.has-icon {
+		margin-left: -4px;
+	}
+
+	.components-toolbar div:last-child .components-button.has-icon {
+		margin-right: -4px;
 	}
 
 	.components-toolbar {
-		background: #111;
-		border: 0;
+		background: var(--iceberg--color--text);
 		border-radius: 5px;
+		border: 0;
 		display: flex;
 		flex-wrap: nowrap;
-		position: relative;
 		min-height: 40px;
+		position: relative;
 	}
+
 	.components-popover__content {
 		background: transparent !important;
 		border: 0 !important;
@@ -22,16 +45,16 @@
 		overflow-y: visible;
 
 		&::after {
+			border-left: 6px solid transparent;
+			border-right: 6px solid transparent;
+			border-top: 6px solid  var(--iceberg--color--text);
+			bottom: -6px;
 			content: "";
-			position: absolute;
-			left: calc(50% - 8px);
-			width: 0;
 			font-size: 0;
+			left: calc(50% - 6px);
 			line-height: 0;
-			bottom: -8px;
-			border-top: 8px solid #111;
-			border-right: 8px solid transparent;
-			border-left: 8px solid transparent;
+			position: absolute;
+			width: 0;
 		}
 	}
 }
