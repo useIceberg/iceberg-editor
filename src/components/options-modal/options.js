@@ -88,10 +88,7 @@ class Options extends Component {
 							optionType="ui"
 						/>
 						<EnablePanelOption
-							label={ __(
-								'"Switch to Iceberg" button',
-								'iceberg'
-							) }
+							label={ __( 'Iceberg header shortcut', 'iceberg' ) }
 							panelName="uiSwitchTo"
 							optionType="ui"
 						/>
