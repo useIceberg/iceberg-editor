@@ -103,18 +103,6 @@ class ContextualToolbar extends Component {
 			return false;
 		}
 
-		const titleIcon = (
-			<SVG
-				xmlns="http://www.w3.org/2000/svg"
-				height="24"
-				viewBox="0 0 24 24"
-				width="24"
-			>
-				<Path d="M0 0h24v24H0V0z" fill="none" />
-				<Path d="M5 4v3h5.5v12h3V7H19V4z" />
-			</SVG>
-		);
-
 		if ( anchorRef && isVisible && ! [ 'core/code' ].includes( name ) ) {
 			return (
 				<Fragment>
@@ -145,46 +133,6 @@ class ContextualToolbar extends Component {
 									key={ format }
 								/>
 							) ) }
-							{ [
-								'core/heading',
-								'core/paragraph',
-								'core/quote',
-							].includes( name ) && (
-								<Fragment>
-									<Button
-										isPressed={ name === 'core/heading' }
-										icon={ titleIcon }
-										label={ __( 'Heading Two', 'iceberg' ) }
-										shortcut={ displayShortcut.primaryAlt(
-											'2'
-										) }
-										onClick={ () => {
-											onTransform(
-												clientId,
-												this.props,
-												name === 'core/heading'
-													? 'core/paragraph'
-													: 'core/heading'
-											);
-										} }
-									></Button>
-
-									<Button
-										isPressed={ name === 'core/quote' }
-										icon="editor-quote"
-										label={ __( 'Quote', 'iceberg' ) }
-										onClick={ () => {
-											onTransform(
-												clientId,
-												this.props,
-												name === 'core/quote'
-													? 'core/paragraph'
-													: 'core/quote'
-											);
-										} }
-									></Button>
-								</Fragment>
-							) }
 						</Toolbar>
 					</Popover>
 				</Fragment>
