@@ -31,6 +31,8 @@
 		"test:unit": "wp-scripts test-unit-js"
 	},
 	"devDependencies": {
+		"@fullcalendar/interaction": "^4.4.2",
+		"@fullcalendar/timegrid": "^4.4.2",
 		"@wordpress/babel-preset-default": "^4.12.1",
 		"@wordpress/blocks": "^6.15.0",
 		"@wordpress/components": "^9.5.0",

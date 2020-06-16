@@ -69,7 +69,7 @@ class Iceberg_Editorial_Calendar {
 			wp_enqueue_script(
 				'iceberg-calendar-admin-script',
 				self::asset_url() . '/build/calendar.js',
-				array_merge( self::asset_file( 'calendar', 'dependencies' ), array( 'wp-api', 'wp-compose' ) ),
+				array_merge( self::asset_file( 'calendar', 'dependencies' ), array( 'wp-api', 'wp-compose', 'wp-element' ) ),
 				self::asset_file( 'calendar', 'version' ),
 				true
 			);
