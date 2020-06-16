@@ -21,7 +21,12 @@ module.exports = {
 
 	entry: {
 		iceberg: path.resolve( process.cwd(), 'src/index.js' ),
+		calendar: path.resolve( process.cwd(), 'src/calendar.js' ),
 		'iceberg-style': path.resolve( process.cwd(), 'src/style.scss' ),
+		'iceberg-calendar': path.resolve(
+			process.cwd(),
+			'src/calendar.scss'
+		),
 	},
 
 	module: {
