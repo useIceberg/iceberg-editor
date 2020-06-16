@@ -10,7 +10,6 @@ async function fetchPosts( type, start, end, callback ) {
 	} );
 
 	if ( response ) {
-		console.log( response );
 		callback(response);
 	}
 }

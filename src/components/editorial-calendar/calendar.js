@@ -34,6 +34,7 @@ class IcebergEditorialCalendarView extends Component {
 		return (
 			<Fragment>
 				<FullCalendar
+					editable={ true }
 					defaultView="dayGridMonth"
 					header={ {
 						left: 'prev,next today',
@@ -51,9 +52,12 @@ class IcebergEditorialCalendarView extends Component {
 								postType,
 								moment( start ).format( 'YYYY-MM-DDTHH:mm:ss' ),
 								moment( end ).format( 'YYYY-MM-DDTHH:mm:ss' ),
-								callback,
+								callback
 							);
 						}
+					} }
+					loading={ ( isLoading, view ) => {
+						console.log( isLoading );
 					} }
 				/>
 			</Fragment>
