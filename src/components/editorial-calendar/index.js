@@ -1,10 +1,8 @@
 /**
- * External dependencies
+ * Internal dependencies
  */
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction'; 
+
+ import IcebergEditorialCalendarView from './calendar'
 
 /**
  * WordPress dependencies
@@ -16,16 +14,13 @@ import { Fragment, Component, RawHTML, render } from '@wordpress/element';
 
 class IcebergEditorialCalendar extends Component {
 	render() {
+		const container = document.getElementById(
+			'iceberg-render-editorial-calendar'
+		);
 		return (
 			<Fragment>
-				<FullCalendar
-					defaultView="dayGridMonth"
-					header={ {
-						left: 'prev,next today',
-						center: 'title',
-						right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
-					} }
-					plugins={ [ dayGridPlugin, timeGridPlugin, interactionPlugin ] }
+				<IcebergEditorialCalendarView
+					postType={ container.getAttribute('type') }
 				/>
 			</Fragment>
 		);

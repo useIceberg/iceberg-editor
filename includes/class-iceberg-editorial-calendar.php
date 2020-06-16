@@ -1,7 +1,7 @@
 <?php
 /**
  * Iceberg utility functions for editorial calendar
- *
+ * /wp-json/wp/v2/posts?orderby=date&order=desc&after=2020-05-01T00:00:00&before=2020-07-01T00:00:00&iceberg_per_page=1000
  * @package Iceberg
  */
 
@@ -18,6 +18,7 @@ class Iceberg_Editorial_Calendar {
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'add_post_menu' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'styles' ) );
+		add_filter( 'rest_post_query', array( __CLASS__, 'change_post_per_page' ), 10, 2 );
 	}
 
 	/**
@@ -69,7 +70,7 @@ class Iceberg_Editorial_Calendar {
 			wp_enqueue_script(
 				'iceberg-calendar-admin-script',
 				self::asset_url() . '/build/calendar.js',
-				array_merge( self::asset_file( 'calendar', 'dependencies' ), array( 'wp-api', 'wp-compose', 'wp-element' ) ),
+				array_merge( self::asset_file( 'calendar', 'dependencies' ), array( 'wp-api', 'wp-compose', 'wp-element', 'wp-data', 'wp-block-editor', 'wp-editor' ) ),
 				self::asset_file( 'calendar', 'version' ),
 				true
 			);
@@ -105,6 +106,12 @@ class Iceberg_Editorial_Calendar {
 		if ( 'dependencies' === $key ) {
 			return $asset_file['dependencies'];
 		}
+	}
+
+	public static function change_post_per_page( $args, $request ){
+		$max = max( (int) $request->get_param( 'iceberg_per_page' ), 200 );
+		$args['posts_per_page'] = $max;    
+		return $args;
 	}
 }
 
