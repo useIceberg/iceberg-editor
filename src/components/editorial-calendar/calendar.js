@@ -12,16 +12,24 @@ import interactionPlugin from '@fullcalendar/interaction';
  * Internal dependencies
  */
 import fetchPosts from './api';
+import createIcebergStore from '../../extensions/settings-store/store';
 
 /**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
 import { format, date } from '@wordpress/date';
-import { withDispatch, withSelect, select } from '@wordpress/data';
+import {
+	withDispatch,
+	withSelect,
+	select,
+	registerGenericStore,
+} from '@wordpress/data';
 import { compose } from '@wordpress/compose';
 const { Placeholder, Spinner, withSpokenMessages, Button } = wp.components;
 import { Fragment, Component, RawHTML, render } from '@wordpress/element';
+
+registerGenericStore( 'iceberg-settings', createIcebergStore() );
 
 class IcebergEditorialCalendarView extends Component {
 	constructor() {
@@ -29,7 +37,7 @@ class IcebergEditorialCalendarView extends Component {
 	}
 
 	render() {
-		const { getEvents, postType } = this.props;
+		const { reSchedule, postType } = this.props;
 
 		return (
 			<Fragment>
@@ -59,6 +67,15 @@ class IcebergEditorialCalendarView extends Component {
 							);
 						}
 					} }
+					eventDrop={ ( info ) => {
+						reSchedule(
+							info.oldEvent.extendedProps.ID,
+							info.event.start,
+							postType
+						);
+						// console.log( info.oldEvent.extendedProps );
+						// console.log( info.event.start );
+					} }
 					loading={ ( isLoading, view ) => {
 						console.log( isLoading );
 					} }
@@ -69,18 +86,15 @@ class IcebergEditorialCalendarView extends Component {
 }
 
 export default compose( [
-	withDispatch( ( dispatch ) => ( {
-		getEvents( type ) {
-			const { getEntityRecords } = select( 'core' );
-			const postsListQuery = pickBy(
-				{
-					iceberg_per_page: 500,
-				},
-				( value ) => ! isUndefined( value )
-			);
-
-			return getEntityRecords( 'postType', type, postsListQuery );
-		},
-	} ) ),
+	withDispatch( ( dispatch ) => {
+		const { updatePostData } = dispatch( 'iceberg-settings' );
+		return {
+			reSchedule( postID, newDate, postType ) {
+				updatePostData( postID, {
+					date: moment( newDate ).format( 'YYYY-MM-DDTHH:mm:ss' ),
+				} );
+			},
+		};
+	} ),
 	withSpokenMessages,
 ] )( IcebergEditorialCalendarView );

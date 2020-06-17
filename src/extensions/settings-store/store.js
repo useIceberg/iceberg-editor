@@ -157,6 +157,20 @@ export default function createIcebergStore() {
 				setState( () => ( { isLoading: false } ) );
 			} );
 		},
+		updatePostData( postID, meta ) {
+			apiFetch( {
+				path: '/wp/v2/posts/' + postID,
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					accept: 'application/json',
+					'X-WP-Nonce': settingsNonce,
+				},
+				body: JSON.stringify( meta ),
+			} ).then( ( res ) => {
+				console.log( res );
+			} );
+		},
 	};
 
 	return {

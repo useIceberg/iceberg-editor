@@ -72,10 +72,22 @@ class Iceberg_Editorial_Calendar {
 			wp_enqueue_script(
 				'iceberg-calendar-admin-script',
 				self::asset_url() . '/build/calendar.js',
-				array_merge( self::asset_file( 'calendar', 'dependencies' ), array( 'wp-api', 'wp-compose', 'wp-element', 'wp-data', 'wp-block-editor', 'wp-editor' ) ),
+				array_merge( self::asset_file( 'calendar', 'dependencies' ), array( 'wp-api', 'wp-compose', 'wp-element', 'wp-data', 'wp-block-editor', 'wp-editor', 'wp-hooks', 'wp-edit-post', 'wp-plugins' ) ),
 				self::asset_file( 'calendar', 'version' ),
 				true
 			);
+
+			wp_localize_script(
+			'iceberg-calendar-admin-script',
+			'icebergSettings',
+			array(
+				'siteurl'              => wp_parse_url( get_bloginfo( 'url' ) ),
+				'icebergSettingsNonce' => wp_create_nonce( 'wp_rest' ),
+				'isDefaultEditor'      => get_option( 'iceberg_is_default_editor' ),
+				'license'              => get_option( 'iceberg_license_active' ),
+				'isGutenberg'          => defined( 'GUTENBERG_VERSION' ) || ( function_exists( 'is_plugin_active' ) && is_plugin_active( 'gutenberg/gutenberg.php' ) ) ? true : false,
+			)
+		);
 		}
 	}
 

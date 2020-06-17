@@ -9,8 +9,12 @@
  * @return {Promise} Promise returning the imported reusable block.
  */
 async function fetchPosts( type, start, end, callback ) {
+	const settingsNonce = icebergSettings.icebergSettingsNonce;
 	const response = await wp.apiFetch( {
 		path: `iceberg/v1/posts?post_type=${ type }&orderby=date&order=desc&after=${ start }&before=${ end }&numberposts=1000`,
+		headers: {
+			'X-WP-Nonce': settingsNonce,
+		},
 	} );
 
 	if ( response ) {
