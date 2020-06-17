@@ -79,7 +79,7 @@ class IcebergEditorialCalendarView extends Component {
 					header={ {
 						left: 'prev,next today',
 						center: 'title',
-						right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
+						right: isMobile ? null : 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
 					} }
 					plugins={ [
 						dayGridPlugin,
