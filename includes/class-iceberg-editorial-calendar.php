@@ -2,6 +2,7 @@
 /**
  * Iceberg utility functions for editorial calendar
  * /wp-json/wp/v2/posts?orderby=date&order=desc&after=2020-05-01T00:00:00&before=2020-07-01T00:00:00&iceberg_per_page=1000
+ *
  * @package Iceberg
  */
 
@@ -18,6 +19,7 @@ class Iceberg_Editorial_Calendar {
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'add_post_menu' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'styles' ) );
+		add_action( 'rest_api_init', array( __CLASS__, 'rest_api_init' ) );
 		add_filter( 'rest_post_query', array( __CLASS__, 'change_post_per_page' ), 10, 2 );
 	}
 
@@ -108,10 +110,42 @@ class Iceberg_Editorial_Calendar {
 		}
 	}
 
-	public static function change_post_per_page( $args, $request ){
-		$max = max( (int) $request->get_param( 'iceberg_per_page' ), 200 );
-		$args['posts_per_page'] = $max;    
+	public static function change_post_per_page( $args, $request ) {
+		$max                    = max( (int) $request->get_param( 'iceberg_per_page' ), 200 );
+		$args['posts_per_page'] = $max;
 		return $args;
+	}
+
+	public static function rest_api_init() {
+		register_rest_route(
+			'iceberg/v1',
+			'/posts/',
+			array(
+				'methods'      => 'GET',
+				'callback'     => array( __CLASS__, 'rest_api_callback' ),
+				'show_in_rest' => true,
+			)
+		);
+	}
+
+	public static function rest_api_callback( WP_REST_Request $request ) {
+		global $wpdb;
+		$parameters = $request->get_params();
+
+		$posts = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT ID, post_title AS title, post_status, post_date AS start FROM $wpdb->posts
+			WHERE post_type = '%s' 
+			AND post_status IN ( 'publish', 'draft', 'pending', 'future' ) 
+			AND post_date BETWEEN '%s' AND '%s'",
+				$parameters['post_type'],
+				$parameters['after'],
+				$parameters['before'],
+				$parameters['numberposts']
+			)
+		);
+
+		return new WP_REST_Response( $posts, 200 );
 	}
 }
 

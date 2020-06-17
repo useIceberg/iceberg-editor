@@ -2,7 +2,7 @@
  * Internal dependencies
  */
 
- import IcebergEditorialCalendarView from './calendar'
+import IcebergEditorialCalendarView from './calendar';
 
 /**
  * WordPress dependencies
@@ -10,7 +10,6 @@
 import { __ } from '@wordpress/i18n';
 import domReady from '@wordpress/dom-ready';
 import { Fragment, Component, RawHTML, render } from '@wordpress/element';
-
 
 class IcebergEditorialCalendar extends Component {
 	render() {
@@ -20,7 +19,7 @@ class IcebergEditorialCalendar extends Component {
 		return (
 			<Fragment>
 				<IcebergEditorialCalendarView
-					postType={ container.getAttribute('type') }
+					postType={ container.getAttribute( 'type' ) }
 				/>
 			</Fragment>
 		);

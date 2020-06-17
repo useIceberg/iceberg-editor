@@ -52,8 +52,8 @@ class IcebergEditorialCalendarView extends Component {
 						if ( callback ) {
 							fetchPosts(
 								postType,
-								moment( start ).format( 'YYYY-MM-DDTHH:mm:ss' ),
-								moment( end ).format( 'YYYY-MM-DDTHH:mm:ss' ),
+								moment( start ).format( 'YYYY-MM-DD' ),
+								moment( end ).format( 'YYYY-MM-DD' ),
 								callback
 							);
 						}
@@ -83,4 +83,3 @@ export default compose( [
 	} ) ),
 	withSpokenMessages,
 ] )( IcebergEditorialCalendarView );
-

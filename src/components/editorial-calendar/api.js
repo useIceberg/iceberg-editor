@@ -1,16 +1,20 @@
 /**
  * Import a reusable block from a JSON file.
  *
- * @param {File}     file File.
+ * @param type
+ * @param start
+ * @param end
+ * @param callback
+ * @param {File} file File.
  * @return {Promise} Promise returning the imported reusable block.
  */
 async function fetchPosts( type, start, end, callback ) {
 	const response = await wp.apiFetch( {
-		path: `wp/v2/posts?orderby=date&order=desc&after=${ start }&before=${ end }&iceberg_per_page=1000`,
+		path: `iceberg/v1/posts?post_type=${ type }&orderby=date&order=desc&after=${ start }&before=${ end }&numberposts=1000`,
 	} );
 
 	if ( response ) {
-		callback(response);
+		callback( response );
 	}
 }
 
