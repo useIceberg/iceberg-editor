@@ -73,13 +73,16 @@ class IcebergEditorialCalendarView extends Component {
 					editable={ true }
 					defaultView={ isMobile ? 'timeGridDay' : 'dayGridMonth' }
 					allDaySlot={ false }
+					eventDurationEditable={ false }
 					height="auto"
 					contentHeight="auto"
 					nextDayThreshold="24:59:59"
 					header={ {
 						left: 'prev,next today',
 						center: 'title',
-						right: isMobile ? null : 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
+						right: isMobile
+							? null
+							: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
 					} }
 					plugins={ [
 						dayGridPlugin,
