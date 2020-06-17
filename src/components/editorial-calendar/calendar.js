@@ -23,6 +23,7 @@ import {
 	registerGenericStore,
 } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
+import { withViewportMatch } from '@wordpress/viewport';
 import { ESCAPE } from '@wordpress/keycodes';
 const { Popover, Spinner, withSpokenMessages, Button } = wp.components;
 import { Fragment, Component, RawHTML, render } from '@wordpress/element';
@@ -64,14 +65,13 @@ class IcebergEditorialCalendarView extends Component {
 	}
 
 	render() {
-		const { reSchedule, postType } = this.props;
+		const { reSchedule, postType, isMobile } = this.props;
 		const { anchorRef, currentEvent } = this.state;
-
 		return (
 			<Fragment>
 				<FullCalendar
 					editable={ true }
-					defaultView="dayGridMonth"
+					defaultView={ isMobile ? 'timeGridDay' : 'dayGridMonth' }
 					allDaySlot={ false }
 					height="auto"
 					contentHeight="auto"
@@ -143,6 +143,7 @@ class IcebergEditorialCalendarView extends Component {
 }
 
 export default compose( [
+	withViewportMatch( { isMobile: '< small' } ),
 	withDispatch( ( dispatch ) => {
 		const { updatePostData } = dispatch( 'iceberg-settings' );
 		return {
