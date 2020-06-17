@@ -38,6 +38,7 @@ class IcebergEditorialCalendarView extends Component {
 					defaultView="dayGridMonth"
 					height="auto"
 					contentHeight="auto"
+					nextDayThreshold="24:59:59"
 					header={ {
 						left: 'prev,next today',
 						center: 'title',
