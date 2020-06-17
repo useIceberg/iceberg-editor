@@ -72,6 +72,7 @@ class IcebergEditorialCalendarView extends Component {
 				<FullCalendar
 					editable={ true }
 					defaultView="dayGridMonth"
+					allDaySlot={ false }
 					height="auto"
 					contentHeight="auto"
 					nextDayThreshold="24:59:59"
@@ -101,18 +102,10 @@ class IcebergEditorialCalendarView extends Component {
 							info.event.start,
 							postType
 						);
-						// console.log( info.oldEvent.extendedProps );
-						// console.log( info.event.start );
+						this.setState( { anchorRef: null } );
 					} }
 					eventClick={ ( info ) => {
 						const ElementRect = info.el.getBoundingClientRect();
-						console.log( ElementRect );
-						const rect = new window.DOMRect(
-							ElementRect.left,
-							ElementRect.top,
-							ElementRect.width,
-							ElementRect.bottom - ElementRect.top
-						);
 						this.setState( {
 							currentEvent: info,
 							anchorRef: ElementRect,
