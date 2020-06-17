@@ -118,7 +118,7 @@ class IcebergEditorialCalendarView extends Component {
 				{ anchorRef && (
 					<Popover
 						className="component-iceberg-editorial-calendar-info"
-						position="top center"
+						position="bottom left"
 						focusOnMount="container"
 						anchorRect={ anchorRef }
 						onFocusOutside={ () => {
@@ -126,6 +126,15 @@ class IcebergEditorialCalendarView extends Component {
 						} }
 					>
 						asdfadsf
+						<br />
+						asdfadsf
+						<br />
+						asdfadsf
+						<br />
+						asdfadsf
+						<br />
+						asdfadsf
+						<br />
 					</Popover>
 				) }
 			</Fragment>
