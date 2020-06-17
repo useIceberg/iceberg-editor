@@ -18,15 +18,13 @@ import createIcebergStore from '../../extensions/settings-store/store';
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { format, date } from '@wordpress/date';
 import {
 	withDispatch,
-	withSelect,
-	select,
 	registerGenericStore,
 } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
-const { Placeholder, Spinner, withSpokenMessages, Button } = wp.components;
+import { ESCAPE } from '@wordpress/keycodes';
+const { Popover, Spinner, withSpokenMessages, Button } = wp.components;
 import { Fragment, Component, RawHTML, render } from '@wordpress/element';
 
 registerGenericStore( 'iceberg-settings', createIcebergStore() );
@@ -34,10 +32,40 @@ registerGenericStore( 'iceberg-settings', createIcebergStore() );
 class IcebergEditorialCalendarView extends Component {
 	constructor() {
 		super( ...arguments );
+
+		this.onSelectionEnd = this.onSelectionEnd.bind( this );
+
+		this.state = {
+			anchorRef: null,
+			currentEvent: false,
+		};
+	}
+
+	componentDidMount(){
+		document.addEventListener( 'mouseup', this.onSelectionEnd );
+		document.addEventListener( 'keyup', this.onSelectionEnd );
+	}
+
+	onSelectionEnd( event ){
+		const { keyCode } = event;
+
+		if ( ESCAPE === keyCode ) {
+			this.setState( { anchorRef: null } );
+		}
+
+		if (
+			( document.querySelector( '.component-iceberg-editorial-calendar-info' ) && ! document.querySelector( '.component-iceberg-editorial-calendar-info' ).contains( event.target ) ) &&
+			! event.target.classList.contains( 'fc-event' ) &&
+			! event.target.classList.contains( 'fc-title' ) &&
+			! event.target.classList.contains( 'fc-time' )
+		) {
+			this.setState( { anchorRef: null } );
+		}
 	}
 
 	render() {
 		const { reSchedule, postType } = this.props;
+		const { anchorRef, currentEvent } = this.state;
 
 		return (
 			<Fragment>
@@ -76,10 +104,37 @@ class IcebergEditorialCalendarView extends Component {
 						// console.log( info.oldEvent.extendedProps );
 						// console.log( info.event.start );
 					} }
+					eventClick={ ( info ) => {
+						const ElementRect = info.el.getBoundingClientRect();
+						console.log( ElementRect );
+						const rect = new window.DOMRect(
+							ElementRect.left,
+							ElementRect.top,
+							ElementRect.width,
+							ElementRect.bottom - ElementRect.top
+						);
+						this.setState( {
+							currentEvent: info,
+							anchorRef: ElementRect,
+						} );
+					} }
 					loading={ ( isLoading, view ) => {
 						console.log( isLoading );
 					} }
 				/>
+				{ anchorRef && (
+					<Popover
+						className="component-iceberg-editorial-calendar-info"
+						position="top center"
+						focusOnMount="container"
+						anchorRect={ anchorRef }
+						onFocusOutside={ () => {
+							this.setState( { anchorRef: null } );
+						} }
+					>
+						asdfadsf
+					</Popover>
+				) }
 			</Fragment>
 		);
 	}
