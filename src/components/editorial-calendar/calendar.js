@@ -36,6 +36,8 @@ class IcebergEditorialCalendarView extends Component {
 				<FullCalendar
 					editable={ true }
 					defaultView="dayGridMonth"
+					height="auto"
+					contentHeight="auto"
 					header={ {
 						left: 'prev,next today',
 						center: 'title',
