@@ -36,7 +36,7 @@ class Iceberg_Editorial_Calendar {
 				$parent . $slug,
 				__( 'Editorial Calendar', 'iceberg' ),
 				__( 'Calendar', 'iceberg' ),
-				'manage_options',
+				'edit_posts',
 				'iceberg-editorial-' . $post_type . '-calendar',
 				array( __CLASS__, 'render_editorial_calendar' )
 			);
@@ -82,6 +82,7 @@ class Iceberg_Editorial_Calendar {
 			'icebergSettings',
 			array(
 				'siteurl'              => wp_parse_url( get_bloginfo( 'url' ) ),
+				'currentUserID'        => get_current_user_id( ),
 				'icebergSettingsNonce' => wp_create_nonce( 'wp_rest' ),
 				'isDefaultEditor'      => get_option( 'iceberg_is_default_editor' ),
 				'license'              => get_option( 'iceberg_license_active' ),
@@ -136,6 +137,9 @@ class Iceberg_Editorial_Calendar {
 				'methods'      => 'GET',
 				'callback'     => array( __CLASS__, 'rest_api_callback' ),
 				'show_in_rest' => true,
+				'permission_callback' => function($request){	  
+					return is_user_logged_in();
+				}
 			)
 		);
 	}
@@ -149,8 +153,10 @@ class Iceberg_Editorial_Calendar {
 				"SELECT ID, post_title AS title, post_status, post_date AS start, post_date AS end FROM $wpdb->posts
 			WHERE post_type = '%s' 
 			AND post_status IN ( 'publish', 'draft', 'pending', 'future' ) 
+			AND post_author IN ( %d ) 
 			AND post_date BETWEEN '%s' AND '%s'",
 				$parameters['post_type'],
+				$parameters['user'],
 				$parameters['after'],
 				$parameters['before'],
 				$parameters['numberposts']

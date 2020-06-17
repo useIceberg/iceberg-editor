@@ -10,8 +10,9 @@
  */
 async function fetchPosts( type, start, end, callback ) {
 	const settingsNonce = icebergSettings.icebergSettingsNonce;
+	const currentUserID = icebergSettings.currentUserID;
 	const response = await wp.apiFetch( {
-		path: `iceberg/v1/posts?post_type=${ type }&orderby=date&order=desc&after=${ start }&before=${ end }&numberposts=1000`,
+		path: `iceberg/v1/posts?post_type=${ type }&orderby=date&order=desc&after=${ start }&before=${ end }&user=${ currentUserID }&numberposts=1000`,
 		headers: {
 			'X-WP-Nonce': settingsNonce,
 		},
