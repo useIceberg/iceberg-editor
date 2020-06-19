@@ -25,6 +25,7 @@ import {
 import { compose } from '@wordpress/compose';
 import { withViewportMatch } from '@wordpress/viewport';
 import { ESCAPE } from '@wordpress/keycodes';
+import { addQueryArgs } from '@wordpress/url';
 const {
 	Popover,
 	Spinner,
@@ -190,6 +191,28 @@ class IcebergEditorialCalendarView extends Component {
 										} }
 									>
 										{ __( 'Reschedule', 'iceberg' ) }
+									</Button>
+									<Button
+										isLink
+										href={ addQueryArgs( 'post.php', {
+											post:
+												currentEvent.event.extendedProps
+													.ID,
+											action: 'edit',
+										} ) }
+									>
+										{ __( 'Edit', 'iceberg' ) }
+									</Button>
+									<Button
+										isLink
+										href={ addQueryArgs(
+											currentEvent.event.extendedProps.guid,
+											{
+												preview: 'true',
+											}
+										) }
+									>
+										{ __( 'Preview', 'iceberg' ) }
 									</Button>
 								</div>
 							</Fragment>
