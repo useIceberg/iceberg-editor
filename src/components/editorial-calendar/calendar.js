@@ -105,7 +105,7 @@ class IcebergEditorialCalendarView extends Component {
 							info.event.start,
 							postType
 						);
-						this.setState( { anchorRef: null } );
+						// this.setState( { anchorRef: null } );
 					} }
 					eventClick={ ( info ) => {
 						const ElementRect = info.el.getBoundingClientRect();
@@ -113,6 +113,25 @@ class IcebergEditorialCalendarView extends Component {
 							currentEvent: info,
 							anchorRef: ElementRect,
 						} );
+					} }
+					eventRender={ ( info ) => {
+						const title = info.el.querySelector( '.fc-title' )
+						title.innerHTML =
+							'<span>' + title.innerHTML + '</span>';
+						info.el
+							.querySelector( '.fc-time' )
+							.insertAdjacentHTML(
+								'afterend',
+								'<span class="fc-status">' +
+									info.event.extendedProps.status +
+									'</span>'
+							);
+						
+						info.el.classList.add(
+							'fc-status-' + info.event.extendedProps.status
+						);	
+						
+						return info.el;
 					} }
 					loading={ ( isLoading, view ) => {
 						console.log( isLoading );

@@ -1,0 +1,54 @@
+#iceberg-render-editorial-calendar{
+	.fc-event-container{
+		padding: 3px;
+	}
+
+	.fc-event{
+		&.fc-status-draft{
+			background: #F7BF5E;
+			border-color:#F7BF5E;
+			color: #333;
+		}
+
+		&.fc-status-publish{
+			background: #d9f0ec;
+			border-color:#bee2db;
+			color: #333;
+		}
+	}
+
+	.fc-content{
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: 100%;
+		padding: 8px;
+		box-sizing: border-box;
+		overflow: hidden;
+
+		.fc-time,
+		.fc-title,
+		.fc-status{
+			display: flex;
+			flex-direction: column;
+			flex-basis: 100%;
+			flex: 2;
+		}
+
+		.fc-title{
+			flex: 1 1 100%;
+			padding-top: 8px;
+			max-width: 100%;
+			
+			> span{
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		}
+
+		.fc-status{
+			text-align: right;
+		}
+	}
+}

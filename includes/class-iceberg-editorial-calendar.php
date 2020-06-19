@@ -150,7 +150,7 @@ class Iceberg_Editorial_Calendar {
 
 		$posts = $wpdb->get_results(
 			$wpdb->prepare(
-				"SELECT ID, post_title AS title, post_status, post_date AS start, post_date AS end FROM $wpdb->posts
+				"SELECT ID, post_title AS title, post_status as status, post_date AS start, post_date AS end FROM $wpdb->posts
 			WHERE post_type = '%s' 
 			AND post_status IN ( 'publish', 'draft', 'pending', 'future' ) 
 			AND post_author IN ( %d ) 
