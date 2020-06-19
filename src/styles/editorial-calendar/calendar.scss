@@ -52,3 +52,14 @@
 		}
 	}
 }
+
+.component-iceberg-editorial-calendar-info{
+	.components-popover__content{
+		padding: 12px;
+
+		> *{
+			display: block;
+			width: 100%;
+		}
+	}
+}

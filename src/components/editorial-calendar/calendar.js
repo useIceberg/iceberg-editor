@@ -25,7 +25,13 @@ import {
 import { compose } from '@wordpress/compose';
 import { withViewportMatch } from '@wordpress/viewport';
 import { ESCAPE } from '@wordpress/keycodes';
-const { Popover, Spinner, withSpokenMessages, Button } = wp.components;
+const {
+	Popover,
+	Spinner,
+	withSpokenMessages,
+	Button,
+	Dashicon,
+} = wp.components;
 import { Fragment, Component, RawHTML, render } from '@wordpress/element';
 
 registerGenericStore( 'iceberg-settings', createIcebergStore() );
@@ -55,9 +61,11 @@ class IcebergEditorialCalendarView extends Component {
 		}
 
 		if (
-			( document.querySelector( '.component-iceberg-editorial-calendar-info' ) && ! document.querySelector( '.component-iceberg-editorial-calendar-info' ).contains( event.target ) ) &&
+			( document.querySelector( '.component-iceberg-editorial-calendar-info' ) && ! document.querySelector( '.component-iceberg-editorial-calendar-info' ).contains( event.target ) && ! document.querySelector( '.component-iceberg-editorial-calendar-info' ).contains( event.target ) ) &&
 			! event.target.classList.contains( 'fc-event' ) &&
 			! event.target.classList.contains( 'fc-title' ) &&
+			! event.target.classList.contains( 'fc-title-inner' ) &&
+			! event.target.classList.contains( 'fc-status' ) &&
 			! event.target.classList.contains( 'fc-time' )
 		) {
 			this.setState( { anchorRef: null } );
@@ -115,9 +123,11 @@ class IcebergEditorialCalendarView extends Component {
 						} );
 					} }
 					eventRender={ ( info ) => {
-						const title = info.el.querySelector( '.fc-title' )
+						const title = info.el.querySelector( '.fc-title' );
 						title.innerHTML =
-							'<span>' + title.innerHTML + '</span>';
+							'<span class="fc-title-inner">' +
+							title.innerHTML +
+							'</span>';
 						info.el
 							.querySelector( '.fc-time' )
 							.insertAdjacentHTML(
@@ -126,15 +136,15 @@ class IcebergEditorialCalendarView extends Component {
 									info.event.extendedProps.status +
 									'</span>'
 							);
-						
+
 						info.el.classList.add(
 							'fc-status-' + info.event.extendedProps.status
-						);	
-						
+						);
+
 						return info.el;
 					} }
 					loading={ ( isLoading, view ) => {
-						console.log( isLoading );
+						// console.log( isLoading );
 					} }
 				/>
 				{ anchorRef && (
@@ -147,16 +157,17 @@ class IcebergEditorialCalendarView extends Component {
 							this.setState( { anchorRef: null } );
 						} }
 					>
-						asdfadsf
-						<br />
-						asdfadsf
-						<br />
-						asdfadsf
-						<br />
-						asdfadsf
-						<br />
-						asdfadsf
-						<br />
+						{ /* { console.log( currentEvent.event.start ) } */ }
+						<h3>{ currentEvent.event.title }</h3>
+						<span className="fc-event-info--date">
+							{ moment( currentEvent.event.start ).format(
+								'MMMM DD, YYYY @ H:mmA'
+							) }
+						</span>
+						<span className="fc-event-info--status">
+							<Dashicon icon="welcome-write-blog" />
+							{ currentEvent.event.extendedProps.status }
+						</span>
 					</Popover>
 				) }
 			</Fragment>
