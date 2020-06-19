@@ -165,6 +165,16 @@ class IcebergEditorialCalendarView extends Component {
 							this.setState( { anchorRef: null } );
 						} }
 					>
+						<div className="fc-event-info--close">
+							<Button
+								icon="no"
+								onClick={ () => {
+									this.setState( { anchorRef: null } );
+								} }
+							>
+								{ __( 'Close', 'iceberg' ) }
+							</Button>
+						</div>
 						{ ! isDatePickerOpen && (
 							<Fragment>
 								<h3>{ currentEvent.event.title }</h3>
