@@ -61,8 +61,17 @@ class IcebergEditorialCalendarView extends Component {
 		}
 
 		if (
-			( document.querySelector( '.component-iceberg-editorial-calendar-info' ) && ! document.querySelector( '.component-iceberg-editorial-calendar-info' ).contains( event.target ) && ! document.querySelector( '.component-iceberg-editorial-calendar-info' ).contains( event.target ) ) &&
+			document.querySelector(
+				'.component-iceberg-editorial-calendar-info'
+			) &&
+			! document
+				.querySelector( '.component-iceberg-editorial-calendar-info' )
+				.contains( event.target ) &&
+			! document
+				.querySelector( '.component-iceberg-editorial-calendar-info' )
+				.contains( event.target ) &&
 			! event.target.classList.contains( 'fc-event' ) &&
+			! event.target.classList.contains( 'fc-content' ) &&
 			! event.target.classList.contains( 'fc-title' ) &&
 			! event.target.classList.contains( 'fc-title-inner' ) &&
 			! event.target.classList.contains( 'fc-status' ) &&
