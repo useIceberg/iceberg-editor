@@ -73,7 +73,7 @@ class IcebergEditorialCalendarView extends Component {
 	}
 
 	render() {
-		const { reSchedule, postType, isMobile } = this.props;
+		const { reSchedule, postType, restBase, isMobile } = this.props;
 		const { anchorRef, currentEvent, isDatePickerOpen } = this.state;
 		return (
 			<Fragment>
@@ -111,7 +111,7 @@ class IcebergEditorialCalendarView extends Component {
 						reSchedule(
 							info.oldEvent.extendedProps.ID,
 							info.event.start,
-							postType
+							restBase
 						);
 						// this.setState( { anchorRef: null } );
 					} }
@@ -248,7 +248,7 @@ class IcebergEditorialCalendarView extends Component {
 										reSchedule(
 											currentEvent.event.extendedProps.ID,
 											this.state.datePickerData,
-											postType
+											restBase
 										);
 
 										this.setState( { anchorRef: null } );
@@ -270,8 +270,8 @@ export default compose( [
 	withDispatch( ( dispatch ) => {
 		const { updatePostData } = dispatch( 'iceberg-settings' );
 		return {
-			reSchedule( postID, newDate, postType ) {
-				updatePostData( postID, {
+			reSchedule( postID, newDate, restBase ) {
+				updatePostData( restBase, postID, {
 					date: moment( newDate ).format( 'YYYY-MM-DDTHH:mm:ss' ),
 				} );
 			},

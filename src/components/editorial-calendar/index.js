@@ -20,6 +20,7 @@ class IcebergEditorialCalendar extends Component {
 			<Fragment>
 				<IcebergEditorialCalendarView
 					postType={ container.getAttribute( 'type' ) }
+					restBase={ container.getAttribute( 'rest' ) }
 				/>
 			</Fragment>
 		);

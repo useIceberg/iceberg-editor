@@ -157,9 +157,9 @@ export default function createIcebergStore() {
 				setState( () => ( { isLoading: false } ) );
 			} );
 		},
-		updatePostData( postID, meta ) {
+		updatePostData( restBase, postID, meta ) {
 			apiFetch( {
-				path: '/wp/v2/posts/' + postID,
+				path: '/wp/v2/' + restBase + '/' + postID,
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

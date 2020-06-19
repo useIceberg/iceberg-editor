@@ -48,9 +48,10 @@ class Iceberg_Editorial_Calendar {
 	 */
 	public static function render_editorial_calendar() {
 		$post_type = isset( $_GET['post_type'] ) ? sanitize_text_field( $_GET['post_type'] ) : 'post';
+		$object = get_post_type_object( $post_type );
 		?>
 		<div class="wrap">
-			<div id="iceberg-render-editorial-calendar" type="<?php echo $post_type; ?>"></div>
+			<div id="iceberg-render-editorial-calendar" type="<?php echo $post_type; ?>" rest="<?php echo $object->rest_base;?>"></div>
 		</div>
 		<?php
 	}
