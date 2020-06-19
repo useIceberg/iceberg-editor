@@ -143,14 +143,6 @@ class IcebergEditorialCalendarView extends Component {
 
 						return info.el;
 					} }
-					customButtons={ {
-						forceRefresh: {
-							text: __( 'Refresh', 'iceberg' ),
-							click: function( info ) {
-								console.log( info );
-							},
-						},
-					} }
 					loading={ ( isLoading, view ) => {
 						// console.log( isLoading );
 					} }
