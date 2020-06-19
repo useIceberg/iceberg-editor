@@ -154,6 +154,7 @@ class IcebergEditorialCalendarView extends Component {
 						position="bottom left"
 						focusOnMount="container"
 						anchorRect={ anchorRef }
+						animate={ true }
 						onFocusOutside={ () => {
 							this.setState( { anchorRef: null } );
 						} }
@@ -206,7 +207,8 @@ class IcebergEditorialCalendarView extends Component {
 									<Button
 										isLink
 										href={ addQueryArgs(
-											currentEvent.event.extendedProps.guid,
+											currentEvent.event.extendedProps
+												.guid,
 											{
 												preview: 'true',
 											}
