@@ -31,6 +31,7 @@ const {
 	withSpokenMessages,
 	Button,
 	Dashicon,
+	TimePicker,
 } = wp.components;
 import { Fragment, Component, RawHTML, render } from '@wordpress/element';
 
@@ -45,6 +46,8 @@ class IcebergEditorialCalendarView extends Component {
 		this.state = {
 			anchorRef: null,
 			currentEvent: false,
+			isDatePickerOpen: false,
+			datePickerData: null,
 		};
 	}
 
@@ -55,27 +58,14 @@ class IcebergEditorialCalendarView extends Component {
 
 	onSelectionEnd( event ){
 		const { keyCode } = event;
-
 		if ( ESCAPE === keyCode ) {
 			this.setState( { anchorRef: null } );
 		}
-
+		
 		if (
-			document.querySelector(
-				'.component-iceberg-editorial-calendar-info'
-			) &&
-			! document
-				.querySelector( '.component-iceberg-editorial-calendar-info' )
-				.contains( event.target ) &&
-			! document
-				.querySelector( '.component-iceberg-editorial-calendar-info' )
-				.contains( event.target ) &&
-			! event.target.classList.contains( 'fc-event' ) &&
-			! event.target.classList.contains( 'fc-content' ) &&
-			! event.target.classList.contains( 'fc-title' ) &&
-			! event.target.classList.contains( 'fc-title-inner' ) &&
-			! event.target.classList.contains( 'fc-status' ) &&
-			! event.target.classList.contains( 'fc-time' )
+			event.target.classList.contains( 'fc-event-container' ) ||
+			event.target.classList.contains( 'fc-widget-content' ) ||
+			event.target.classList.contains( 'fc-day-top' )
 		) {
 			this.setState( { anchorRef: null } );
 		}
@@ -83,7 +73,7 @@ class IcebergEditorialCalendarView extends Component {
 
 	render() {
 		const { reSchedule, postType, isMobile } = this.props;
-		const { anchorRef, currentEvent } = this.state;
+		const { anchorRef, currentEvent, isDatePickerOpen } = this.state;
 		return (
 			<Fragment>
 				<FullCalendar
@@ -96,7 +86,7 @@ class IcebergEditorialCalendarView extends Component {
 					nextDayThreshold="24:59:59"
 					header={ {
 						left: 'prev,next today',
-						center: 'title',
+						center: 'title, forceRefresh',
 						right: isMobile
 							? null
 							: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
@@ -127,6 +117,7 @@ class IcebergEditorialCalendarView extends Component {
 					eventClick={ ( info ) => {
 						const ElementRect = info.el.getBoundingClientRect();
 						this.setState( {
+							isDatePickerOpen: false,
 							currentEvent: info,
 							anchorRef: ElementRect,
 						} );
@@ -152,6 +143,14 @@ class IcebergEditorialCalendarView extends Component {
 
 						return info.el;
 					} }
+					customButtons={ {
+						forceRefresh: {
+							text: __( 'Refresh', 'iceberg' ),
+							click: function( info ) {
+								console.log( info );
+							},
+						},
+					} }
 					loading={ ( isLoading, view ) => {
 						// console.log( isLoading );
 					} }
@@ -166,17 +165,72 @@ class IcebergEditorialCalendarView extends Component {
 							this.setState( { anchorRef: null } );
 						} }
 					>
-						{ /* { console.log( currentEvent.event.start ) } */ }
-						<h3>{ currentEvent.event.title }</h3>
-						<span className="fc-event-info--date">
-							{ moment( currentEvent.event.start ).format(
-								'MMMM DD, YYYY @ H:mmA'
-							) }
-						</span>
-						<span className="fc-event-info--status">
-							<Dashicon icon="welcome-write-blog" />
-							{ currentEvent.event.extendedProps.status }
-						</span>
+						{ ! isDatePickerOpen && (
+							<Fragment>
+								<h3>{ currentEvent.event.title }</h3>
+								<span className="fc-event-info--date">
+									{ moment( currentEvent.event.start ).format(
+										'MMMM DD, YYYY @ H:mmA'
+									) }
+								</span>
+								<span className="fc-event-info--status">
+									<Dashicon icon="welcome-write-blog" />
+									{ currentEvent.event.extendedProps.status }
+								</span>
+
+								<div className="fc-event-info--actions">
+									<Button
+										isLink
+										onClick={ () => {
+											this.setState( {
+												isDatePickerOpen: true,
+											} );
+										} }
+									>
+										{ __( 'Reschedule', 'iceberg' ) }
+									</Button>
+								</div>
+							</Fragment>
+						) }
+
+						{ isDatePickerOpen && (
+							<Fragment>
+								<Button
+									isLink
+									icon="arrow-left-alt"
+									onClick={ () => {
+										this.setState( {
+											isDatePickerOpen: false,
+										} );
+									} }
+								>
+									{ __( 'Back', 'iceberg' ) }
+								</Button>
+								<TimePicker
+									currentTime={ currentEvent.event.start }
+									onChange={ ( date ) => {
+										this.setState( {
+											datePickerData: date,
+										} );
+									} }
+									is12Hour={ true }
+								/>
+								<Button
+									isPrimary
+									onClick={ () => {
+										reSchedule(
+											currentEvent.event.extendedProps.ID,
+											this.state.datePickerData,
+											postType
+										);
+
+										this.setState( { anchorRef: null } );
+									} }
+								>
+									{ __( 'Reschedule', 'iceberg' ) }
+								</Button>
+							</Fragment>
+						) }
 					</Popover>
 				) }
 			</Fragment>
