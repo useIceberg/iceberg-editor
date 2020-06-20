@@ -243,7 +243,7 @@ export default compose( [
 			isThemesUI: isEditorPanelEnabled( 'uiThemes' ),
 			isShortcutsUI: isEditorPanelEnabled( 'uiShortcuts' ),
 			isBackTo: isEditorPanelEnabled( 'uiBackTo' ),
-			isSwitchTo: isEditorPanelEnabled( 'uiSwitchTo' ),
+			isSwitchTo: isEditorPanelEnabled( 'uiHeaderShortcut' ),
 			isScaledHeading: isEditorPanelEnabled( 'scaledHeading' ),
 			isDefaultEditor: isEditorPanelEnabled( 'isDefaultEditor' ),
 			isDocumentInformation: isEditorPanelEnabled(

@@ -88,20 +88,20 @@ class Options extends Component {
 						/>
 						<EnablePanelOption
 							label={ __(
-								'"Back to WordPress" button',
+								'Back to WordPress button',
 								'iceberg'
 							) }
 							panelName="uiBackTo"
 							optionType="ui"
 						/>
-            <EnablePanelOption
+						<EnablePanelOption
 							label={ __( 'Document information', 'iceberg' ) }
 							panelName="documentInformation"
 							optionType="ui"
 						/>
 						<EnablePanelOption
 							label={ __( 'Iceberg header toolbar shortcut', 'iceberg' ) }
-							panelName="uiSwitchTo"
+							panelName="uiHeaderShortcut"
 							optionType="ui"
 						/>
 					</Section>
