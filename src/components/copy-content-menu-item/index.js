@@ -33,7 +33,7 @@ function CopyContentMenuItem( {
 			>
 				{ hasCopied
 					? __( 'Copied' )
-					: __( 'Copy content as html', 'iceberg' ) }
+					: __( 'Copy all content', 'iceberg' ) }
 			</ClipboardButton>
 		)
 	);

@@ -61,8 +61,8 @@ function CopyContentMarkdownMenuItem( {
 				onFinishCopy={ () => setState( { hasCopied: false } ) }
 			>
 				{ hasCopied
-					? __( 'Copied' )
-					: __( 'Copy content as markdown', 'iceberg' ) }
+					? __( 'Copied as markdown' )
+					: __( 'Copy all as markdown', 'iceberg' ) }
 			</ClipboardButton>
 		)
 	);
