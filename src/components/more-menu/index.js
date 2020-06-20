@@ -12,6 +12,7 @@ import CopyContentMenuItem from '../copy-content-menu-item';
 import CopyContentMarkdownMenuItem from '../copy-content-menu-item/markdown';
 import Options from '../options-modal/options';
 import icons from '../icons';
+import UpdateTitleHeight from '../utils/title-height';
 
 /**
  * WordPress dependencies
@@ -194,16 +195,13 @@ class MoreMenu extends Component {
 									</MenuItem>
 									<CopyContentMenuItem />
 									<CopyContentMarkdownMenuItem />
-									{ ! icebergSettings.isBeta && (
-										<MenuItem
-											role="menuitem"
-											className="components-menu-item__button"
-											href="https://useiceberg.com/"
-											target="_new"
-										>
-											{ __( 'Help', 'iceberg' ) }
-										</MenuItem>
-									) }
+									<MenuItem
+										role="menuitem"
+										href="https://useiceberg.com/"
+										target="_new"
+									>
+										{ __( 'Help', 'iceberg' ) }
+									</MenuItem>
 								</MenuGroup>
 								<MenuGroup>
 									<MenuItem
@@ -310,10 +308,7 @@ export default compose( [
 			dispatch( 'core/edit-post' ).toggleFeature( 'icebergWritingMode' );
 
 			setTimeout( function() {
-				// fix title height : https://wordpress.slack.com/archives/C02QB2JS7/p1589311097095200
-				document
-					.querySelector( '.editor-post-title__input' )
-					.dispatchEvent( new Event( 'autosize:update' ) );
+				UpdateTitleHeight();
 			}, 100 );
 
 			// Reset post meta

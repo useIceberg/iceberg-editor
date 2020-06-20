@@ -11,6 +11,7 @@ import icons from '../icons';
 import EditorThemes from './editor-themes';
 import EditorFonts from './fonts';
 import ColorPalette from './color-palette';
+import UpdateTitleHeight from '../utils/title-height';
 
 /**
  * WordPress dependencies
@@ -81,10 +82,7 @@ class ThemeEditor extends Component {
 			loadConfig( settings.theme, settings );
 
 			if ( category === 'typography' ) {
-				// fix title height : https://wordpress.slack.com/archives/C02QB2JS7/p1589311097095200
-				document
-					.querySelector( '.editor-post-title__input' )
-					.dispatchEvent( new Event( 'autosize:update' ) );
+				UpdateTitleHeight();
 			}
 		};
 

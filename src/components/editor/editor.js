@@ -9,7 +9,8 @@ import MoreMenu from '../more-menu';
 import Shortcuts from '../shortcuts';
 import RegisterShortcuts from '../shortcuts/shortcuts';
 import DocumentInfo from '../document-info';
-import FeedbackPopover from '../feedback';
+import UpdateTitleHeight from '../utils/title-height';
+import ShortcutButton from '../shortcut-button';
 
 /**
  * WordPress dependencies
@@ -65,6 +66,12 @@ class IcebergEditor extends Component {
 		}
 
 		this.sync();
+
+		if ( isActive ) {
+			setTimeout( function() {
+				UpdateTitleHeight();
+			}, 100 );
+		}
 	}
 
 	componentDidUpdate() {
@@ -131,7 +138,7 @@ class IcebergEditor extends Component {
 			document.body.classList.add( 'invalid-iceberg-license' );
 		}
 
-		if ( isDocumentInformation && ! icebergSettings.isBeta ) {
+		if ( isDocumentInformation ) {
 			document.body.classList.add( 'has-document-info' );
 		} else {
 			document.body.classList.remove( 'has-document-info' );
@@ -168,9 +175,9 @@ class IcebergEditor extends Component {
 			isActive,
 			onToggle,
 			isThemesUI,
+			isSwitchTo,
 			isDocumentInformation,
 		} = this.props;
-		const isBeta = icebergSettings.isBeta;
 
 		const icon = (
 			<SVG
@@ -210,10 +217,15 @@ class IcebergEditor extends Component {
 				<MoreMenu isActive={ isActive } />
 				<BlockLimiter isActive={ isActive } />
 				<ThemeSwitcher isActive={ isActive } isEnabled={ isThemesUI } />
-				{ ! isBeta && isActive && isDocumentInformation && (
+				{ isActive && isDocumentInformation && (
 					<DocumentInfo isActive={ isActive } />
 				) }
-				{ isBeta && isActive && <FeedbackPopover /> }
+				{ ! isActive && (
+					<ShortcutButton
+						onToggle={ onToggle }
+						isEnabled={ isSwitchTo }
+					/>
+				) }
 			</Fragment>
 		);
 	}
@@ -228,6 +240,7 @@ export default compose( [
 			isActive: isFeatureActive( 'icebergWritingMode' ),
 			isFocusMode: isFeatureActive( 'focusMode' ),
 			isFullscreenMode: isFeatureActive( 'fullscreenMode' ),
+			isFixedToolbar: isFeatureActive( 'fixedToolbar' ),
 			disableFullscreenMode: isFeatureActive(
 				'icebergDisableFullscreenMode'
 			),
@@ -237,6 +250,7 @@ export default compose( [
 			isThemesUI: isEditorPanelEnabled( 'uiThemes' ),
 			isShortcutsUI: isEditorPanelEnabled( 'uiShortcuts' ),
 			isBackTo: isEditorPanelEnabled( 'uiBackTo' ),
+			isSwitchTo: isEditorPanelEnabled( 'uiHeaderShortcut' ),
 			isScaledHeading: isEditorPanelEnabled( 'scaledHeading' ),
 			isDefaultEditor: isEditorPanelEnabled( 'isDefaultEditor' ),
 			isDocumentInformation: isEditorPanelEnabled(
@@ -313,15 +327,16 @@ export default compose( [
 				dispatch( 'core/edit-post' ).toggleFeature( 'fullscreenMode' );
 			}
 
+			if ( ! ownProps.isFixedToolbar ) {
+				dispatch( 'core/edit-post' ).toggleFeature( 'fixedToolbar' );
+			}
+
 			if ( ownProps.isWelcomeGuide ) {
 				dispatch( 'core/edit-post' ).toggleFeature( 'welcomeGuide' );
 			}
 
 			setTimeout( function() {
-				// fix title height : https://wordpress.slack.com/archives/C02QB2JS7/p1589311097095200
-				document
-					.querySelector( '.editor-post-title__input' )
-					.dispatchEvent( new Event( 'autosize:update' ) );
+				UpdateTitleHeight();
 			}, 100 );
 		},
 		saveDefaultEditor() {
