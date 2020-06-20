@@ -99,8 +99,8 @@ class IcebergEditorialCalendarView extends Component {
 					nextDayThreshold="24:59:59"
 					views={ {
 						dayGridMonth: {
-							dayMaxEventRows: 10,
-						},
+							eventLimit: 5
+						}
 					} }
 					headerToolbar={ {
 						left: 'prev,next today',
@@ -140,9 +140,31 @@ class IcebergEditorialCalendarView extends Component {
 							currentEvent: info,
 							anchorRef: ElementRect,
 						} );
+					} }
+					eventRender={ ( info ) => {
+						if ( info.view.type !== 'listWeek' ){
+							const title = info.el.querySelector( '.fc-title' );
+							if ( title ) {
+								title.innerHTML =
+									'<span class="fc-title-inner">' +
+									title.innerHTML +
+									'</span>';
+							}
+							info.el
+								.querySelector( '.fc-time' )
+								.insertAdjacentHTML(
+									'afterend',
+									'<span class="fc-status">' +
+										info.event.extendedProps.status +
+										'</span>'
+								);
 
-						console.log( this.calendar );
-						// render( <Popover>asdf</Popover>, info.el );
+							info.el.classList.add(
+								'fc-status-' + info.event.extendedProps.status
+							);
+						}
+						
+						return info.el;
 					} }
 					// eventRender={ ( info ) => {
 					// 	if ( info.view.type !== 'listWeek' ) {

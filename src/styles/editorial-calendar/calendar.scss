@@ -17,23 +17,7 @@
 		}
 	}
 
-	.fc-list-item{
-		&.fc-status-draft{
-			.fc-event-dot{
-				background: #F7BF5E;	
-				border: 1px solid #F7BF5E;	
-			}
-		}
-
-		&.fc-status-publish{
-			.fc-event-dot{
-				background: #d9f0ec;
-				border: 1px solid #bee2db;	
-			}
-		}
-	}
-
-	.fc-event{
+	.fc-content{
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
