@@ -142,6 +142,10 @@ const formatting = {
 			description: __( 'Insert link', 'iceberg' ),
 		},
 		{
+			keyCombination: displayShortcutList.primaryShift( 'k' ),
+			description: __( 'Remove link', 'iceberg' ),
+		},
+		{
 			keyCombination: displayShortcutList.ctrl( 'space' ),
 			description: __( 'Clear formatting', 'iceberg' ),
 		},
