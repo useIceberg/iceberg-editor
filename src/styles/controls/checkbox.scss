@@ -5,6 +5,7 @@ div {
 		border-width: 1px;
 		background: var(--iceberg--color--background--light) !important;
 		border-color: var(--iceberg--color--text) !important;
+		box-shadow: none;
 
 		&:checked {
 			background: var(--iceberg--color--accent) !important;
