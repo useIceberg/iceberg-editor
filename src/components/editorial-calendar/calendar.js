@@ -35,7 +35,14 @@ const {
 	Dashicon,
 	TimePicker,
 } = wp.components;
-import { Fragment, Component, RawHTML, render } from '@wordpress/element';
+import {
+	Fragment,
+	Component,
+	RawHTML,
+	render,
+	createRef,
+	useCallback,
+} from '@wordpress/element';
 
 registerGenericStore( 'iceberg-settings', createIcebergStore() );
 
@@ -44,6 +51,7 @@ class IcebergEditorialCalendarView extends Component {
 		super( ...arguments );
 
 		this.onSelectionEnd = this.onSelectionEnd.bind( this );
+		this.calendar = createRef();
 
 		this.state = {
 			anchorRef: null,
@@ -80,6 +88,7 @@ class IcebergEditorialCalendarView extends Component {
 		return (
 			<Fragment>
 				<FullCalendar
+					ref={ this.calendar }
 					editable={ true }
 					dayMaxEventRows={ true }
 					initialView={ isMobile ? 'timeGridDay' : 'dayGridMonth' }
@@ -125,13 +134,14 @@ class IcebergEditorialCalendarView extends Component {
 						// this.setState( { anchorRef: null } );
 					} }
 					eventClick={ ( info ) => {
-						console.log( info );
-						// const ElementRect = info.el.getBoundingClientRect();
-						// this.setState( {
-						// 	isDatePickerOpen: false,
-						// 	currentEvent: info,
-						// 	anchorRef: ElementRect,
-						// } );
+						const ElementRect = info.el.getBoundingClientRect();
+						this.setState( {
+							isDatePickerOpen: false,
+							currentEvent: info,
+							anchorRef: ElementRect,
+						} );
+
+						console.log( this.calendar );
 						// render( <Popover>asdf</Popover>, info.el );
 					} }
 					// eventRender={ ( info ) => {
