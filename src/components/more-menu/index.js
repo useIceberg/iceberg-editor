@@ -9,6 +9,7 @@ import { get } from 'lodash';
  * Internal dependencies
  */
 import CopyContentMenuItem from '../copy-content-menu-item';
+import CopyContentMarkdownMenuItem from '../copy-content-menu-item/markdown';
 import Options from '../options-modal/options';
 import icons from '../icons';
 import UpdateTitleHeight from '../utils/title-height';
@@ -193,6 +194,7 @@ class MoreMenu extends Component {
 										) }
 									</MenuItem>
 									<CopyContentMenuItem />
+									<CopyContentMarkdownMenuItem />
 									<MenuItem
 										role="menuitem"
 										href="https://useiceberg.com/"
