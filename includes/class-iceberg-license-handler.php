@@ -44,9 +44,9 @@ class Iceberg_License_Handler {
 	 */
 	public function __construct() {
 		$this->item_shortname = 'iceberg';
-		$license_data = get_option( $this->item_shortname . '_license_active' );
+		$license_data         = get_option( $this->item_shortname . '_license_active' );
 
-		if( $license_data && isset( $license_data->key ) ){
+		if ( $license_data && isset( $license_data->key ) ) {
 			$this->license = $license_data->key;
 		}
 
