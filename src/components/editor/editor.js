@@ -10,6 +10,7 @@ import Shortcuts from '../shortcuts';
 import RegisterShortcuts from '../shortcuts/shortcuts';
 import DocumentInfo from '../document-info';
 import UpdateTitleHeight from '../utils/title-height';
+import ShortcutButton from '../shortcut-button';
 
 /**
  * WordPress dependencies
@@ -174,6 +175,7 @@ class IcebergEditor extends Component {
 			isActive,
 			onToggle,
 			isThemesUI,
+			isSwitchTo,
 			isDocumentInformation,
 		} = this.props;
 
@@ -218,6 +220,12 @@ class IcebergEditor extends Component {
 				{ isActive && isDocumentInformation && (
 					<DocumentInfo isActive={ isActive } />
 				) }
+				{ ! isActive && (
+					<ShortcutButton
+						onToggle={ onToggle }
+						isEnabled={ isSwitchTo }
+					/>
+				) }
 			</Fragment>
 		);
 	}
@@ -232,6 +240,7 @@ export default compose( [
 			isActive: isFeatureActive( 'icebergWritingMode' ),
 			isFocusMode: isFeatureActive( 'focusMode' ),
 			isFullscreenMode: isFeatureActive( 'fullscreenMode' ),
+			isFixedToolbar: isFeatureActive( 'fixedToolbar' ),
 			disableFullscreenMode: isFeatureActive(
 				'icebergDisableFullscreenMode'
 			),
@@ -241,6 +250,7 @@ export default compose( [
 			isThemesUI: isEditorPanelEnabled( 'uiThemes' ),
 			isShortcutsUI: isEditorPanelEnabled( 'uiShortcuts' ),
 			isBackTo: isEditorPanelEnabled( 'uiBackTo' ),
+			isSwitchTo: isEditorPanelEnabled( 'uiHeaderShortcut' ),
 			isScaledHeading: isEditorPanelEnabled( 'scaledHeading' ),
 			isDefaultEditor: isEditorPanelEnabled( 'isDefaultEditor' ),
 			isDocumentInformation: isEditorPanelEnabled(
@@ -315,6 +325,10 @@ export default compose( [
 
 			if ( ! ownProps.isFullscreenMode ) {
 				dispatch( 'core/edit-post' ).toggleFeature( 'fullscreenMode' );
+			}
+
+			if ( ! ownProps.isFixedToolbar ) {
+				dispatch( 'core/edit-post' ).toggleFeature( 'fixedToolbar' );
 			}
 
 			if ( ownProps.isWelcomeGuide ) {

@@ -33,6 +33,11 @@
 			min-width: 235px;
 		}
 	}
+
+	textarea,
+	input[type="text"] {
+		padding: 10px 10px;
+	}
 }
 
 .components-menu-group + .components-menu-group,
