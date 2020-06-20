@@ -9,6 +9,7 @@ import MoreMenu from '../more-menu';
 import Shortcuts from '../shortcuts';
 import RegisterShortcuts from '../shortcuts/shortcuts';
 import DocumentInfo from '../document-info';
+import ShortcutButton from '../shortcut-button';
 
 /**
  * WordPress dependencies
@@ -167,6 +168,7 @@ class IcebergEditor extends Component {
 			isActive,
 			onToggle,
 			isThemesUI,
+			isSwitchTo,
 			isDocumentInformation,
 		} = this.props;
 
@@ -211,6 +213,12 @@ class IcebergEditor extends Component {
 				{ isActive && isDocumentInformation && (
 					<DocumentInfo isActive={ isActive } />
 				) }
+				{ ! isActive && (
+					<ShortcutButton
+						onToggle={ onToggle }
+						isEnabled={ isSwitchTo }
+					/>
+				) }
 			</Fragment>
 		);
 	}
@@ -235,6 +243,7 @@ export default compose( [
 			isThemesUI: isEditorPanelEnabled( 'uiThemes' ),
 			isShortcutsUI: isEditorPanelEnabled( 'uiShortcuts' ),
 			isBackTo: isEditorPanelEnabled( 'uiBackTo' ),
+			isSwitchTo: isEditorPanelEnabled( 'uiHeaderShortcut' ),
 			isScaledHeading: isEditorPanelEnabled( 'scaledHeading' ),
 			isDefaultEditor: isEditorPanelEnabled( 'isDefaultEditor' ),
 			isDocumentInformation: isEditorPanelEnabled(
