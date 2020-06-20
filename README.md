@@ -13,8 +13,8 @@ With [Iceberg](https://useiceberg.com/), you get what you need to write beautifu
 
 1. Download or clone this GitHub repository into your local site's `wp-content/plugins` directory
 2. Browse to the folder using the command line
-3. Run `npm run setup` to install dependencies
-4. Run `npm start` for development
+3. Run `npm run setup` to install node and composer dependencies
+4. Run `npm start` for development, which includes running Browsersync
 
 ## Contributing
 
