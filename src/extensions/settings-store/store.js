@@ -24,6 +24,7 @@ export default function createIcebergStore() {
 		headingIndicators: ! isFeatureActive( 'icebergHeadingIndicators' ),
 		scaledHeading: isFeatureActive( 'icebergScaledHeading' ),
 		minimizeImages: ! isFeatureActive( 'icebergMinimizeImages' ),
+		contextualToolbar: ! isFeatureActive( 'icebergContextualToolbar' ),
 		uiThemes: ! isFeatureActive( 'icebergUiThemes' ),
 		uiToc: ! isFeatureActive( 'icebergUiToc' ),
 		uiShortcuts: ! isFeatureActive( 'icebergUiShortcuts' ),
