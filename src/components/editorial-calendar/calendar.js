@@ -89,7 +89,7 @@ class IcebergEditorialCalendarView extends Component {
 					nextDayThreshold="24:59:59"
 					views={ {
 						dayGridMonth: {
-							eventLimit: 5
+							eventLimit: 10
 						}
 					} }
 					header={ {
@@ -148,12 +148,12 @@ class IcebergEditorialCalendarView extends Component {
 										info.event.extendedProps.status +
 										'</span>'
 								);
-
-							info.el.classList.add(
-								'fc-status-' + info.event.extendedProps.status
-							);
 						}
 						
+						info.el.classList.add(
+							'fc-status-' + info.event.extendedProps.status
+						);
+
 						return info.el;
 					} }
 					loading={ ( isLoading, view ) => {
