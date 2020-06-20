@@ -1,5 +1,5 @@
 .iceberg-heading-level-indicator {
-	margin: var(--iceberg--typography--spacing, 2.85rem) auto;
+	margin: 0 auto;
 	max-width: var(--iceberg--typography--line-width, 40rem);
 	line-height: var(--iceberg--typography--heading--line-height);
 
@@ -16,6 +16,7 @@
 
 		@media (min-width: 782px) {
 			float: left;
+			position: absolute;
 		}
 
 		.components-button {

@@ -73,7 +73,11 @@
 	}
 	&.is-multi-selected:not(.is-block-collapsed) {
 		box-shadow: none;
-		overflow-x: hidden;
+
+		&:not([data-type="core/heading"]) {
+			overflow-x: hidden;
+		}
+
 
 		&::after {
 			position: absolute;
