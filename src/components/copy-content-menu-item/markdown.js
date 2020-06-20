@@ -51,7 +51,7 @@ function CopyContentMarkdownMenuItem( {
 					setState( { hasCopied: true } );
 					createNotice(
 						'info',
-						__( 'All content copied.', 'iceberg' ),
+						__( 'All content copied as markdown.', 'iceberg' ),
 						{
 							isDismissible: true,
 							type: 'snackbar',
