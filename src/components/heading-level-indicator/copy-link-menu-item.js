@@ -47,12 +47,8 @@ function CreateHTMLAnchorMenuItem( {
 		>
 			{ hasCopied
 				? __( 'Copied to clipboard!' )
-				: __( 'Create HTML anchor', 'iceberg' )
-			}
-			{ hasCopied
-				? icons.checkMark
-				: icons.link
-			}
+				: __( 'Create HTML anchor', 'iceberg' ) }
+			{ hasCopied ? icons.checkMark : icons.link }
 		</ClipboardButton>
 	);
 }
