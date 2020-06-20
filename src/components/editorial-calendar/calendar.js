@@ -6,6 +6,7 @@ import { isUndefined, pickBy, map } from 'lodash';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 
 /**
@@ -79,12 +80,18 @@ class IcebergEditorialCalendarView extends Component {
 			<Fragment>
 				<FullCalendar
 					editable={ true }
+					eventLimit={ true }
 					defaultView={ isMobile ? 'timeGridDay' : 'dayGridMonth' }
 					allDaySlot={ false }
 					eventDurationEditable={ false }
 					height="auto"
 					contentHeight="auto"
 					nextDayThreshold="24:59:59"
+					views={ {
+						dayGridMonth: {
+							eventLimit: 5
+						}
+					} }
 					header={ {
 						left: 'prev,next today',
 						center: 'title, forceRefresh',
@@ -96,6 +103,7 @@ class IcebergEditorialCalendarView extends Component {
 						dayGridPlugin,
 						timeGridPlugin,
 						interactionPlugin,
+						listPlugin,
 					] }
 					events={ ( { start, end }, callback ) => {
 						if ( callback ) {
@@ -124,24 +132,28 @@ class IcebergEditorialCalendarView extends Component {
 						} );
 					} }
 					eventRender={ ( info ) => {
-						const title = info.el.querySelector( '.fc-title' );
-						title.innerHTML =
-							'<span class="fc-title-inner">' +
-							title.innerHTML +
-							'</span>';
-						info.el
-							.querySelector( '.fc-time' )
-							.insertAdjacentHTML(
-								'afterend',
-								'<span class="fc-status">' +
-									info.event.extendedProps.status +
-									'</span>'
+						if ( info.view.type !== 'listWeek' ){
+							const title = info.el.querySelector( '.fc-title' );
+							if ( title ) {
+								title.innerHTML =
+									'<span class="fc-title-inner">' +
+									title.innerHTML +
+									'</span>';
+							}
+							info.el
+								.querySelector( '.fc-time' )
+								.insertAdjacentHTML(
+									'afterend',
+									'<span class="fc-status">' +
+										info.event.extendedProps.status +
+										'</span>'
+								);
+
+							info.el.classList.add(
+								'fc-status-' + info.event.extendedProps.status
 							);
-
-						info.el.classList.add(
-							'fc-status-' + info.event.extendedProps.status
-						);
-
+						}
+						
 						return info.el;
 					} }
 					loading={ ( isLoading, view ) => {
