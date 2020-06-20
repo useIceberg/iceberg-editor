@@ -48,6 +48,7 @@ class IcebergEditorialCalendarView extends Component {
 		this.state = {
 			anchorRef: null,
 			currentEvent: false,
+			currentEvents: false,
 			isDatePickerOpen: false,
 			datePickerData: null,
 		};
@@ -80,8 +81,8 @@ class IcebergEditorialCalendarView extends Component {
 			<Fragment>
 				<FullCalendar
 					editable={ true }
-					eventLimit={ true }
-					defaultView={ isMobile ? 'timeGridDay' : 'dayGridMonth' }
+					dayMaxEventRows={ true }
+					initialView={ isMobile ? 'timeGridDay' : 'dayGridMonth' }
 					allDaySlot={ false }
 					eventDurationEditable={ false }
 					height="auto"
@@ -89,12 +90,12 @@ class IcebergEditorialCalendarView extends Component {
 					nextDayThreshold="24:59:59"
 					views={ {
 						dayGridMonth: {
-							eventLimit: 10
-						}
+							dayMaxEventRows: 10,
+						},
 					} }
-					header={ {
+					headerToolbar={ {
 						left: 'prev,next today',
-						center: 'title, forceRefresh',
+						center: 'title',
 						right: isMobile
 							? null
 							: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
@@ -124,38 +125,40 @@ class IcebergEditorialCalendarView extends Component {
 						// this.setState( { anchorRef: null } );
 					} }
 					eventClick={ ( info ) => {
-						const ElementRect = info.el.getBoundingClientRect();
-						this.setState( {
-							isDatePickerOpen: false,
-							currentEvent: info,
-							anchorRef: ElementRect,
-						} );
+						console.log( info );
+						// const ElementRect = info.el.getBoundingClientRect();
+						// this.setState( {
+						// 	isDatePickerOpen: false,
+						// 	currentEvent: info,
+						// 	anchorRef: ElementRect,
+						// } );
+						// render( <Popover>asdf</Popover>, info.el );
 					} }
-					eventRender={ ( info ) => {
-						if ( info.view.type !== 'listWeek' ){
-							const title = info.el.querySelector( '.fc-title' );
-							if ( title ) {
-								title.innerHTML =
-									'<span class="fc-title-inner">' +
-									title.innerHTML +
-									'</span>';
-							}
-							info.el
-								.querySelector( '.fc-time' )
-								.insertAdjacentHTML(
-									'afterend',
-									'<span class="fc-status">' +
-										info.event.extendedProps.status +
-										'</span>'
-								);
-						}
-						
-						info.el.classList.add(
-							'fc-status-' + info.event.extendedProps.status
-						);
+					// eventRender={ ( info ) => {
+					// 	if ( info.view.type !== 'listWeek' ) {
+					// 		const title = info.el.querySelector( '.fc-title' );
+					// 		if ( title ) {
+					// 			title.innerHTML =
+					// 				'<span class="fc-title-inner">' +
+					// 				title.innerHTML +
+					// 				'</span>';
+					// 		}
+					// 		info.el
+					// 			.querySelector( '.fc-time' )
+					// 			.insertAdjacentHTML(
+					// 				'afterend',
+					// 				'<span class="fc-status">' +
+					// 					info.event.extendedProps.status +
+					// 					'</span>'
+					// 			);
+					// 	}
 
-						return info.el;
-					} }
+					// 	info.el.classList.add(
+					// 		'fc-status-' + info.event.extendedProps.status
+					// 	);
+
+					// 	return info.el;
+					// } }
 					loading={ ( isLoading, view ) => {
 						// console.log( isLoading );
 					} }

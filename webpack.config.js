@@ -7,6 +7,7 @@ const OptimizeCssAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
 const ReplaceInFileWebpackPlugin = require( 'replace-in-file-webpack-plugin' );
 const isProduction = process.env.NODE_ENV === 'production';
 const pkg = require( './package.json' );
+var parser = require( 'postcss-comment' );
 
 // Check if local.json exists
 try {
@@ -23,10 +24,7 @@ module.exports = {
 		iceberg: path.resolve( process.cwd(), 'src/index.js' ),
 		calendar: path.resolve( process.cwd(), 'src/calendar.js' ),
 		'iceberg-style': path.resolve( process.cwd(), 'src/style.scss' ),
-		'iceberg-calendar': path.resolve(
-			process.cwd(),
-			'src/calendar.scss'
-		),
+		'iceberg-calendar': path.resolve( process.cwd(), 'src/calendar.scss' ),
 	},
 
 	module: {
@@ -34,12 +32,16 @@ module.exports = {
 		rules: [
 			...defaultConfig.module.rules,
 			{
-				test: /\.scss$/,
+				test: /\.(scss|css)$/i,
 				use: [
 					MiniCssExtractPlugin.loader,
 					{
 						loader: 'css-loader',
-						options: { url: false, sourceMap: ! isProduction },
+						options: {
+							url: false,
+							sourceMap: ! isProduction,
+							importLoaders: 1,
+						},
 					},
 					{
 						loader: 'sass-loader',

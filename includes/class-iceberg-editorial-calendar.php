@@ -64,6 +64,13 @@ class Iceberg_Editorial_Calendar {
 
 		if ( in_array( $pagenow, array( 'edit.php' ) ) && isset( $_GET['page'] ) && strpos( $_GET['page'], 'iceberg-editorial' ) !== false ) {
 			wp_enqueue_style(
+				'iceberg-calendar-style',
+				self::asset_url() . '/build/calendar.css',
+				array(),
+				self::asset_file( 'calendar', 'version' )
+			);
+
+			wp_enqueue_style(
 				'iceberg-calendar-admin-style',
 				self::asset_url() . '/build/iceberg-calendar.css',
 				array(),
