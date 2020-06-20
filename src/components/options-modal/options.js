@@ -57,7 +57,7 @@ class Options extends Component {
 						/>
 						<EnablePanelOption
 							label={ __(
-								'Contextual inline toolbars',
+								'Inline contextual toolbar',
 								'iceberg'
 							) }
 							panelName="contextualToolbar"
