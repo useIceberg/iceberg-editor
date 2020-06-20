@@ -100,7 +100,10 @@ class Options extends Component {
 							optionType="ui"
 						/>
 						<EnablePanelOption
-							label={ __( 'Iceberg header toolbar shortcut', 'iceberg' ) }
+							label={ __(
+								'Iceberg header toolbar shortcut',
+								'iceberg'
+							) }
 							panelName="uiHeaderShortcut"
 							optionType="ui"
 						/>
