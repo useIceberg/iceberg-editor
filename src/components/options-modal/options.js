@@ -57,6 +57,13 @@ class Options extends Component {
 						/>
 						<EnablePanelOption
 							label={ __(
+								'Inline contextual toolbar',
+								'iceberg'
+							) }
+							panelName="contextualToolbar"
+						/>
+						<EnablePanelOption
+							label={ __(
 								'Set Iceberg as the default editor for posts',
 								'iceberg'
 							) }
@@ -80,16 +87,16 @@ class Options extends Component {
 							optionType="ui"
 						/>
 						<EnablePanelOption
+							label={ __( 'Document information', 'iceberg' ) }
+							panelName="documentInformation"
+							optionType="ui"
+						/>
+						<EnablePanelOption
 							label={ __(
 								'"Back to WordPress" button',
 								'iceberg'
 							) }
 							panelName="uiBackTo"
-							optionType="ui"
-						/>
-						<EnablePanelOption
-							label={ __( 'Document information', 'iceberg' ) }
-							panelName="documentInformation"
 							optionType="ui"
 						/>
 					</Section>

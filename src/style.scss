@@ -16,6 +16,7 @@
 	@import "./components/document-info/style.scss";
 	@import "./components/settings/style.scss";
 	@import "./components/block-indicator/style.scss";
+	@import "./components/contextual-toolbar/style.scss";
 
 	//Editor styling
 	@import "./styles/ui/hidden.scss";
@@ -29,6 +30,7 @@
 	@import "./styles/ui/menu-title.scss";
 	@import "./styles/ui/color-palette.scss";
 	@import "./styles/ui/resizable.scss";
+	@import "./styles/ui/forms.scss";
 
 	//Controls
 	@import "./styles/controls/checkbox.scss";
