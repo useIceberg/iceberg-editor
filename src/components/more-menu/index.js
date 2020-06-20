@@ -11,6 +11,7 @@ import { get } from 'lodash';
 import CopyContentMenuItem from '../copy-content-menu-item';
 import Options from '../options-modal/options';
 import icons from '../icons';
+import UpdateTitleHeight from '../utils/title-height';
 
 /**
  * WordPress dependencies
@@ -305,10 +306,7 @@ export default compose( [
 			dispatch( 'core/edit-post' ).toggleFeature( 'icebergWritingMode' );
 
 			setTimeout( function() {
-				// fix title height : https://wordpress.slack.com/archives/C02QB2JS7/p1589311097095200
-				document
-					.querySelector( '.editor-post-title__input' )
-					.dispatchEvent( new Event( 'autosize:update' ) );
+				UpdateTitleHeight();
 			}, 100 );
 
 			// Reset post meta
