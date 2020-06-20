@@ -24,10 +24,12 @@ export default function createIcebergStore() {
 		headingIndicators: ! isFeatureActive( 'icebergHeadingIndicators' ),
 		scaledHeading: isFeatureActive( 'icebergScaledHeading' ),
 		minimizeImages: ! isFeatureActive( 'icebergMinimizeImages' ),
+		contextualToolbar: isFeatureActive( 'icebergContextualToolbar' ),
 		uiThemes: ! isFeatureActive( 'icebergUiThemes' ),
 		uiToc: ! isFeatureActive( 'icebergUiToc' ),
 		uiShortcuts: ! isFeatureActive( 'icebergUiShortcuts' ),
 		uiBackTo: ! isFeatureActive( 'icebergUiBackTo' ),
+		uiHeaderShortcut: ! isFeatureActive( 'icebergUiHeaderShortcut' ),
 		emoji: ! isFeatureActive( 'icebergEmoji' ),
 		isDefaultEditor: isFeatureActive( 'icebergIsDefaultEditor' ),
 		documentInformation: isFeatureActive( 'icebergDocumentInformation' ),
@@ -132,19 +134,6 @@ export default function createIcebergStore() {
 
 			storeChanged();
 			dispatch( 'core/edit-post' ).toggleFeature( name );
-		},
-		sendBetaFeedback( name, message ) {
-			apiFetch( {
-				path: '/iceberg/v1/send/',
-				method: 'POST',
-				headers: {
-					'X-WP-Nonce': settingsNonce,
-				},
-				data: {
-					name,
-					message,
-				},
-			} );
 		},
 		handleLicenseActivation( action, licenseKey, setState ) {
 			apiFetch( {

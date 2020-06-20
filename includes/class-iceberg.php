@@ -15,7 +15,7 @@ final class Iceberg {
 	/**
 	 * The single instance of the class.
 	 *
-	 * @var Iceberg
+	 * @var self|null
 	 */
 	protected static $instance = null;
 
@@ -26,7 +26,7 @@ final class Iceberg {
 	 *
 	 * @static
 	 * @see Iceberg()
-	 * @return Iceberg - Main instance.
+	 * @return self Main instance.
 	 */
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
@@ -40,14 +40,14 @@ final class Iceberg {
 	 * Cloning is forbidden.
 	 */
 	public function __clone() {
-		wc_doing_it_wrong( __FUNCTION__, __( 'Cloning is forbidden.', 'iceberg' ), ICEBERG_VERSION );
+		_doing_it_wrong( __FUNCTION__, __( 'Cloning is forbidden.', 'iceberg' ), ICEBERG_VERSION );
 	}
 
 	/**
 	 * Unserializing instances of this class is forbidden.
 	 */
 	public function __wakeup() {
-		wc_doing_it_wrong( __FUNCTION__, __( 'Unserializing instances of this class is forbidden.', 'iceberg' ), ICEBERG_VERSION );
+		_doing_it_wrong( __FUNCTION__, __( 'Unserializing instances of this class is forbidden.', 'iceberg' ), ICEBERG_VERSION );
 	}
 
 	/**

@@ -1,5 +1,3 @@
-/*global icebergSettings*/
-
 /**
  * WordPress dependencies
  */
@@ -59,6 +57,13 @@ class Options extends Component {
 						/>
 						<EnablePanelOption
 							label={ __(
+								'Inline contextual toolbar',
+								'iceberg'
+							) }
+							panelName="contextualToolbar"
+						/>
+						<EnablePanelOption
+							label={ __(
 								'Set Iceberg as the default editor for posts',
 								'iceberg'
 							) }
@@ -83,7 +88,7 @@ class Options extends Component {
 						/>
 						<EnablePanelOption
 							label={ __(
-								'"Back to WordPress" button',
+								'Back to WordPress button',
 								'iceberg'
 							) }
 							panelName="uiBackTo"
@@ -92,6 +97,11 @@ class Options extends Component {
 						<EnablePanelOption
 							label={ __( 'Document information', 'iceberg' ) }
 							panelName="documentInformation"
+							optionType="ui"
+						/>
+						<EnablePanelOption
+							label={ __( 'Iceberg header toolbar shortcut', 'iceberg' ) }
+							panelName="uiHeaderShortcut"
 							optionType="ui"
 						/>
 					</Section>
