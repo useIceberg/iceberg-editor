@@ -6,7 +6,12 @@ import { withSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import { withState, compose } from '@wordpress/compose';
 
-function CopyLinkMenuItem( {
+/**
+ * Internal dependencies
+ */
+import icons from '../icons';
+
+function CreateHTMLAnchorMenuItem( {
 	clientId,
 	updateBlockAttributes,
 	anchor,
@@ -41,8 +46,13 @@ function CopyLinkMenuItem( {
 			onFinishCopy={ () => setState( { hasCopied: false } ) }
 		>
 			{ hasCopied
-				? __( 'Copied' )
-				: __( 'Copy link to here', 'iceberg' ) }
+				? __( 'Copied to clipboard!' )
+				: __( 'Create HTML anchor', 'iceberg' )
+			}
+			{ hasCopied
+				? icons.checkMark
+				: icons.link
+			}
 		</ClipboardButton>
 	);
 }
@@ -52,4 +62,4 @@ export default compose(
 		permalink: select( 'core/editor' ).getPermalink(),
 	} ) ),
 	withState( { hasCopied: false } )
-)( CopyLinkMenuItem );
+)( CreateHTMLAnchorMenuItem );

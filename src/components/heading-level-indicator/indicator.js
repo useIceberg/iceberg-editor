@@ -8,7 +8,7 @@ import { range } from 'lodash';
  * Internal dependencies
  */
 import HeadingLevelIcon from './heading-level-icon';
-import CopyLinkMenuItem from './copy-link-menu-item';
+import CreateHTMLAnchorMenuItem from './copy-link-menu-item';
 import icons from '../icons';
 
 /**
@@ -130,6 +130,13 @@ class HeadingLevelIndicator extends Component {
 								} ) }
 							</MenuGroup>
 							<MenuGroup>
+								<CreateHTMLAnchorMenuItem
+									clientId={ clientId }
+									anchor={ anchor }
+									updateBlockAttributes={
+										updateBlockAttributes
+									}
+								/>
 								<MenuItem
 									onClick={ () => {
 										onTransform(
@@ -143,13 +150,6 @@ class HeadingLevelIndicator extends Component {
 									{ __( 'Change to paragraph', 'iceberg' ) }
 									{ icons.paragraph }
 								</MenuItem>
-								<CopyLinkMenuItem
-									clientId={ clientId }
-									anchor={ anchor }
-									updateBlockAttributes={
-										updateBlockAttributes
-									}
-								/>
 							</MenuGroup>
 						</Fragment>
 					) }
