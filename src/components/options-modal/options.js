@@ -94,13 +94,16 @@ class Options extends Component {
 							panelName="uiBackTo"
 							optionType="ui"
 						/>
-            <EnablePanelOption
+						<EnablePanelOption
 							label={ __( 'Document information', 'iceberg' ) }
 							panelName="documentInformation"
 							optionType="ui"
 						/>
 						<EnablePanelOption
-							label={ __( 'Iceberg header toolbar shortcut', 'iceberg' ) }
+							label={ __(
+								'Iceberg header toolbar shortcut',
+								'iceberg'
+							) }
 							panelName="uiSwitchTo"
 							optionType="ui"
 						/>
