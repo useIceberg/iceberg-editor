@@ -159,7 +159,7 @@ export default function createIcebergStore() {
 				setState( () => ( { isLoading: false } ) );
 			} );
 		},
-		updatePostData( restBase, postID, meta ) {
+		updatePostData( restBase, postID, meta, event ) {
 			apiFetch( {
 				path: '/wp/v2/' + restBase + '/' + postID,
 				method: 'POST',
@@ -169,8 +169,10 @@ export default function createIcebergStore() {
 					'X-WP-Nonce': settingsNonce,
 				},
 				body: JSON.stringify( meta ),
-			} ).then( ( res ) => {
-				console.log( res );
+			} ).then( () => {
+				if( event ){
+					event.view.calendar.refetchEvents();
+				}
 			} );
 		},
 	};

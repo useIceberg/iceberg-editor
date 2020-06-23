@@ -274,11 +274,12 @@ class IcebergEditorialCalendarView extends Component {
 										reSchedule(
 											currentEvent.event.extendedProps.ID,
 											this.state.datePickerData,
-											restBase
+											restBase,
+											currentEvent
 										);
 
 										//refresh calendar
-										currentEvent.view.calendar.refetchEvents();
+										// currentEvent.view.calendar.refetchEvents();
 										this.setState( { anchorRef: null } );
 									} }
 								>
@@ -298,10 +299,15 @@ export default compose( [
 	withDispatch( ( dispatch ) => {
 		const { updatePostData } = dispatch( 'iceberg-settings' );
 		return {
-			reSchedule( postID, newDate, restBase ) {
-				updatePostData( restBase, postID, {
-					date: moment( newDate ).format( 'YYYY-MM-DDTHH:mm:ss' ),
-				} );
+			reSchedule( postID, newDate, restBase, event ) {
+				updatePostData(
+					restBase,
+					postID,
+					{
+						date: moment( newDate ).format( 'YYYY-MM-DDTHH:mm:ss' ),
+					},
+					event
+				);
 			},
 		};
 	} ),
