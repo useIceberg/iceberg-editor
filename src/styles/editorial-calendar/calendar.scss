@@ -2,8 +2,9 @@
 	.fc-event-container{
 		padding: 3px;
 	}
+	.fc-event-button-wrapper{
+		box-shadow: none !important;
 
-	.fc-event{
 		&.fc-status-draft{
 			background: #F7BF5E;
 			border-color:#F7BF5E;
@@ -15,30 +16,40 @@
 			border-color:#bee2db;
 			color: #333;
 		}
+
+		&.fc-status-future{
+			background: #3788d8;
+			border-color:#3788d8;
+			color: #fff;
+		}
 	}
 
-	.fc-content{
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
+	.fc-event-button-wrapper{
 		width: 100%;
 		padding: 8px;
 		box-sizing: border-box;
 		overflow: hidden;
+		height: auto;
 
+		.fc-event-headers,
+		.fc-event-title,
 		.fc-time,
-		.fc-title,
 		.fc-status{
 			display: flex;
 			flex-direction: column;
 			flex-basis: 100%;
-			flex: 2;
 		}
 
-		.fc-title{
-			flex: 1 1 100%;
+		.fc-event-headers{
+			flex: 2;
+			flex-direction: row;
+		}
+
+		.fc-event-title{
+			flex-wrap: wrap;
 			padding-top: 8px;
 			max-width: 100%;
+			flex: 1;
 			
 			> span{
 				white-space: nowrap;

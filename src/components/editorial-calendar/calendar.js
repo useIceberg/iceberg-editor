@@ -2,6 +2,7 @@
  * External dependencies
  */
 import moment from 'moment';
+import classnames from 'classnames';
 import { isUndefined, pickBy, map } from 'lodash';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -99,8 +100,8 @@ class IcebergEditorialCalendarView extends Component {
 					nextDayThreshold="24:59:59"
 					views={ {
 						dayGridMonth: {
-							eventLimit: 5
-						}
+							dayMaxEventRows: 5,
+						},
 					} }
 					headerToolbar={ {
 						left: 'prev,next today',
@@ -115,12 +116,12 @@ class IcebergEditorialCalendarView extends Component {
 						interactionPlugin,
 						listPlugin,
 					] }
-					events={ ( { start, end }, callback ) => {
+					initialEvents={ ( atts, callback ) => {
 						if ( callback ) {
 							fetchPosts(
 								postType,
-								moment( start ).format( 'YYYY-MM-DD' ),
-								moment( end ).format( 'YYYY-MM-DD' ),
+								moment( atts.start ).format( 'YYYY-MM-DD' ),
+								moment( atts.end ).format( 'YYYY-MM-DD' ),
 								callback
 							);
 						}
@@ -141,56 +142,34 @@ class IcebergEditorialCalendarView extends Component {
 							anchorRef: ElementRect,
 						} );
 					} }
-					eventRender={ ( info ) => {
-						if ( info.view.type !== 'listWeek' ){
-							const title = info.el.querySelector( '.fc-title' );
-							if ( title ) {
-								title.innerHTML =
-									'<span class="fc-title-inner">' +
-									title.innerHTML +
-									'</span>';
-							}
-							info.el
-								.querySelector( '.fc-time' )
-								.insertAdjacentHTML(
-									'afterend',
-									'<span class="fc-status">' +
-										info.event.extendedProps.status +
-										'</span>'
-								);
-
-							info.el.classList.add(
-								'fc-status-' + info.event.extendedProps.status
-							);
-						}
-						
-						return info.el;
+					eventContent={ ( info ) => {
+						return (
+							<Fragment>
+								<div
+									className={ classnames(
+										'fc-status-' +
+											info.event.extendedProps.status,
+										'fc-event-button-wrapper'
+									) }
+								>
+									<div className="fc-event-headers">
+										<span className="fc-time">
+											{ info.timeText }
+										</span>
+										<span className="fc-status">
+											{ info.event.extendedProps.status }
+										</span>
+									</div>
+									<div className="fc-event-title">
+										<span className="fc-title">
+											{ info.event.title }
+										</span>
+									</div>
+								</div>
+								<div className="fc-event-info-placeholder"></div>
+							</Fragment>
+						);
 					} }
-					// eventRender={ ( info ) => {
-					// 	if ( info.view.type !== 'listWeek' ) {
-					// 		const title = info.el.querySelector( '.fc-title' );
-					// 		if ( title ) {
-					// 			title.innerHTML =
-					// 				'<span class="fc-title-inner">' +
-					// 				title.innerHTML +
-					// 				'</span>';
-					// 		}
-					// 		info.el
-					// 			.querySelector( '.fc-time' )
-					// 			.insertAdjacentHTML(
-					// 				'afterend',
-					// 				'<span class="fc-status">' +
-					// 					info.event.extendedProps.status +
-					// 					'</span>'
-					// 			);
-					// 	}
-
-					// 	info.el.classList.add(
-					// 		'fc-status-' + info.event.extendedProps.status
-					// 	);
-
-					// 	return info.el;
-					// } }
 					loading={ ( isLoading, view ) => {
 						// console.log( isLoading );
 					} }
@@ -298,6 +277,8 @@ class IcebergEditorialCalendarView extends Component {
 											restBase
 										);
 
+										//refresh calendar
+										currentEvent.view.calendar.refetchEvents();
 										this.setState( { anchorRef: null } );
 									} }
 								>
