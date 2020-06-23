@@ -71,7 +71,11 @@
 		"prettier": "npm:wp-prettier@1.19.1",
 		"replace-in-file-webpack-plugin": "^1.0.6",
 		"sass-loader": "^8.0.2",
+<<<<<<< HEAD
 		"style-loader": "^1.2.1",
+=======
+		"showdown": "^1.9.1",
+>>>>>>> f90237abf52957cc0972a487ea8603d133ac8356
 		"stylelint-config-wordpress": "13.1.0",
 		"webpack-fix-style-only-entries": "^0.4.0",
 		"webpack-merge": "^4.2.2"
