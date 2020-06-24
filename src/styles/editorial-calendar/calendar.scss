@@ -82,3 +82,20 @@
 		}
 	}
 }
+
+.iceberg-fc-preloader{
+	position: absolute;
+    top: auto;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	background: rgba(255,255,255, 0.6);
+	
+	.components-spinner{
+		// background-color: #3788d8;
+	}
+}

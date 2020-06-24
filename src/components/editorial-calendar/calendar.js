@@ -55,6 +55,7 @@ class IcebergEditorialCalendarView extends Component {
 		this.calendar = createRef();
 
 		this.state = {
+			isLoading: false,
 			anchorRef: null,
 			currentEvent: false,
 			currentEvents: false,
@@ -85,9 +86,19 @@ class IcebergEditorialCalendarView extends Component {
 
 	render() {
 		const { reSchedule, postType, restBase, isMobile } = this.props;
-		const { anchorRef, currentEvent, isDatePickerOpen } = this.state;
+		const {
+			isLoading,
+			anchorRef,
+			currentEvent,
+			isDatePickerOpen,
+		} = this.state;
 		return (
 			<Fragment>
+				{ isLoading && (
+					<div className="iceberg-fc-preloader">
+						<Spinner />
+					</div>
+				) }
 				<FullCalendar
 					ref={ this.calendar }
 					editable={ true }
@@ -171,7 +182,7 @@ class IcebergEditorialCalendarView extends Component {
 						);
 					} }
 					loading={ ( isLoading, view ) => {
-						// console.log( isLoading );
+						this.setState( { isLoading } );
 					} }
 				/>
 				{ anchorRef && (
