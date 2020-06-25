@@ -29,7 +29,7 @@ function CreateHTMLAnchorMenuItem( {
 	hasCopied,
 	setState,
 } ) {
-	if ( typeof anchor === 'undefined' ) {
+	if ( typeof anchor === 'undefined' && content ) {
 		anchor = flow(
 			stripTags.bind( content ),
 			stripHTMLComments.bind( content ),
@@ -52,9 +52,12 @@ function CreateHTMLAnchorMenuItem( {
 			className="components-menu-item__button"
 			onCopy={ () => {
 				setState( { hasCopied: true } );
-				updateBlockAttributes( clientId, {
-					anchor,
-				} );
+				
+				if ( anchor ){
+					updateBlockAttributes( clientId, {
+						anchor,
+					} );
+				}
 			} }
 			onFinishCopy={ () => setState( { hasCopied: false } ) }
 		>
