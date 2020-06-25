@@ -49,7 +49,7 @@ class HeadingLevelIndicator extends Component {
 			updateBlockAttributes,
 		} = this.props;
 
-		const { anchor } = attributes;
+		const { anchor, content } = attributes;
 
 		if ( ! isActive ) {
 			return false;
@@ -133,6 +133,7 @@ class HeadingLevelIndicator extends Component {
 								<CreateHTMLAnchorMenuItem
 									clientId={ clientId }
 									anchor={ anchor }
+									content={ content }
 									updateBlockAttributes={
 										updateBlockAttributes
 									}
