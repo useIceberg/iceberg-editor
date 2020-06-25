@@ -89,6 +89,7 @@ class IcebergEditorialCalendarView extends Component {
 	render() {
 		const {
 			reSchedule,
+			changeStatus,
 			postType,
 			restBase,
 			isMobile,
@@ -276,6 +277,27 @@ class IcebergEditorialCalendarView extends Component {
 									>
 										{ __( 'Reschedule', 'iceberg' ) }
 									</Button>
+									{ 'draft' !==
+										currentEvent.event.extendedProps
+											.status && (
+										<Button
+											isLink
+											onClick={ () =>{
+												changeStatus(
+													currentEvent.event.extendedProps.ID,
+													'draft',
+													restBase,
+													currentEvent
+												);
+
+												this.setState( {
+													anchorRef: null,
+												} );
+											}}
+										>
+											{ __( 'Switch to draft', 'iceberg' ) }
+										</Button>
+									) }
 									<Button
 										isLink
 										href={ addQueryArgs( 'post.php', {
@@ -362,6 +384,16 @@ export default compose( [
 					postID,
 					{
 						date: moment( newDate ).format( 'YYYY-MM-DDTHH:mm:ss' ),
+					},
+					event
+				);
+			},
+			changeStatus( postID, newStatus, restBase, event ) {
+				updatePostData(
+					restBase,
+					postID,
+					{
+						status: newStatus,
 					},
 					event
 				);
