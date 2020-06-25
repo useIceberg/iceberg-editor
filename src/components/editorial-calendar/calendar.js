@@ -62,7 +62,8 @@ class IcebergEditorialCalendarView extends Component {
 			currentEvents: false,
 			isDatePickerOpen: false,
 			datePickerData: null,
-			postStatuses: [ 'publish', 'draft', 'future' ]
+			isFullscreen: false,
+			postStatuses: [ 'publish', 'draft', 'future' ],
 		};
 	}
 
@@ -94,6 +95,7 @@ class IcebergEditorialCalendarView extends Component {
 			restBase,
 			isMobile,
 		} = this.props;
+
 		const {
 			isLoading,
 			anchorRef,
@@ -101,6 +103,10 @@ class IcebergEditorialCalendarView extends Component {
 			isDatePickerOpen,
 			postStatuses,
 		} = this.state;
+
+		let wrapper = document.getElementById(
+			'iceberg-render-editorial-calendar'
+		);
 
 		const toggleCheckbox = ( item ) => {
 			this.setState( {
@@ -121,6 +127,35 @@ class IcebergEditorialCalendarView extends Component {
 					</div>
 				) }
 				<div className="fc-top-header">
+					<Button
+						icon={
+							this.state.isFullscreen
+								? 'editor-contract'
+								: 'editor-expand'
+						}
+						onClick={ () => {
+							this.setState(
+								{
+									isFullscreen: ! this.state.isFullscreen,
+								},
+								() => {
+									if ( this.state.isFullscreen ) {
+										document.body.classList.add(
+											'is-fullscreen'
+										);
+									} else {
+										document.body.classList.remove(
+											'is-fullscreen'
+										);
+									}
+								}
+							);
+						} }
+					>
+						{ this.state.isFullscreen
+							? __( 'Exit fullscreen mode', 'iceberg' )
+							: __( 'Fullscreen mode', 'iceberg' ) }
+					</Button>
 					<div className="fc-post-statuses">
 						<CheckboxControl
 							label={ __( 'Drafts', 'iceberg' ) }
@@ -282,9 +317,10 @@ class IcebergEditorialCalendarView extends Component {
 											.status && (
 										<Button
 											isLink
-											onClick={ () =>{
+											onClick={ () => {
 												changeStatus(
-													currentEvent.event.extendedProps.ID,
+													currentEvent.event
+														.extendedProps.ID,
 													'draft',
 													restBase,
 													currentEvent
@@ -293,9 +329,12 @@ class IcebergEditorialCalendarView extends Component {
 												this.setState( {
 													anchorRef: null,
 												} );
-											}}
+											} }
 										>
-											{ __( 'Switch to draft', 'iceberg' ) }
+											{ __(
+												'Switch to draft',
+												'iceberg'
+											) }
 										</Button>
 									) }
 									<Button

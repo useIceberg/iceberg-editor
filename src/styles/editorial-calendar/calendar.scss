@@ -99,3 +99,15 @@
 		// background-color: #3788d8;
 	}
 }
+
+body.is-fullscreen{
+
+	#adminmenumain, #wpadminbar{
+		display: none !important;
+	}
+
+	#wpcontent, #wpfooter{
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+}
