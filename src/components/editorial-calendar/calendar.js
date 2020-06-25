@@ -264,6 +264,12 @@ class IcebergEditorialCalendarView extends Component {
 							</Fragment>
 						);
 					} }
+					viewDidMount={ () => {
+						this.setState( { anchorRef: null } );
+					} }
+					datesSet={ () => {
+						this.setState( { anchorRef: null } );
+					} }
 					loading={ ( isLoading, view ) => {
 						this.setState( { isLoading } );
 					} }
@@ -394,8 +400,11 @@ class IcebergEditorialCalendarView extends Component {
 								<Button
 									isPrimary
 									onClick={ () => {
-										if( 'draft' === currentEvent.event.extendedProps
-										.status ){
+										if (
+											'draft' ===
+											currentEvent.event.extendedProps
+												.status
+										) {
 											updateEvent(
 												'schedule',
 												currentEvent.event.extendedProps
@@ -404,7 +413,7 @@ class IcebergEditorialCalendarView extends Component {
 												restBase,
 												currentEvent
 											);
-										}else{
+										} else {
 											updateEvent(
 												'reschedule',
 												currentEvent.event.extendedProps
@@ -414,7 +423,6 @@ class IcebergEditorialCalendarView extends Component {
 												currentEvent
 											);
 										}
-										
 
 										//refresh calendar
 										// currentEvent.view.calendar.refetchEvents();
