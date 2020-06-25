@@ -52,8 +52,8 @@ function CreateHTMLAnchorMenuItem( {
 			className="components-menu-item__button"
 			onCopy={ () => {
 				setState( { hasCopied: true } );
-				
-				if ( anchor ){
+
+				if ( anchor ) {
 					updateBlockAttributes( clientId, {
 						anchor,
 					} );
