@@ -3,7 +3,7 @@
  */
 import moment from 'moment';
 import classnames from 'classnames';
-import { isUndefined, pickBy, map } from 'lodash';
+import { isUndefined, pickBy, map, xor } from 'lodash';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -35,6 +35,7 @@ const {
 	Button,
 	Dashicon,
 	TimePicker,
+	CheckboxControl,
 } = wp.components;
 import {
 	Fragment,
@@ -61,6 +62,7 @@ class IcebergEditorialCalendarView extends Component {
 			currentEvents: false,
 			isDatePickerOpen: false,
 			datePickerData: null,
+			postStatuses: [ 'publish', 'draft', 'future' ]
 		};
 	}
 
@@ -85,13 +87,31 @@ class IcebergEditorialCalendarView extends Component {
 	}
 
 	render() {
-		const { reSchedule, postType, restBase, isMobile } = this.props;
+		const {
+			reSchedule,
+			postType,
+			restBase,
+			isMobile,
+		} = this.props;
 		const {
 			isLoading,
 			anchorRef,
 			currentEvent,
 			isDatePickerOpen,
+			postStatuses,
 		} = this.state;
+
+		const toggleCheckbox = ( item ) => {
+			this.setState( {
+				postStatuses: xor( postStatuses, [ item ] ),
+			}, () => {
+				//refresh calendar
+				let calendarApi = this.calendar.current.getApi();
+				calendarApi.refetchEvents();
+			});
+			
+		};
+
 		return (
 			<Fragment>
 				{ isLoading && (
@@ -99,6 +119,31 @@ class IcebergEditorialCalendarView extends Component {
 						<Spinner />
 					</div>
 				) }
+				<div className="fc-top-header">
+					<div className="fc-post-statuses">
+						<CheckboxControl
+							label={ __( 'Drafts', 'iceberg' ) }
+							checked={ postStatuses.includes( 'draft' ) }
+							onChange={ () => {
+								toggleCheckbox( 'draft' );
+							} }
+						/>
+						<CheckboxControl
+							label={ __( 'Published', 'iceberg' ) }
+							checked={ postStatuses.includes( 'publish' ) }
+							onChange={ () => {
+								toggleCheckbox( 'publish' );
+							} }
+						/>
+						<CheckboxControl
+							label={ __( 'Scheduled', 'iceberg' ) }
+							checked={ postStatuses.includes( 'future' ) }
+							onChange={ () => {
+								toggleCheckbox( 'future' );
+							} }
+						/>
+					</div>
+				</div>
 				<FullCalendar
 					ref={ this.calendar }
 					editable={ true }
@@ -131,6 +176,7 @@ class IcebergEditorialCalendarView extends Component {
 						if ( callback ) {
 							fetchPosts(
 								postType,
+								this.state.postStatuses,
 								moment( atts.start ).format( 'YYYY-MM-DD' ),
 								moment( atts.end ).format( 'YYYY-MM-DD' ),
 								callback

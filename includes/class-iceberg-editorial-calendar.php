@@ -155,12 +155,11 @@ class Iceberg_Editorial_Calendar {
 	public static function rest_api_callback( WP_REST_Request $request ) {
 		global $wpdb;
 		$parameters = $request->get_params();
-
 		$posts = $wpdb->get_results(
 			$wpdb->prepare(
 				"SELECT ID, guid, post_title AS title, post_status as status, post_date AS start, post_date AS end FROM $wpdb->posts
 			WHERE post_type = '%s' 
-			AND post_status IN ( 'publish', 'draft', 'pending', 'future' ) 
+			AND post_status IN ( ". "'" . implode( "','", explode( ',', $parameters['post_statuses'] ) ). "'" ." ) 
 			AND post_author IN ( %d ) 
 			AND post_date BETWEEN '%s' AND '%s'",
 				$parameters['post_type'],
