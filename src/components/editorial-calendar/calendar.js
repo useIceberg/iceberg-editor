@@ -89,7 +89,7 @@ class IcebergEditorialCalendarView extends Component {
 
 	render() {
 		const {
-			reSchedule,
+			updateEvent,
 			changeStatus,
 			postType,
 			restBase,
@@ -220,7 +220,8 @@ class IcebergEditorialCalendarView extends Component {
 						}
 					} }
 					eventDrop={ ( info ) => {
-						reSchedule(
+						updateEvent(
+							'reshedule',
 							info.oldEvent.extendedProps.ID,
 							info.event.start,
 							restBase
@@ -310,7 +311,10 @@ class IcebergEditorialCalendarView extends Component {
 											} );
 										} }
 									>
-										{ __( 'Reschedule', 'iceberg' ) }
+										{ currentEvent.event.extendedProps
+											.status === 'draft'
+											? __( 'Schedule', 'iceberg' )
+											: __( 'Reschedule', 'iceberg' ) }
 									</Button>
 									{ 'draft' !==
 										currentEvent.event.extendedProps
@@ -318,7 +322,8 @@ class IcebergEditorialCalendarView extends Component {
 										<Button
 											isLink
 											onClick={ () => {
-												changeStatus(
+												updateEvent(
+													'draft',
 													currentEvent.event
 														.extendedProps.ID,
 													'draft',
@@ -389,19 +394,37 @@ class IcebergEditorialCalendarView extends Component {
 								<Button
 									isPrimary
 									onClick={ () => {
-										reSchedule(
-											currentEvent.event.extendedProps.ID,
-											this.state.datePickerData,
-											restBase,
-											currentEvent
-										);
+										if( 'draft' === currentEvent.event.extendedProps
+										.status ){
+											updateEvent(
+												'schedule',
+												currentEvent.event.extendedProps
+													.ID,
+												this.state.datePickerData,
+												restBase,
+												currentEvent
+											);
+										}else{
+											updateEvent(
+												'reschedule',
+												currentEvent.event.extendedProps
+													.ID,
+												this.state.datePickerData,
+												restBase,
+												currentEvent
+											);
+										}
+										
 
 										//refresh calendar
 										// currentEvent.view.calendar.refetchEvents();
 										this.setState( { anchorRef: null } );
 									} }
 								>
-									{ __( 'Reschedule', 'iceberg' ) }
+									{ currentEvent.event.extendedProps
+										.status === 'draft'
+										? __( 'Schedule', 'iceberg' )
+										: __( 'Reschedule', 'iceberg' ) }
 								</Button>
 							</Fragment>
 						) }
@@ -417,23 +440,34 @@ export default compose( [
 	withDispatch( ( dispatch ) => {
 		const { updatePostData } = dispatch( 'iceberg-settings' );
 		return {
-			reSchedule( postID, newDate, restBase, event ) {
+			updateEvent( action, postID, newDate, restBase, event ) {
+				let meta = {};
+				switch ( action ) {
+					case 'schedule':
+						meta = {
+							status: 'publish',
+							date: moment( newDate ).format(
+								'YYYY-MM-DDTHH:mm:ss'
+							),
+						};
+						break;
+					case 'reschedule':
+						meta = {
+							date: moment( newDate ).format(
+								'YYYY-MM-DDTHH:mm:ss'
+							),
+						};
+						break;
+					case 'draft':
+						meta = {
+							status: 'draft',
+						};
+						break;
+				}
 				updatePostData(
 					restBase,
 					postID,
-					{
-						date: moment( newDate ).format( 'YYYY-MM-DDTHH:mm:ss' ),
-					},
-					event
-				);
-			},
-			changeStatus( postID, newStatus, restBase, event ) {
-				updatePostData(
-					restBase,
-					postID,
-					{
-						status: newStatus,
-					},
+					meta,
 					event
 				);
 			},
