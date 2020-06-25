@@ -258,7 +258,7 @@ class IcebergEditorialCalendarView extends Component {
 								<h3>{ currentEvent.event.title }</h3>
 								<span className="fc-event-info--date">
 									{ moment( currentEvent.event.start ).format(
-										'MMMM DD, YYYY @ H:mmA'
+										'MMMM DD, YYYY @ h:mmA'
 									) }
 								</span>
 								<span className="fc-event-info--status">
