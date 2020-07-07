@@ -8,7 +8,7 @@ import { get } from 'lodash';
 /**
  * Internal dependencies
  */
-import UpdateTitleHeight from '../utils/title-height';
+import FlatTermSelector from './flat-term-selector';
 
 /**
  * WordPress dependencies
@@ -22,6 +22,7 @@ import {
 	PostFeaturedImageCheck,
 	PostFeaturedImage,
 	PostSlugCheck,
+	PostTaxonomiesCheck,
 } from '@wordpress/editor';
 import {
 	withSpokenMessages,
@@ -135,7 +136,6 @@ class PostSettings extends Component {
 		if ( ! postType ) {
 			return null;
 		}
-
 		return (
 			<Fragment>
 				{ isSettingsOpen && (
@@ -187,6 +187,9 @@ class PostSettings extends Component {
 								</ExternalLink>
 							</div>
 						</div>
+						<PostTaxonomiesCheck>
+							<FlatTermSelector slug={ 'post_tag' } />
+						</PostTaxonomiesCheck>
 					</Modal>
 				) }
 			</Fragment>
