@@ -8,7 +8,7 @@ import { get } from 'lodash';
 /**
  * Internal dependencies
  */
-import FlatTermSelector from './flat-term-selector';
+// import FlatTermSelector from './flat-term-selector';
 
 /**
  * WordPress dependencies
@@ -21,8 +21,9 @@ import { safeDecodeURIComponent, cleanForSlug } from '@wordpress/url';
 import {
 	PostFeaturedImageCheck,
 	PostFeaturedImage,
-	PostSlugCheck,
+	PostTaxonomies,
 	PostTaxonomiesCheck,
+	PostExcerpt as PostExcerptForm,
 } from '@wordpress/editor';
 import {
 	withSpokenMessages,
@@ -158,7 +159,8 @@ class PostSettings extends Component {
 							<PostFeaturedImageCheck>
 								<PostFeaturedImage />
 							</PostFeaturedImageCheck>
-
+						</div>
+						<div className="post-settings__url-slug">
 							<TextControl
 								label={
 									get(
@@ -188,8 +190,16 @@ class PostSettings extends Component {
 							</div>
 						</div>
 						<PostTaxonomiesCheck>
-							<FlatTermSelector slug={ 'post_tag' } />
+							<PostTaxonomies
+								taxonomyWrapper={ ( content, taxonomy ) => {
+									if ( taxonomy.slug !== 'post_tag' ) {
+										return false;
+									}
+									return content;
+								} }
+							/>
 						</PostTaxonomiesCheck>
+						<PostExcerptForm />
 					</Modal>
 				) }
 			</Fragment>

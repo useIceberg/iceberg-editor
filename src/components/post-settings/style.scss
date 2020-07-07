@@ -12,6 +12,12 @@
 	right: 5px;
 	transform: none;
 	min-height: calc(100vh - 10px);
+	
+	.components-modal__content{
+		> div:not(.components-modal__header){
+			margin-bottom: 25px;
+		}
+	}
 
 	.post-settings__featured-image{
 		position: relative;
