@@ -1,0 +1,44 @@
+.components-iceberg-post-settings__content{
+	left: auto;
+	bottom: auto;
+	top: 5px;
+	right: 5px;
+	transform: none;
+	min-height: calc(100vh - 10px);
+
+	.post-settings__featured-image{
+		position: relative;
+
+		.components-button{
+			&.is-secondary{
+				display: none;
+			}
+			&.is-destructive{
+				position: absolute;
+				margin: 0;
+				top: 10px;
+				right: 10px;
+				text-indent: -999px;
+				overflow: hidden;
+				min-height: 30px !important;
+				height: 30px !important;
+				width: 30px;
+				color: #fff;
+				fill: currentColor;
+				background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>');
+				background-repeat: no-repeat;
+				background-color: rgba(0,0,0,.6);
+				background-position: center center;
+				&:hover{
+					background-color: #f05230;
+				}
+
+			}
+		}
+
+		.editor-post-featured-image__preview{
+			padding: 0 !important;
+			border-radius: 0;
+		}
+	}
+}

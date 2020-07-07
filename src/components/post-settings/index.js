@@ -17,10 +17,14 @@ import { __ } from '@wordpress/i18n';
 import { withDispatch, withSelect } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
 import { Fragment, Component, render } from '@wordpress/element';
-import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
+import {
+	PostFeaturedImageCheck,
+	PostFeaturedImage
+} from '@wordpress/editor';
 import {
 	withSpokenMessages,
 	DropdownMenu,
+	Modal,
 	Button,
 	DropZone,
 	MenuGroup,
@@ -48,58 +52,31 @@ class PostSettings extends Component {
 		this.addPostSettings();
 	}
 
-	addPostSettings() {
-		const { isActive, toggleEditorMode, postType } = this.props;
+	onRequestClose(){
+		const { isSettingsOpen } = this.state;
+		
+		this.setState( {
+			isSettingsOpen: ! isSettingsOpen,
+		} );
 
-		if (!postType) {
-			return null;
+		if ( isSettingsOpen ) {
+			this.props.closePostSettings();
 		}
+	}
 
-		const POPOVER_PROPS = {
-			className:
-				'components-iceberg-popover components-iceberg-post-settings__content',
-			position: 'bottom left',
-		};
-
-		const TOGGLE_PROPS = {
-			tooltipPosition: 'bottom',
-		};
+	addPostSettings() {
+		const { isActive } = this.props;
 
 		const MoreMenuDropdown = () => {
 			return (
 				<Fragment>
-					<DropdownMenu
-						className="components-iceberg-post-settings__trigger"
+					<Button 
+						className="components-iceberg-post-settings__trigger" 
 						icon="admin-generic"
-						label={__('Iceberg options', 'iceberg')}
-						popoverProps={POPOVER_PROPS}
-						toggleProps={TOGGLE_PROPS}
-					>
-						{({ onClose }) => (
-							<Fragment>
-								<h3>{ __('Post Settings', 'iceberg') }</h3>
-								<div className="post-settings__featured-image">
-									<MediaUploadCheck>
-										<MediaUpload
-											onSelect={(media) => console.log('selected ' + media.length)}
-											allowedTypes={['image']}
-											// value={mediaId}
-											render={({ open }) => (
-												<Fragment>
-													<Button onClick={open}>
-														{__('Set Featured Image', 'iceberg')}
-													</Button>
-													<DropZone onFilesDrop={()=>{
-														
-													}} />
-												</Fragment>
-											)}
-										/>
-									</MediaUploadCheck>
-								</div>
-							</Fragment>
-						)}
-					</DropdownMenu>
+						onClick={ ()=>{
+							this.onRequestClose();
+						} }
+					/>
 				</Fragment>
 			);
 		};
@@ -127,7 +104,30 @@ class PostSettings extends Component {
 	}
 
 	render() {
-		return false;
+		const { isSettingsOpen } = this.state;
+
+		return (
+			<Fragment>
+				{ isSettingsOpen && (
+					<Modal
+						className="components-iceberg-modal components-iceberg-post-settings__content"
+						overlayClassName="components-iceberg-post-settings__overlay"
+						onRequestClose={ ( event ) => {
+							if( ! event.relatedTarget ||  ! event.relatedTarget.classList.contains( 'media-modal' ) ){
+								this.onRequestClose();
+							}
+						} }
+					>
+						<h3>{ __( 'Post Settings', 'iceberg' ) }</h3>
+						<div className="post-settings__featured-image">
+							<PostFeaturedImageCheck>
+								<PostFeaturedImage />
+							</PostFeaturedImageCheck>
+						</div>
+					</Modal>
+				) }
+			</Fragment>
+		);
 	}
 }
 
@@ -141,20 +141,7 @@ export default compose([
 		};
 	}),
 	withDispatch((dispatch) => ({
-		toggleEditorMode() {
-			dispatch('core/edit-post').toggleFeature('icebergWritingMode');
-
-			setTimeout(function () {
-				UpdateTitleHeight();
-			}, 100);
-
-			// Reset post meta
-			dispatch('core/editor').editPost({
-				meta: {
-					_iceberg_editor_remember: false,
-				},
-			});
-
+		closePostSettings() {
 			dispatch('core/editor').savePost();
 		},
 	})),
