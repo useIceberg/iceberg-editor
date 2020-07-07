@@ -5,6 +5,7 @@
  */
 import BlockLimiter from '../block-limiter';
 import ThemeSwitcher from '../theme-switcher';
+import PostSettings from '../post-settings';
 import MoreMenu from '../more-menu';
 import Shortcuts from '../shortcuts';
 import RegisterShortcuts from '../shortcuts/shortcuts';
@@ -214,6 +215,7 @@ class IcebergEditor extends Component {
 				/>
 				{ isActive && <Shortcuts isActive={ isActive } /> }
 				<RegisterShortcuts isActive={ isActive } />
+				<PostSettings isActive={ isActive } />
 				<MoreMenu isActive={ isActive } />
 				<BlockLimiter isActive={ isActive } />
 				<ThemeSwitcher isActive={ isActive } isEnabled={ isThemesUI } />
