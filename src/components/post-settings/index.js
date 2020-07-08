@@ -24,10 +24,13 @@ import {
 	PostTaxonomies,
 	PostTaxonomiesCheck,
 	PostExcerpt as PostExcerptForm,
+	PostSchedule,
+	PostScheduleLabel,
+	PostScheduleCheck,
 } from '@wordpress/editor';
 import {
 	withSpokenMessages,
-	DropdownMenu,
+	Dropdown,
 	Modal,
 	Button,
 	TextControl,
@@ -164,18 +167,18 @@ class PostSettings extends Component {
 						} }
 					>
 						{ currentScreen !== 'settings' && (
-							<Button 
+							<Button
 								icon="arrow-left-alt2"
-								onClick={()=>{
+								onClick={ () => {
 									this.switchView(
 										'settings',
 										__( 'Post Settings', 'iceberg' )
 									);
-								}}
+								} }
 							>
 								{ __( 'Back', 'iceberg' ) }
 							</Button>
-						)}
+						) }
 						{ currentScreen === 'settings' && (
 							<Fragment>
 								<div className="post-settings__featured-image">
@@ -212,6 +215,33 @@ class PostSettings extends Component {
 										</ExternalLink>
 									</div>
 								</div>
+
+								<div className="post-settings__publish-date">
+									<label className="components-base-control__label">
+										{ __( 'Publish Date', 'iceberg' ) }
+									</label>
+									<Dropdown
+										position="bottom left"
+										contentClassName="edit-post-post-schedule__dialog"
+										renderToggle={ ( {
+											onToggle,
+											isOpen,
+										} ) => (
+											<>
+												<Button
+													className="edit-post-post-schedule__toggle"
+													onClick={ onToggle }
+													aria-expanded={ isOpen }
+													isTertiary
+												>
+													<PostScheduleLabel />
+												</Button>
+											</>
+										) }
+										renderContent={ () => <PostSchedule /> }
+									/>
+								</div>
+
 								<PostTaxonomiesCheck>
 									<PostTaxonomies
 										taxonomyWrapper={ (
@@ -262,7 +292,7 @@ export default compose([
 
 		return {
 			closePostSettings() {
-				dispatch( 'core/editor' ).savePost();
+				// dispatch( 'core/editor' ).savePost();
 			},
 			onUpdateSlug( slug ) {
 				editPost( { slug } );
