@@ -8,7 +8,7 @@ import { get } from 'lodash';
 /**
  * Internal dependencies
  */
-// import FlatTermSelector from './flat-term-selector';
+import MetaDataMenu from './meta-data-menu';
 
 /**
  * WordPress dependencies
@@ -42,10 +42,13 @@ class PostSettings extends Component {
 
 		this.addPostSettings = this.addPostSettings.bind( this );
 		this.setSlug = this.setSlug.bind( this );
+		this.switchView = this.switchView.bind( this );
 
 		this.state = {
 			isEnabled: false,
 			isSettingsOpen: false,
+			title: __( 'Post Settings', 'iceberg' ),
+			currentScreen: 'settings',
 			editedSlug:
 				safeDecodeURIComponent( postSlug ) ||
 				cleanForSlug( postTitle ) ||
@@ -84,6 +87,10 @@ class PostSettings extends Component {
 		}
 
 		onUpdateSlug( editedSlug );
+	}
+
+	switchView( screen, title ){
+		this.setState( { currentScreen: screen, title: title } );
 	}
 
 	addPostSettings() {
@@ -131,17 +138,18 @@ class PostSettings extends Component {
 	}
 
 	render() {
-		const { isSettingsOpen } = this.state;
+		const { isSettingsOpen, currentScreen, title } = this.state;
 		const { postType, postLink } = this.props;
 
 		if ( ! postType ) {
 			return null;
 		}
+		
 		return (
 			<Fragment>
 				{ isSettingsOpen && (
 					<Modal
-						title={ __( 'Post Settings', 'iceberg' ) }
+						title={ title }
 						className="components-iceberg-modal components-iceberg-post-settings__content"
 						overlayClassName="components-iceberg-post-settings__overlay"
 						onRequestClose={ ( event ) => {
@@ -155,51 +163,74 @@ class PostSettings extends Component {
 							}
 						} }
 					>
-						<div className="post-settings__featured-image">
-							<PostFeaturedImageCheck>
-								<PostFeaturedImage />
-							</PostFeaturedImageCheck>
-						</div>
-						<div className="post-settings__url-slug">
-							<TextControl
-								label={
-									get(
-										postType,
-										[ 'label', 'name' ],
-										'Post'
-									) +
-									' ' +
-									__( 'Slug', 'iceberg' )
-								}
-								value={ this.state.editedSlug }
-								onChange={ ( event ) =>
-									this.setState( {
-										editedSlug: event.target.value,
-									} )
-								}
-								onBlur={ this.setSlug }
-							/>
-							<div className="edit-post-post-link__preview-link-container">
-								<ExternalLink
-									className="edit-post-post-link__link"
-									href={ postLink }
-									target="_blank"
-								>
-									{ postLink }
-								</ExternalLink>
-							</div>
-						</div>
-						<PostTaxonomiesCheck>
-							<PostTaxonomies
-								taxonomyWrapper={ ( content, taxonomy ) => {
-									if ( taxonomy.slug !== 'post_tag' ) {
-										return false;
-									}
-									return content;
-								} }
-							/>
-						</PostTaxonomiesCheck>
-						<PostExcerptForm />
+						{ currentScreen !== 'settings' && (
+							<Button 
+								icon="arrow-left-alt2"
+								onClick={()=>{
+									this.switchView(
+										'settings',
+										__( 'Post Settings', 'iceberg' )
+									);
+								}}
+							>
+								{ __( 'Back', 'iceberg' ) }
+							</Button>
+						)}
+						{ currentScreen === 'settings' && (
+							<Fragment>
+								<div className="post-settings__featured-image">
+									<PostFeaturedImageCheck>
+										<PostFeaturedImage />
+									</PostFeaturedImageCheck>
+								</div>
+								<div className="post-settings__url-slug">
+									<TextControl
+										label={
+											get(
+												postType,
+												[ 'label', 'name' ],
+												'Post'
+											) +
+											' ' +
+											__( 'Slug', 'iceberg' )
+										}
+										value={ this.state.editedSlug }
+										onChange={ ( event ) =>
+											this.setState( {
+												editedSlug: event.target.value,
+											} )
+										}
+										onBlur={ this.setSlug }
+									/>
+									<div className="edit-post-post-link__preview-link-container">
+										<ExternalLink
+											className="edit-post-post-link__link"
+											href={ postLink }
+											target="_blank"
+										>
+											{ postLink }
+										</ExternalLink>
+									</div>
+								</div>
+								<PostTaxonomiesCheck>
+									<PostTaxonomies
+										taxonomyWrapper={ (
+											content,
+											taxonomy
+										) => {
+											if (
+												taxonomy.slug !== 'post_tag'
+											) {
+												return false;
+											}
+											return content;
+										} }
+									/>
+								</PostTaxonomiesCheck>
+								<PostExcerptForm />
+								<MetaDataMenu switchView={ this.switchView } />
+							</Fragment>
+						) }
 					</Modal>
 				) }
 			</Fragment>

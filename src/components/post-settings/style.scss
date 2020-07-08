@@ -6,6 +6,7 @@
 
 
 .components-iceberg-post-settings__content{
+	width: 380px;
 	left: auto;
 	bottom: auto;
 	top: 5px;
@@ -52,6 +53,27 @@
 		.editor-post-featured-image__preview{
 			padding: 0 !important;
 			border-radius: 0;
+		}
+	}
+
+	.components-iceberg-post-settings__metadata-menu{
+		border-radius: 4px;
+		border: 1px solid var(--iceberg--color--accent--light);
+
+		.components-button{
+			text-align: left;
+			flex-direction: row-reverse;
+			height: auto;
+			padding: 9px 10px 10px 12px;
+			border-radius: 0;
+
+			&:not(:last-of-type){
+				border-bottom: 1px solid var(--iceberg--color--accent--light);
+			}
+
+			.components-menu-item__info-wrapper{
+				width: 100%;
+			}
 		}
 	}
 }
