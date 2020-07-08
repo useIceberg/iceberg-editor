@@ -198,9 +198,9 @@ class PostSettings extends Component {
 											__( 'Slug', 'iceberg' )
 										}
 										value={ this.state.editedSlug }
-										onChange={ ( event ) =>
+										onChange={ ( newSlug ) =>
 											this.setState( {
-												editedSlug: event.target.value,
+												editedSlug: newSlug,
 											} )
 										}
 										onBlur={ this.setSlug }
