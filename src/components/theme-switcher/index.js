@@ -430,7 +430,12 @@ class ThemeSwitcher extends Component {
 
 		this.setState( { [ type ]: true } );
 		onToggle();
-		onToggle();
+
+		setTimeout( function() {
+			document
+				.querySelector( '.components-iceberg-theme-switcher__trigger' )
+				.click();
+		}, 25 );
 
 		// focus manually to fix closing outside bug
 		document
@@ -489,7 +494,16 @@ class ThemeSwitcher extends Component {
 		this.loadConfig( theme, assignedSettings, true );
 
 		onToggle();
-		onToggle();
+
+		if ( theme !== 'custom' ) {
+			setTimeout( function() {
+				document
+					.querySelector(
+						'.components-iceberg-theme-switcher__trigger'
+					)
+					.click();
+			}, 25 );
+		}
 
 		// update theme settings
 		delete assignedSettings.theme;

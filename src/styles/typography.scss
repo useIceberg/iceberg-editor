@@ -115,7 +115,7 @@
 	}
 
 	.editor-post-title__block {
-		margin-bottom: 0;
+		// margin-bottom: 0;
 		padding-left: 0;
 		padding-right: 0;
 
@@ -201,10 +201,10 @@
 	}
 }
 
-// Supporting core.
-&:not(.is-gutenberg) {
-	.editor-post-title {
-		padding-left: 25px !important;
-		padding-right: 25px !important;
-	}
-}
+// Supporting core. Removed for version 5.5
+// &:not(.is-gutenberg) {
+// 	.editor-post-title {
+// 		padding-left: 25px !important;
+// 		padding-right: 25px !important;
+// 	}
+// }
