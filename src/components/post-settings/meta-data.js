@@ -4,6 +4,11 @@
 import { get } from 'lodash';
 
 /**
+ * Internal dependencies
+ */
+import MediaUploader from './media-uploader';
+
+/**
  * WordPress dependencies
  */
 import { __, sprintf } from '@wordpress/i18n';
@@ -86,6 +91,13 @@ class MetaData extends Component {
 
 		return (
 			<Fragment>
+				{ [ 'twitter', 'facebook' ].includes( screen ) && (
+					<MediaUploader
+						onUpdateImage={ this.updateSeoMetaData }
+						screen={ screen }
+						seoMetaData={ seoMetaData }
+					/>
+				) }
 				<TextControl
 					label={ __( screen + ' Title', 'iceberg' ) }
 					placeholder={ postTitle }
