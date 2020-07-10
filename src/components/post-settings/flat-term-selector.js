@@ -259,7 +259,7 @@ class FlatTermSelector extends Component {
 			_x( 'Remove %s', 'term' ),
 			singularName
 		);
-		
+
 		return (
 			<FormTokenField
 				value={ selectedTerms }

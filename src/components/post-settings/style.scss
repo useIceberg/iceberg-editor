@@ -82,3 +82,34 @@
 		}
 	}
 }
+
+.component-iceberg-seo-preview{
+	font-family: Arial,sans-serif;
+    background: #fff;
+    border: 1px solid #e5eff5;
+	padding: 10px 12px;
+	
+	.iceberg-seo-preview-title{
+		color: #1e0fbe;
+		font-size: 20px;
+		line-height: 1.3;
+		text-overflow: ellipses;
+		word-wrap: break-word;
+		-webkit-text-overflow: ellipsis;
+	}
+
+	.iceberg-seo-preview-link{
+		margin: 1px 0 2px;
+		color: #006621;
+		font-size: 14px;
+		line-height: 1.3;
+		word-wrap: break-word;
+	}
+
+	.iceberg-seo-preview-desc{
+		color: #545454;
+		font-size: 14px;
+		line-height: 1.58;
+		word-wrap: break-word;
+	}
+}

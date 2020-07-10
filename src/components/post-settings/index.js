@@ -9,6 +9,7 @@ import { get } from 'lodash';
  * Internal dependencies
  */
 import MetaDataMenu from './meta-data-menu';
+import MetaData from './meta-data';
 
 /**
  * WordPress dependencies
@@ -92,8 +93,8 @@ class PostSettings extends Component {
 		onUpdateSlug( editedSlug );
 	}
 
-	switchView( screen, title ){
-		this.setState( { currentScreen: screen, title: title } );
+	switchView( screen, title ) {
+		this.setState( { currentScreen: screen, title } );
 	}
 
 	addPostSettings() {
@@ -147,7 +148,7 @@ class PostSettings extends Component {
 		if ( ! postType ) {
 			return null;
 		}
-		
+
 		return (
 			<Fragment>
 				{ isSettingsOpen && (
@@ -167,17 +168,20 @@ class PostSettings extends Component {
 						} }
 					>
 						{ currentScreen !== 'settings' && (
-							<Button
-								icon="arrow-left-alt2"
-								onClick={ () => {
-									this.switchView(
-										'settings',
-										__( 'Post Settings', 'iceberg' )
-									);
-								} }
-							>
-								{ __( 'Back', 'iceberg' ) }
-							</Button>
+							<Fragment>
+								<Button
+									icon="arrow-left-alt2"
+									onClick={ () => {
+										this.switchView(
+											'settings',
+											__( 'Post Settings', 'iceberg' )
+										);
+									} }
+								>
+									{ __( 'Back', 'iceberg' ) }
+								</Button>
+								<MetaData screen={ currentScreen } />
+							</Fragment>
 						) }
 						{ currentScreen === 'settings' && (
 							<Fragment>
@@ -268,15 +272,15 @@ class PostSettings extends Component {
 	}
 }
 
-export default compose([
-	withSelect((select) => {
+export default compose( [
+	withSelect( ( select ) => {
 		const {
 			getCurrentPost,
 			getCurrentPostType,
 			getEditedPostAttribute,
 		} = select( 'core/editor' );
 
-		const { getPostType } = select('core');
+		const { getPostType } = select( 'core' );
 		const { id, link } = getCurrentPost();
 
 		return {
@@ -286,8 +290,8 @@ export default compose([
 			postLink: link,
 			postID: id,
 		};
-	}),
-	withDispatch((dispatch) => {
+	} ),
+	withDispatch( ( dispatch ) => {
 		const { editPost } = dispatch( 'core/editor' );
 
 		return {
@@ -298,6 +302,6 @@ export default compose([
 				editPost( { slug } );
 			},
 		};
-	}),
+	} ),
 	withSpokenMessages,
-])(PostSettings);
+] )( PostSettings );

@@ -4,14 +4,9 @@
 import { __ } from '@wordpress/i18n';
 import { compose } from '@wordpress/compose';
 import { Fragment, Component } from '@wordpress/element';
-import {
-	withSpokenMessages,
-	MenuGroup,
-	MenuItem,
-} from '@wordpress/components';
+import { withSpokenMessages, MenuGroup, MenuItem } from '@wordpress/components';
 
 class MetaDataMenu extends Component {
-
 	render() {
 		const { switchView } = this.props;
 
@@ -49,10 +44,7 @@ class MetaDataMenu extends Component {
 
 					<MenuItem
 						icon="arrow-right-alt2"
-						info={ __(
-							'Customise Open Graph data',
-							'iceberg'
-						) }
+						info={ __( 'Customise Open Graph data', 'iceberg' ) }
 						onClick={ () => {
 							switchView(
 								'facebook',
@@ -68,6 +60,4 @@ class MetaDataMenu extends Component {
 	}
 }
 
-export default compose( [
-	withSpokenMessages,
-] )( MetaDataMenu );
+export default compose( [ withSpokenMessages ] )( MetaDataMenu );
