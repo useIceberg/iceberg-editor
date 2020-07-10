@@ -81,6 +81,22 @@
 			}
 		}
 	}
+
+	.components-base-control__label{
+		text-transform: capitalize;
+	}
+
+	.components-base-control__help{
+		margin-top: 0;
+		strong{
+			span{
+				color: rgb(159, 187, 88);
+			}
+			.to-red{
+				color: rgb(226, 84, 64);
+			}
+		}
+	}
 }
 
 .component-iceberg-seo-preview{
@@ -91,7 +107,7 @@
 	
 	.iceberg-seo-preview-title{
 		color: #1e0fbe;
-		font-size: 20px;
+		font-size: 18px;
 		line-height: 1.3;
 		text-overflow: ellipses;
 		word-wrap: break-word;
@@ -101,14 +117,14 @@
 	.iceberg-seo-preview-link{
 		margin: 1px 0 2px;
 		color: #006621;
-		font-size: 14px;
+		font-size: 13px;
 		line-height: 1.3;
 		word-wrap: break-word;
 	}
 
 	.iceberg-seo-preview-desc{
 		color: #545454;
-		font-size: 14px;
+		font-size: 13px;
 		line-height: 1.58;
 		word-wrap: break-word;
 	}

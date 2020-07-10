@@ -1,5 +1,3 @@
-/*global icebergSettings*/
-
 /**
  * External dependencies
  */
@@ -16,7 +14,7 @@ import MetaData from './meta-data';
  */
 import { __ } from '@wordpress/i18n';
 import { withDispatch, withSelect } from '@wordpress/data';
-import { compose, withInstanceId } from '@wordpress/compose';
+import { compose } from '@wordpress/compose';
 import { Fragment, Component, render } from '@wordpress/element';
 import { safeDecodeURIComponent, cleanForSlug } from '@wordpress/url';
 import {
@@ -27,7 +25,6 @@ import {
 	PostExcerpt as PostExcerptForm,
 	PostSchedule,
 	PostScheduleLabel,
-	PostScheduleCheck,
 } from '@wordpress/editor';
 import {
 	withSpokenMessages,
@@ -36,8 +33,6 @@ import {
 	Button,
 	TextControl,
 	ExternalLink,
-	MenuItem,
-	BaseControl,
 } from '@wordpress/components';
 
 class PostSettings extends Component {
@@ -143,7 +138,14 @@ class PostSettings extends Component {
 
 	render() {
 		const { isSettingsOpen, currentScreen, title } = this.state;
-		const { postType, postLink } = this.props;
+		const {
+			postType,
+			postLink,
+			postTitle,
+			permalinkParts,
+			postExcerpt,
+			postSlug,
+		} = this.props;
 
 		if ( ! postType ) {
 			return null;
@@ -180,7 +182,13 @@ class PostSettings extends Component {
 								>
 									{ __( 'Back', 'iceberg' ) }
 								</Button>
-								<MetaData screen={ currentScreen } />
+								<MetaData
+									screen={ currentScreen }
+									postTitle={ postTitle }
+									permalinkParts={ permalinkParts }
+									postSlug={ postSlug }
+									postExcerpt={ postExcerpt }
+								/>
 							</Fragment>
 						) }
 						{ currentScreen === 'settings' && (
@@ -278,6 +286,7 @@ export default compose( [
 			getCurrentPost,
 			getCurrentPostType,
 			getEditedPostAttribute,
+			getPermalinkParts,
 		} = select( 'core/editor' );
 
 		const { getPostType } = select( 'core' );
@@ -287,6 +296,8 @@ export default compose( [
 			postType: getPostType( getCurrentPostType() ),
 			postSlug: getEditedPostAttribute( 'slug' ),
 			postTitle: getEditedPostAttribute( 'title' ),
+			postExcerpt: getEditedPostAttribute( 'excerpt' ),
+			permalinkParts: getPermalinkParts(),
 			postLink: link,
 			postID: id,
 		};
