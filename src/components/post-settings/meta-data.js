@@ -89,6 +89,8 @@ class MetaData extends Component {
 			''
 		);
 
+		const getImageSrc = get( seoMetaData, [ screen, 'image_src' ], '' );
+
 		return (
 			<Fragment>
 				{ [ 'twitter', 'facebook' ].includes( screen ) && (
@@ -155,10 +157,9 @@ class MetaData extends Component {
 							{ __( 'Search Engine Result Preview', 'iceberg' ) }
 						</label>
 
-						<div className="component-iceberg-seo-preview">
+						<div className="components-iceberg-seo-preview">
 							<div className="iceberg-seo-preview-title">
 								{ getTitle ? getTitle : postTitle }
-								{ get( seoMetaData, [ 'meta', 'title' ], '' ) }
 							</div>
 							<div className="iceberg-seo-preview-link">
 								{ prefix ? prefix : null }
@@ -169,6 +170,46 @@ class MetaData extends Component {
 								{ getDescription
 									? getDescription
 									: postExcerpt }
+							</div>
+						</div>
+					</Fragment>
+				) }
+
+				{ [ 'twitter', 'facebook' ].includes( screen ) && (
+					<Fragment>
+						<label className="components-base-control__label">
+							{ __( 'Preview', 'iceberg' ) }
+						</label>
+
+						<div
+							className={
+								'components-iceberg-' + screen + '-preview'
+							}
+						>
+							<div className="iceberg-seo-preview-image">
+								{ getImageSrc && (
+									<div
+										style={ {
+											backgroundImage:
+												'url(' + getImageSrc + ')',
+										} }
+									></div>
+								) }
+							</div>
+							<div className="iceberg-seo-preview-content">
+								<div className="iceberg-seo-preview-title">
+									{ getTitle ? getTitle : postTitle }
+								</div>
+								<div className="iceberg-seo-preview-desc">
+									{ getDescription
+										? getDescription
+										: postExcerpt }
+								</div>
+								<div className="iceberg-seo-preview-link">
+									{ prefix ? prefix : null }
+									{ postSlug }
+									{ suffix ? suffix : null }
+								</div>
 							</div>
 						</div>
 					</Fragment>
