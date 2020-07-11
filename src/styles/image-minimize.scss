@@ -17,7 +17,7 @@ $defaulWidth: 150px;
 		&.alignfull,
 		&.alignwide {
 			display: block;
-			max-width: var(--iceberg--minimized-image--width, $defaulWidth);
+			max-width: var(--iceberg--minimized-image--width, $defaulWidth) !important;
 			height: auto !important;
 
 			img {
@@ -34,6 +34,17 @@ $defaulWidth: 150px;
 			max-width: var(--iceberg--typography--line-width, 40rem);
 			margin-left: auto !important;
 			margin-right: auto !important;
+		}
+	}
+
+	.wp-block {
+		height: auto;
+
+		&[data-align="left"],
+		&[data-align="right"] {
+			> * {
+				float: none;
+			}
 		}
 	}
 

@@ -19,6 +19,7 @@ class TableOfContents extends Component {
 		super( ...arguments );
 
 		this.scrollToSelected = this.scrollToSelected.bind( this );
+		this.addListContent = this.addListContent.bind( this );
 
 		this.state = {
 			isEnabled: false,
@@ -26,15 +27,14 @@ class TableOfContents extends Component {
 	}
 
 	componentDidMount() {
-		const tableOfContents = document.querySelector(
-			'.components-iceberg-table-of-contents'
-		);
-		if ( tableOfContents ) {
-			tableOfContents.parentElement.style.display = 'block';
-		}
+		this.addListContent();
 	}
 
 	componentDidUpdate() {
+		this.addListContent();
+	}
+
+	addListContent() {
 		const { getComputedStyle } = window;
 
 		const tableOfContents = document.querySelector(
@@ -42,19 +42,27 @@ class TableOfContents extends Component {
 		);
 
 		if ( tableOfContents ) {
+			tableOfContents.parentElement.style.display = 'block';
+
 			const tableOfContentsList = document.querySelector(
 				'.components-iceberg-table-of-contents__list'
 			);
 
-			const topPosition =
-				0.5 *
-				( innerHeight -
-					parseInt(
-						getComputedStyle( tableOfContentsList ).height
-					) );
+			const listHeight = parseInt(
+				getComputedStyle( tableOfContentsList ).height
+			);
+			const scale = ( window.innerHeight - 100 ) / listHeight;
 
-			tableOfContents.style.top = topPosition + 'px';
-			tableOfContents.parentElement.style.display = 'block';
+			const topPosition = 0.5 * ( innerHeight - listHeight );
+
+			// scale table of contents
+			if ( listHeight > window.innerHeight - 100 ) {
+				tableOfContents.style.transform = 'scale(' + scale + ')';
+				tableOfContents.style.top = '60px';
+			} else {
+				tableOfContents.style.top = topPosition + 'px';
+				tableOfContents.style.transform = 'none';
+			}
 		}
 	}
 
