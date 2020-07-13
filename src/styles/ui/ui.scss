@@ -42,12 +42,20 @@
 			border-radius: 0;
 		}
 	}
+}
 
-	// Color the dropzone line indicator between blocks.
+// Color the dropzone line indicator between blocks.
+.block-editor-block-list__layout .block-editor-block-list__block,
+.block-editor-block-list__layout .block-list-appender {
+	position: relative;
+
+	// Between-blocks dropzone line indicator.
 	&.is-drop-target::before {
-		border-width: 2px;
-		border-radius: 0;
-		border-color: var(--iceberg--color--accent);
+		border-top: 2px solid var(--iceberg--color--accent);
+	}
+
+	&.is-drop-target.is-dropping-horizontally::before {
+		border-left: 2px solid var(--iceberg--color--accent);
 	}
 }
 
@@ -96,6 +104,10 @@
 			background: var(--iceberg--color--accent--alpha);
 		}
 	}
+}
+
+.interface-interface-skeleton__content {
+	background-color: var(--iceberg--color--background);
 }
 
 // Remove excess spacing.

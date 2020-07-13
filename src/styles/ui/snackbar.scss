@@ -25,3 +25,7 @@
 .edit-post-layout .components-editor-notices__snackbar {
 	bottom: 15px;
 }
+
+&.has-document-info .edit-post-layout .components-editor-notices__snackbar {
+	bottom: 42px;
+}
