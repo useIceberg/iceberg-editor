@@ -1,4 +1,4 @@
-$defaulWidth: 150px;
+$defaultWidth: 200px;
 
 // Minimized image option, scoped with .is-iceberg
 &.has-minimized-images {
@@ -13,20 +13,20 @@ $defaulWidth: 150px;
 		}
 
 		.components-resizable-box__container,
-		> div:not(.components-placeholder),
+		> div:not(.components-placeholder):not(.components-placeholder__label),
 		&.alignfull,
 		&.alignwide {
 			display: block;
-			max-width: var(--iceberg--minimized-image--width, $defaulWidth) !important;
+			max-width: var(--iceberg--minimized-image--width, $defaultWidth) !important;
 			height: auto !important;
 
 			img {
-				width: var(--iceberg--minimized-image--width, $defaulWidth);
+				width: var(--iceberg--minimized-image--width, $defaultWidth);
 			}
 		}
 
 		.components-drop-zone {
-			width: var(--iceberg--minimized-image--width, $defaulWidth);
+			width: var(--iceberg--minimized-image--width, $defaultWidth);
 		}
 
 		&.alignfull,
@@ -35,6 +35,10 @@ $defaulWidth: 150px;
 			margin-left: auto !important;
 			margin-right: auto !important;
 		}
+	}
+
+	.components-form-file-upload {
+		display: inline-block;
 	}
 
 	.wp-block {
@@ -63,7 +67,7 @@ $defaulWidth: 150px;
 
 		img {
 			display: block;
-			width: var(--iceberg--minimized-image--width, $defaulWidth);
+			width: var(--iceberg--minimized-image--width, $defaultWidth);
 		}
 	}
 }
