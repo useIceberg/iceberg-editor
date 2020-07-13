@@ -1,5 +1,3 @@
-$defaultWidth: 200px;
-
 // Minimized image option, scoped with .is-iceberg
 &.has-minimized-images {
 
@@ -17,16 +15,16 @@ $defaultWidth: 200px;
 		&.alignfull,
 		&.alignwide {
 			display: block;
-			max-width: var(--iceberg--minimized-image--width, $defaultWidth) !important;
+			max-width: var(--iceberg--minimized-image--width, $imageWidth) !important;
 			height: auto !important;
 
 			img {
-				width: var(--iceberg--minimized-image--width, $defaultWidth);
+				width: var(--iceberg--minimized-image--width, $imageWidth);
 			}
 		}
 
 		.components-drop-zone {
-			width: var(--iceberg--minimized-image--width, $defaultWidth);
+			width: var(--iceberg--minimized-image--width, $imageWidth);
 		}
 
 		&.alignfull,
@@ -55,7 +53,7 @@ $defaultWidth: 200px;
 	.block-editor-media-placeholder {
 		padding-left: 1.3em;
 		padding-right: 1.3em;
-		max-width: 235px;
+		max-width: $imageWidth;
 
 		.block-editor-media-placeholder__url-input-container {
 			display: none;
@@ -67,7 +65,7 @@ $defaultWidth: 200px;
 
 		img {
 			display: block;
-			width: var(--iceberg--minimized-image--width, $defaultWidth);
+			width: var(--iceberg--minimized-image--width, $imageWidth);
 		}
 	}
 }
