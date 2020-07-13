@@ -189,14 +189,14 @@
 	}
 
 	// Add additional spacing for images.
-	.wp-block-image,
+	.wp-block.wp-block-image,
 	p[data-type="core/paragraph"] img {
 		margin-bottom: calc(var(--iceberg--typography--spacing, 2.85rem) + 14px) !important;
 		margin-top: calc(var(--iceberg--typography--spacing, 2.85rem) + 14px) !important;
 	}
 
 	// Add additional spacing for code.
-	.wp-block-code {
+	.wp-block.wp-block-code {
 		margin-bottom: calc(var(--iceberg--typography--spacing, 2.85rem) + 14px) !important;
 		margin-top: calc(var(--iceberg--typography--spacing, 2.85rem) + 14px) !important;
 	}
