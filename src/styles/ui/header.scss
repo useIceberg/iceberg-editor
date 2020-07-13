@@ -11,6 +11,10 @@
 	padding-left: 14px;
 }
 
+.interface-interface-skeleton__header {
+	color: var(--iceberg--color--text);
+}
+
 .block-editor-editor-skeleton__header {
 	border: 0;
 }
@@ -42,6 +46,10 @@
 .edit-post-header-toolbar,
 .editor-post-switch-to-draft {
 	display: none;
+}
+
+.edit-post-visual-editor__post-title-wrapper .editor-post-title {
+	margin: 0;
 }
 
 .components-iceberg-back-to {
