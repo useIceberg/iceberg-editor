@@ -425,13 +425,13 @@ class ThemeSwitcher extends Component {
 			'.block-editor-writing-flow'
 		);
 
-		wrapper.classList.add( 'is-editing-theme' );
-		editorWrapper.classList.add( 'is-editing-theme' );
-
 		this.setState( { [ type ]: true } );
 		onToggle();
 
 		setTimeout( function() {
+			wrapper.classList.add( 'is-editing-theme' );
+			editorWrapper.classList.add( 'is-editing-theme' );
+
 			document
 				.querySelector( '.components-iceberg-theme-switcher__trigger' )
 				.click();
