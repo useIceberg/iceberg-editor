@@ -115,7 +115,6 @@
 	}
 
 	.editor-post-title__block {
-		margin-bottom: 0;
 		padding-left: 0;
 		padding-right: 0;
 
@@ -192,23 +191,14 @@
 	}
 
 	// Add additional spacing for images.
-	.wp-block-image,
 	p[data-type="core/paragraph"] img {
-		padding-top: 0 !important;
-		margin-top: 0 !important;
-	}
-
-	// Add additional spacing for code.
-	.wp-block-code {
 		margin-bottom: calc(var(--iceberg--typography--spacing, 2.85rem) + 14px) !important;
 		margin-top: calc(var(--iceberg--typography--spacing, 2.85rem) + 14px) !important;
 	}
-}
 
-// Supporting core.
-&:not(.is-gutenberg) {
-	.editor-post-title {
-		padding-left: 25px !important;
-		padding-right: 25px !important;
+	// Add additional spacing for code.
+	.wp-block.wp-block-code {
+		margin-bottom: calc(var(--iceberg--typography--spacing, 2.85rem) + 14px) !important;
+		margin-top: calc(var(--iceberg--typography--spacing, 2.85rem) + 14px) !important;
 	}
 }

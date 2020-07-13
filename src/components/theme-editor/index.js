@@ -283,7 +283,14 @@ class ThemeEditor extends Component {
 						onClick={ () => {
 							onClose();
 							onToggle();
-							onToggle();
+
+							setTimeout( function() {
+								document
+									.querySelector(
+										'.components-iceberg-theme-switcher__trigger'
+									)
+									.click();
+							}, 25 );
 
 							// focus manually to fix closing outside bug
 							document

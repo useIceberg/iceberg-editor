@@ -36,6 +36,7 @@
 }
 
 .components-autocomplete__result.components-button {
+	border-radius: 2px;
 
 	&.is-selected {
 		background: var(--iceberg--color--accent--alpha);
