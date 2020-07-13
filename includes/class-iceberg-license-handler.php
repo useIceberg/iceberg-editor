@@ -162,12 +162,12 @@ class Iceberg_License_Handler {
 	 *
 	 * @since 1.0
 	 *
-	 * @param $value
+	 * @param string $value
 	 *
 	 * @return bool
 	 */
 	public function validate_action( $value ) {
-		return in_array( $value, array( 'activate', 'deactivate' ) );
+		return in_array( $value, array( 'activate', 'deactivate' ), true );
 	}
 
 	/**
