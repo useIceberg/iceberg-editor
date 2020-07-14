@@ -102,8 +102,13 @@ class ContextualToolbar extends Component {
 		if ( ! isEnabled ) {
 			return false;
 		}
-		
-		if ( anchorRef && anchorRef.endOffset > 0 && isVisible && ! [ 'core/code' ].includes( name ) ) {
+
+		if (
+			anchorRef &&
+			anchorRef.endOffset > 0 &&
+			isVisible &&
+			! [ 'core/code' ].includes( name )
+		) {
 			return (
 				<Fragment>
 					<Popover
