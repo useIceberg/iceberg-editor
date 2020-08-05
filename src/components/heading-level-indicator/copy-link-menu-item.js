@@ -40,7 +40,8 @@ function CreateHTMLAnchorMenuItem( {
 		anchor = anchor
 			.split( ' ' )
 			.splice( 0, 10 )
-			.join( '-' ).toLowerCase();
+			.join( '-' )
+			.toLowerCase();
 	}
 
 	const link = permalink + '#' + anchor;
