@@ -118,7 +118,7 @@ class ThemeEditor extends Component {
 			<Fragment>
 				{ isEditingTypography ? (
 					<Fragment>
-						<MenuGroup>
+						<MenuGroup className="components-iceberg-theme-switcher__typography-panel">
 							<SelectControl
 								value={
 									typeof typography.font !== 'undefined'
