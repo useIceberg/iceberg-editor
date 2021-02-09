@@ -58,7 +58,7 @@ class Iceberg_License_Handler {
 					'/license/(?P<action>[a-zA-Z0-9-]+)/(?P<license>[a-zA-Z0-9-]+)',
 					array(
 						'methods'              => 'POST',
-						'permissions_callback' => array( $this, 'permissions' ),
+						'permission_callback' => array( $this, 'permissions' ),
 						'args'                 => array(
 							'action'  => array(
 								'required'          => true,
