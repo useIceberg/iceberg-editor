@@ -55,6 +55,9 @@ $imageWidth: 230px;
 	@import "./styles/image-minimize.scss";
 	@import "./styles/text-indent.scss";
 
+	// Theme Supports
+	@import "./styles/supports/twenty-twentyone.scss";
+
 	// Responsive
 	@import "./styles/ui/responsive.scss";
 
