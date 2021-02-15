@@ -243,7 +243,9 @@ class PostSettings extends Component {
 								</PostTaxonomiesCheck>
 
 								<PostTaxonomiesCheck>
-									<label class="components-base-control__label">{ __( 'Category', 'iceberg' ) }</label>
+									<label className="components-base-control__label">
+										{ __( 'Category', 'iceberg' ) }
+									</label>
 									<PostTaxonomies
 										taxonomyWrapper={ (
 											content,
