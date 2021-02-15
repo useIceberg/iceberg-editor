@@ -81,17 +81,6 @@ class Iceberg_Settings {
 			)
 		);
 
-		register_meta(
-			'post',
-			'_iceberg_seo_metadata',
-			array(
-				'show_in_rest'  => true,
-				'single'        => true,
-				'auth_callback' => function() {
-					return current_user_can( 'edit_posts' );
-				},
-			)
-		);
 	}
 
 	/**

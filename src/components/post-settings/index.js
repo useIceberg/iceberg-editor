@@ -4,12 +4,6 @@
 import { get } from 'lodash';
 
 /**
- * Internal dependencies
- */
-import MetaDataMenu from './meta-data-menu';
-import MetaData from './meta-data';
-
-/**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
@@ -169,28 +163,6 @@ class PostSettings extends Component {
 							}
 						} }
 					>
-						{ currentScreen !== 'settings' && (
-							<Fragment>
-								<Button
-									icon="arrow-left-alt2"
-									onClick={ () => {
-										this.switchView(
-											'settings',
-											__( 'Post Settings', 'iceberg' )
-										);
-									} }
-								>
-									{ __( 'Back', 'iceberg' ) }
-								</Button>
-								<MetaData
-									screen={ currentScreen }
-									postTitle={ postTitle }
-									permalinkParts={ permalinkParts }
-									postSlug={ postSlug }
-									postExcerpt={ postExcerpt }
-								/>
-							</Fragment>
-						) }
 						{ currentScreen === 'settings' && (
 							<Fragment>
 								<div className="post-settings__featured-image">
@@ -269,8 +241,24 @@ class PostSettings extends Component {
 										} }
 									/>
 								</PostTaxonomiesCheck>
+
+								<PostTaxonomiesCheck>
+									<label class="components-base-control__label">{ __( 'Category', 'iceberg' ) }</label>
+									<PostTaxonomies
+										taxonomyWrapper={ (
+											content,
+											taxonomy
+										) => {
+											if (
+												taxonomy.slug !== 'category'
+											) {
+												return false;
+											}
+											return content;
+										} }
+									/>
+								</PostTaxonomiesCheck>
 								<PostExcerptForm />
-								<MetaDataMenu switchView={ this.switchView } />
 							</Fragment>
 						) }
 					</Modal>
