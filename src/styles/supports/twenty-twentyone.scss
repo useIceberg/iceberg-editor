@@ -1,0 +1,15 @@
+.editor-styles-wrapper {
+	.editor-post-title__block {
+		&.wp-block {
+			border: 0;
+			margin-bottom: 30px;
+			padding-bottom: 5px;
+		}
+	}
+}
+
+.has-footer {
+	.interface-interface-skeleton__body {
+		padding-bottom: 0;
+	}
+}
