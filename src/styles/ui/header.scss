@@ -22,6 +22,10 @@
 .editor-post-saved-state {
 	color: var(--iceberg--color--accent--light);
 
+	@media (min-width: 600px) {
+		margin-right: 20px;
+	}
+
 	&.is-saved,
 	&.is-saving {
 

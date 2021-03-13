@@ -42,6 +42,8 @@
 
 // Hide pinned plugins
 .edit-post-header__settings {
+	padding-right: 0;
+
 	.editor-post-preview__dropdown,
 	.edit-post-pinned-plugins,
 	.interface-pinned-items {
