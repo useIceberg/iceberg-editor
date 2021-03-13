@@ -52,7 +52,7 @@ module.exports = {
 		new BrowserSyncPlugin(
 			{
 				host: 'localhost',
-				port: 3000,
+				port: 8092,
 				proxy: localEnv,
 				open: true,
 				files: [ 'build/*.php', 'build/*.js', 'build/*.css' ],
