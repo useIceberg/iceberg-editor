@@ -3,7 +3,7 @@
  * Plugin Name: Iceberg Editor
  * Plugin URI: https://useiceberg.com/
  * Description: Iceberg is a beautiful, flexible markdown editor for writing within the WordPress block editor. Iceberg leverages the best of WordPress, and the best of the new block editor, while getting out of your way – allowing you to focus on publishing your next post.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Iceberg
  * Author URI: https://useiceberg.com/
  * Text Domain: iceberg

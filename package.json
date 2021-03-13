@@ -1,6 +1,6 @@
 {
 	"name": "iceberg",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Iceberg is a beautiful, themeable, flexible editor for the Gutenberg block editor.",
 	"author": "IceBerg",
 	"license": "GPL-2.0",
@@ -65,6 +65,7 @@
 		"prettier": "npm:wp-prettier@1.19.1",
 		"replace-in-file-webpack-plugin": "^1.0.6",
 		"sass-loader": "^8.0.2",
+		"showdown": "^1.9.1",
 		"stylelint-config-wordpress": "13.1.0",
 		"webpack-fix-style-only-entries": "^0.4.0",
 		"webpack-merge": "^4.2.2"

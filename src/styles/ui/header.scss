@@ -11,12 +11,20 @@
 	padding-left: 14px;
 }
 
+.interface-interface-skeleton__header {
+	color: var(--iceberg--color--text);
+}
+
 .block-editor-editor-skeleton__header {
 	border: 0;
 }
 
 .editor-post-saved-state {
 	color: var(--iceberg--color--accent--light);
+
+	@media (min-width: 600px) {
+		margin-right: 20px;
+	}
 
 	&.is-saved,
 	&.is-saving {
@@ -39,8 +47,13 @@
 	}
 }
 
+.edit-post-header-toolbar,
 .editor-post-switch-to-draft {
 	display: none;
+}
+
+.edit-post-visual-editor__post-title-wrapper .editor-post-title {
+	margin: 0;
 }
 
 .components-iceberg-back-to {

@@ -39,11 +39,6 @@
 // Supporting core.
 &:not(.is-gutenberg) {
 	.components-iceberg-theme-switcher__content {
-		.components-range-control {
-			.components-base-control__label {
-				margin-bottom: 15px;
-			}
-		}
 		.components-range-control__slider {
 
 			&::-webkit-slider-runnable-track {

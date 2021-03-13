@@ -9,6 +9,8 @@ import MoreMenu from '../more-menu';
 import Shortcuts from '../shortcuts';
 import RegisterShortcuts from '../shortcuts/shortcuts';
 import DocumentInfo from '../document-info';
+import UpdateTitleHeight from '../utils/title-height';
+import ShortcutButton from '../shortcut-button';
 
 /**
  * WordPress dependencies
@@ -64,6 +66,12 @@ class IcebergEditor extends Component {
 		}
 
 		this.sync();
+
+		if ( isActive ) {
+			setTimeout( function() {
+				UpdateTitleHeight();
+			}, 100 );
+		}
 	}
 
 	componentDidUpdate() {
@@ -167,6 +175,7 @@ class IcebergEditor extends Component {
 			isActive,
 			onToggle,
 			isThemesUI,
+			isSwitchTo,
 			isDocumentInformation,
 		} = this.props;
 
@@ -211,6 +220,12 @@ class IcebergEditor extends Component {
 				{ isActive && isDocumentInformation && (
 					<DocumentInfo isActive={ isActive } />
 				) }
+				{ ! isActive && (
+					<ShortcutButton
+						onToggle={ onToggle }
+						isEnabled={ isSwitchTo }
+					/>
+				) }
 			</Fragment>
 		);
 	}
@@ -225,6 +240,7 @@ export default compose( [
 			isActive: isFeatureActive( 'icebergWritingMode' ),
 			isFocusMode: isFeatureActive( 'focusMode' ),
 			isFullscreenMode: isFeatureActive( 'fullscreenMode' ),
+			isFixedToolbar: isFeatureActive( 'fixedToolbar' ),
 			disableFullscreenMode: isFeatureActive(
 				'icebergDisableFullscreenMode'
 			),
@@ -234,6 +250,7 @@ export default compose( [
 			isThemesUI: isEditorPanelEnabled( 'uiThemes' ),
 			isShortcutsUI: isEditorPanelEnabled( 'uiShortcuts' ),
 			isBackTo: isEditorPanelEnabled( 'uiBackTo' ),
+			isSwitchTo: isEditorPanelEnabled( 'uiHeaderShortcut' ),
 			isScaledHeading: isEditorPanelEnabled( 'scaledHeading' ),
 			isDefaultEditor: isEditorPanelEnabled( 'isDefaultEditor' ),
 			isDocumentInformation: isEditorPanelEnabled(
@@ -310,15 +327,16 @@ export default compose( [
 				dispatch( 'core/edit-post' ).toggleFeature( 'fullscreenMode' );
 			}
 
+			if ( ! ownProps.isFixedToolbar ) {
+				dispatch( 'core/edit-post' ).toggleFeature( 'fixedToolbar' );
+			}
+
 			if ( ownProps.isWelcomeGuide ) {
 				dispatch( 'core/edit-post' ).toggleFeature( 'welcomeGuide' );
 			}
 
 			setTimeout( function() {
-				// fix title height : https://wordpress.slack.com/archives/C02QB2JS7/p1589311097095200
-				document
-					.querySelector( '.editor-post-title__input' )
-					.dispatchEvent( new Event( 'autosize:update' ) );
+				UpdateTitleHeight();
 			}, 100 );
 		},
 		saveDefaultEditor() {

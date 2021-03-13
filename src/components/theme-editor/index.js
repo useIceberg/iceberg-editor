@@ -11,6 +11,7 @@ import icons from '../icons';
 import EditorThemes from './editor-themes';
 import EditorFonts from './fonts';
 import ColorPalette from './color-palette';
+import UpdateTitleHeight from '../utils/title-height';
 
 /**
  * WordPress dependencies
@@ -81,10 +82,7 @@ class ThemeEditor extends Component {
 			loadConfig( settings.theme, settings );
 
 			if ( category === 'typography' ) {
-				// fix title height : https://wordpress.slack.com/archives/C02QB2JS7/p1589311097095200
-				document
-					.querySelector( '.editor-post-title__input' )
-					.dispatchEvent( new Event( 'autosize:update' ) );
+				UpdateTitleHeight();
 			}
 		};
 
@@ -120,7 +118,7 @@ class ThemeEditor extends Component {
 			<Fragment>
 				{ isEditingTypography ? (
 					<Fragment>
-						<MenuGroup>
+						<MenuGroup className="components-iceberg-theme-switcher__typography-panel">
 							<SelectControl
 								value={
 									typeof typography.font !== 'undefined'
@@ -285,7 +283,14 @@ class ThemeEditor extends Component {
 						onClick={ () => {
 							onClose();
 							onToggle();
-							onToggle();
+
+							setTimeout( function() {
+								document
+									.querySelector(
+										'.components-iceberg-theme-switcher__trigger'
+									)
+									.click();
+							}, 25 );
 
 							// focus manually to fix closing outside bug
 							document

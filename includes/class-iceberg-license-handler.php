@@ -101,7 +101,7 @@ class Iceberg_License_Handler {
 	 * Handle license activation
 	 *
 	 * @access  public
-	 * @return  void
+	 * @return  object|null
 	 */
 	public function handle_license( WP_REST_Request $request ) {
 		$action  = $request->get_param( 'action' );
@@ -126,7 +126,7 @@ class Iceberg_License_Handler {
 
 		// Make sure there are no errors
 		if ( is_wp_error( $response ) ) {
-			return;
+			return null;
 		}
 
 		// Tell WordPress to look for updates
@@ -162,12 +162,12 @@ class Iceberg_License_Handler {
 	 *
 	 * @since 1.0
 	 *
-	 * @param $value
+	 * @param string $value
 	 *
 	 * @return bool
 	 */
 	public function validate_action( $value ) {
-		return in_array( $value, array( 'activate', 'deactivate' ) );
+		return in_array( $value, array( 'activate', 'deactivate' ), true );
 	}
 
 	/**
@@ -202,7 +202,7 @@ class Iceberg_License_Handler {
 
 		// make sure the response came back okay
 		if ( is_wp_error( $response ) ) {
-			return false;
+			return;
 		}
 
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
