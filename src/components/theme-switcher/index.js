@@ -275,28 +275,37 @@ class ThemeSwitcher extends Component {
 											{ map(
 												EditorThemes,
 												( theme, key ) => {
-													console.log(theme);
+													console.log( theme );
 													if ( 'custom' !== key ) {
-														const themeClassName = `components-iceberg-theme-switcher__palette__${theme.name.split(' ').join('-').toLowerCase()}`;
+														const themeClassName = `components-iceberg-theme-switcher__palette__${ theme.name
+															.split( ' ' )
+															.join( '-' )
+															.toLowerCase() }`;
 														return (
 															<MenuItem
-																className={ themeClassName }
+																className={
+																	themeClassName
+																}
 																key={ key }
 																onClick={ () => {
 																	this.onSelect(
 																		key,
 																		onToggle
 																	);
-																	
+
 																	// Move checkmark selection
 																	render(
 																		<span />,
-																		document.querySelector(`.components-iceberg-theme-switcher__palette__${this.state.theme} .components-iceberg-theme-switcher__palette_checkmark`)
+																		document.querySelector(
+																			`.components-iceberg-theme-switcher__palette__${ this.state.theme } .components-iceberg-theme-switcher__palette_checkmark`
+																		)
 																	);
 
 																	render(
 																		icons.checkMark,
-																		document.querySelector(`.${themeClassName} .components-iceberg-theme-switcher__palette_checkmark`)
+																		document.querySelector(
+																			`.${ themeClassName } .components-iceberg-theme-switcher__palette_checkmark`
+																		)
 																	);
 																} }
 															>
@@ -310,10 +319,9 @@ class ThemeSwitcher extends Component {
 																	{
 																		theme.name
 																	}
-																	<span
-																		className="components-iceberg-theme-switcher__palette_checkmark"
-																	>
-																		{ this.state
+																	<span className="components-iceberg-theme-switcher__palette_checkmark">
+																		{ this
+																			.state
 																			.theme ===
 																		key
 																			? icons.checkMark
@@ -351,9 +359,7 @@ class ThemeSwitcher extends Component {
 														'Custom',
 														'iceberg'
 													) }
-													<span
-														className="components-iceberg-theme-switcher__palette_checkmark"
-													>
+													<span className="components-iceberg-theme-switcher__palette_checkmark">
 														{ this.state.theme ===
 															'custom' ||
 														typeof EditorThemes[
