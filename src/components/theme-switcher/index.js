@@ -275,14 +275,28 @@ class ThemeSwitcher extends Component {
 											{ map(
 												EditorThemes,
 												( theme, key ) => {
+													console.log(theme);
 													if ( 'custom' !== key ) {
+														const themeClassName = `components-iceberg-theme-switcher__palette__${theme.name.split(' ').join('-').toLowerCase()}`;
 														return (
 															<MenuItem
+																className={ themeClassName }
 																key={ key }
 																onClick={ () => {
 																	this.onSelect(
 																		key,
 																		onToggle
+																	);
+																	
+																	// Move checkmark selection
+																	render(
+																		<span />,
+																		document.querySelector(`.components-iceberg-theme-switcher__palette__${this.state.theme} .components-iceberg-theme-switcher__palette_checkmark`)
+																	);
+
+																	render(
+																		icons.checkMark,
+																		document.querySelector(`.${themeClassName} .components-iceberg-theme-switcher__palette_checkmark`)
 																	);
 																} }
 															>
@@ -296,11 +310,15 @@ class ThemeSwitcher extends Component {
 																	{
 																		theme.name
 																	}
-																	{ this.state
-																		.theme ===
-																	key
-																		? icons.checkMark
-																		: null }
+																	<span
+																		className="components-iceberg-theme-switcher__palette_checkmark"
+																	>
+																		{ this.state
+																			.theme ===
+																		key
+																			? icons.checkMark
+																			: null }
+																	</span>
 																</Fragment>
 															</MenuItem>
 														);
@@ -308,6 +326,7 @@ class ThemeSwitcher extends Component {
 												}
 											) }
 											<MenuItem
+												className="components-iceberg-theme-switcher__palette__custom"
 												key="custom"
 												onClick={ () => {
 													this.onEditTheme(
@@ -332,13 +351,17 @@ class ThemeSwitcher extends Component {
 														'Custom',
 														'iceberg'
 													) }
-													{ this.state.theme ===
-														'custom' ||
-													typeof EditorThemes[
-														this.state.theme
-													] === 'undefined'
-														? icons.checkMark
-														: icons.color }
+													<span
+														className="components-iceberg-theme-switcher__palette_checkmark"
+													>
+														{ this.state.theme ===
+															'custom' ||
+														typeof EditorThemes[
+															this.state.theme
+														] === 'undefined'
+															? icons.checkMark
+															: icons.color }
+													</span>
 												</Fragment>
 											</MenuItem>
 										</MenuGroup>
@@ -492,18 +515,6 @@ class ThemeSwitcher extends Component {
 		}
 
 		this.loadConfig( theme, assignedSettings, true );
-
-		onToggle();
-
-		if ( theme !== 'custom' ) {
-			setTimeout( function() {
-				document
-					.querySelector(
-						'.components-iceberg-theme-switcher__trigger'
-					)
-					.click();
-			}, 25 );
-		}
 
 		// update theme settings
 		delete assignedSettings.theme;

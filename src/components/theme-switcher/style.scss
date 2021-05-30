@@ -153,6 +153,19 @@
 	}
 }
 
+.components-iceberg-theme-switcher__palette_checkmark {
+	justify-self: flex-end;
+    margin-left: auto;
+    position: relative;
+    right: -5px;
+    height: 22px;
+    width: 22px;
+
+	svg {
+		right: 0 !important;
+	}
+}
+
 // Back to visibility
 .components-iceberg-back-to {
 	display: none;
