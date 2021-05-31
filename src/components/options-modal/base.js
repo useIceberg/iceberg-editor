@@ -10,7 +10,7 @@ import { useState } from '@wordpress/element';
 import CheckboxUIControl from './checkbox-ui';
 
 function BaseOption( { label, isChecked, onChange, children, optionType } ) {
-	const [isOptionChecked, setIsOptionChecked] = useState(isChecked);
+	const [ isOptionChecked, setIsOptionChecked ] = useState( isChecked );
 
 	return (
 		<div className="edit-post-options-modal__option">
@@ -18,18 +18,18 @@ function BaseOption( { label, isChecked, onChange, children, optionType } ) {
 				<CheckboxUIControl
 					label={ label }
 					checked={ isOptionChecked }
-					onChange={ (e) => {
+					onChange={ ( e ) => {
 						setIsOptionChecked( ! isOptionChecked );
-						onChange(e);
+						onChange( e );
 					} }
 				/>
 			) : (
 				<CheckboxControl
 					label={ label }
 					checked={ isOptionChecked }
-					onChange={ (e) => {
+					onChange={ ( e ) => {
 						setIsOptionChecked( ! isOptionChecked );
-						onChange(e);
+						onChange( e );
 					} }
 				/>
 			) }
