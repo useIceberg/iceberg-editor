@@ -69,7 +69,7 @@ class MoreMenu extends Component {
 		const TOGGLE_PROPS = {
 			tooltipPosition: 'bottom',
 		};
-		
+
 		const MoreMenuDropdown = () => {
 			return (
 				<Fragment>
@@ -214,7 +214,10 @@ class MoreMenu extends Component {
 												} );
 											} }
 										>
-											{ __( 'Access Control', 'iceberg' ) }
+											{ __(
+												'Access Control',
+												'iceberg'
+											) }
 										</MenuItem>
 									) }
 									<MenuItem

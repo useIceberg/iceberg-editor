@@ -10,7 +10,11 @@ import { __ } from '@wordpress/i18n';
 import { withDispatch, withSelect } from '@wordpress/data';
 import { Component, Fragment } from '@wordpress/element';
 import { compose, withInstanceId } from '@wordpress/compose';
-import { withSpokenMessages, Modal, CheckboxControl } from '@wordpress/components';
+import {
+	withSpokenMessages,
+	Modal,
+	CheckboxControl,
+} from '@wordpress/components';
 
 /**
  * Internal dependencies
@@ -34,7 +38,7 @@ class AccessControl extends Component {
 		const { closeModal, updateThemeSettings } = this.props;
 		const { themeSettings } = this.state;
 		const { userRoles } = window.icebergSettings;
-		
+
 		return (
 			<Fragment>
 				<Modal
@@ -45,22 +49,40 @@ class AccessControl extends Component {
 					<Section title={ __( 'User roles', 'iceberg' ) }>
 						<Fragment>
 							<p className="license-help">
-								{ __( 'Set iceberg as default editor for specific user roles.', 'iceberg' ) }
+								{ __(
+									'Set iceberg as default editor for specific user roles.',
+									'iceberg'
+								) }
 							</p>
-							{ userRoles && map( userRoles, ( roleName, role) => {
-								return (
-									< CheckboxControl
-										label={ roleName }
-										value={ role }
-										checked={ themeSettings?.roles?.[role] }
-										onChange={ (value) => {
-											const updatedSettings = merge( {}, themeSettings, { roles: { [role] : value } } );
-											this.setState( { themeSettings: updatedSettings } );
-											updateThemeSettings( updatedSettings );
-										} }
-									/>
-								)
-							}) }
+							{ userRoles &&
+								map( userRoles, ( roleName, role ) => {
+									return (
+										<CheckboxControl
+											label={ roleName }
+											value={ role }
+											checked={
+												themeSettings?.roles?.[ role ]
+											}
+											onChange={ ( value ) => {
+												const updatedSettings = merge(
+													{},
+													themeSettings,
+													{
+														roles: {
+															[ role ]: value,
+														},
+													}
+												);
+												this.setState( {
+													themeSettings: updatedSettings,
+												} );
+												updateThemeSettings(
+													updatedSettings
+												);
+											} }
+										/>
+									);
+								} ) }
 						</Fragment>
 					</Section>
 				</Modal>
