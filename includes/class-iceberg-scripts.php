@@ -41,6 +41,8 @@ class Iceberg_Scripts {
 	 * Get scripts.
 	 */
 	public static function scripts() {
+		global $wp_roles;
+		$roles                  = $wp_roles->get_names();
 		list( $iceberg_theme, ) = (array) get_theme_support( 'iceberg-editor' );
 
 		wp_enqueue_script(
@@ -61,7 +63,8 @@ class Iceberg_Scripts {
 				'customThemes'         => ( false !== $iceberg_theme ) ? $iceberg_theme : '',
 				'license'              => get_option( 'iceberg_license_active' ),
 				'isGutenberg'          => defined( 'GUTENBERG_VERSION' ) || ( function_exists( 'is_plugin_active' ) && is_plugin_active( 'gutenberg/gutenberg.php' ) ) ? true : false,
-				'isEditIceberg'        => isset( $_GET['is_iceberg'] ) ? sanitize_text_field( $_GET['is_iceberg'] ) : false // phpcs:ignore
+				'isEditIceberg'        => isset( $_GET['is_iceberg'] ) ? sanitize_text_field( $_GET['is_iceberg'] ) : false, // phpcs:ignore
+				'userRoles'            => $roles // phpcs:ignore
 			)
 		);
 	}

@@ -11,6 +11,7 @@ import { get } from 'lodash';
 import CopyContentMenuItem from '../copy-content-menu-item';
 import CopyContentMarkdownMenuItem from '../copy-content-menu-item/markdown';
 import Options from '../options-modal/options';
+import AccessControl from '../options-modal/access-control';
 import icons from '../icons';
 import UpdateTitleHeight from '../utils/title-height';
 
@@ -40,6 +41,7 @@ class MoreMenu extends Component {
 		this.state = {
 			isEnabled: false,
 			isSettingsOpen: false,
+			isAccessControlOpen: false,
 		};
 	}
 
@@ -52,9 +54,9 @@ class MoreMenu extends Component {
 	}
 
 	addMoreMenu() {
-		const { isActive, toggleEditorMode, postType } = this.props;
+		const { isActive, toggleEditorMode, postType, isAdmin } = this.props;
 
-		if ( ! postType ) {
+		if ( ! postType || ! isAdmin ) {
 			return null;
 		}
 
@@ -67,7 +69,7 @@ class MoreMenu extends Component {
 		const TOGGLE_PROPS = {
 			tooltipPosition: 'bottom',
 		};
-
+		
 		const MoreMenuDropdown = () => {
 			return (
 				<Fragment>
@@ -204,6 +206,17 @@ class MoreMenu extends Component {
 									</MenuItem>
 								</MenuGroup>
 								<MenuGroup>
+									{ isAdmin && (
+										<MenuItem
+											onClick={ () => {
+												this.setState( {
+													isAccessControlOpen: true,
+												} );
+											} }
+										>
+											{ __( 'Access Control', 'iceberg' ) }
+										</MenuItem>
+									) }
 									<MenuItem
 										onClick={ () => {
 											this.setState( {
@@ -244,7 +257,7 @@ class MoreMenu extends Component {
 	}
 
 	render() {
-		const { isSettingsOpen } = this.state;
+		const { isSettingsOpen, isAccessControlOpen } = this.state;
 		const { license } = window.icebergSettings;
 
 		let isValid = true;
@@ -289,6 +302,13 @@ class MoreMenu extends Component {
 						} }
 					/>
 				) }
+				{ isAccessControlOpen && (
+					<AccessControl
+						closeModal={ () => {
+							this.setState( { isAccessControlOpen: false } );
+						} }
+					/>
+				) }
 			</Fragment>
 		);
 	}
@@ -297,10 +317,11 @@ class MoreMenu extends Component {
 export default compose( [
 	withSelect( ( select ) => {
 		const { getCurrentPostType } = select( 'core/editor' );
-		const { getPostType } = select( 'core' );
+		const { getPostType, canUser } = select( 'core' );
 
 		return {
 			postType: getPostType( getCurrentPostType() ),
+			isAdmin: canUser( 'create', 'users' ),
 		};
 	} ),
 	withDispatch( ( dispatch ) => ( {
