@@ -41,7 +41,7 @@ class Iceberg_Scripts {
 	 * Get scripts.
 	 */
 	public static function scripts() {
-		global $wp_roles, $wpdb;
+		global $wp_roles, $wpdb, $post;
 		$roles                  = $wp_roles->get_names();
 		list( $iceberg_theme, ) = (array) get_theme_support( 'iceberg-editor' );
 
@@ -54,16 +54,19 @@ class Iceberg_Scripts {
 		);
 
 		$isEditIceberg = isset( $_GET['is_iceberg'] ) ? sanitize_text_field( $_GET['is_iceberg'] ) : false;
-		$user          = wp_get_current_user();
-		$user_meta     = get_user_meta( $user->ID, $wpdb->get_blog_prefix() . 'iceberg_theme_settings' );
-		
-		if ( $user_meta && is_array( $user_meta ) ) {
-			if ( isset( $user_meta[0]['roles'] ) && is_array( $user_meta[0]['roles'] ) ) {
-				$checked_roles = array_filter( $user_meta[0]['roles'] );
-				if ( $user->roles && is_array( $user->roles ) ) {
-					foreach ( $user->roles as $user_role ) {
-						if ( in_array( $user_role, $checked_roles ) ) {
-							$isEditIceberg = true;
+
+		if ( $post && in_array( $post->post_type, [ 'post' ] ) ) {
+			$user          = wp_get_current_user();
+			$user_meta     = get_user_meta( $user->ID, $wpdb->get_blog_prefix() . 'iceberg_theme_settings' );
+			
+			if ( $user_meta && is_array( $user_meta ) ) {
+				if ( isset( $user_meta[0]['roles'] ) && is_array( $user_meta[0]['roles'] ) ) {
+					$checked_roles = array_filter( $user_meta[0]['roles'] );
+					if ( $user->roles && is_array( $user->roles ) ) {
+						foreach ( $user->roles as $user_role ) {
+							if ( in_array( $user_role, $checked_roles ) ) {
+								$isEditIceberg = true;
+							}
 						}
 					}
 				}
