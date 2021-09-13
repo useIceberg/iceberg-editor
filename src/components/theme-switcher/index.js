@@ -242,7 +242,7 @@ class ThemeSwitcher extends Component {
 								<span
 									className="components-iceberg-theme-switcher__palette"
 									style={ {
-										backgroundImage: `linear-gradient(130deg,${
+										backgroundImage: `linear-gradient(130deg, ${
 											typeof EditorThemes[
 												this.state.theme
 											] !== 'undefined'
@@ -313,7 +313,7 @@ class ThemeSwitcher extends Component {
 																	<span
 																		className="components-iceberg-theme-switcher__palette"
 																		style={ {
-																			backgroundImage: `linear-gradient(130deg,${ theme.colors.background } 48.75%, ${ theme.colors.accent } 50%)`,
+																			backgroundImage: `linear-gradient(130deg, ${ theme.colors.background } 48.75%, ${ theme.colors.accent } 50%)`,
 																		} }
 																	></span>
 																	{
@@ -352,7 +352,7 @@ class ThemeSwitcher extends Component {
 													<span
 														className="components-iceberg-theme-switcher__palette"
 														style={ {
-															backgroundImage: `linear-gradient(130deg,${ this.state.themeSettings.colors.background } 48.75%, ${ this.state.themeSettings.colors.accent } 50%)`,
+															backgroundImage: `conic-gradient(rgb(235, 87, 87), rgb(242, 201, 76), rgb(76, 183, 130), rgb(78, 167, 252), rgb(250, 96, 122))`,
 														} }
 													></span>
 													{ __(

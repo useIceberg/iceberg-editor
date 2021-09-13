@@ -1,5 +1,20 @@
 == Changelog ==
 
+1.2.0 / 2021-09-13
+===================
+
+### NEW
+* Improved support for WordPress 5.8
+* Improved support for Twenty Twenty One
+* Improve UI for custom theme
+* Add new "Acai" theme, to match Linear app styling
+* Add new "Acai" theme, to match Notion app styling
+
+### Fixes
+* Fix options checkbox UI
+* Fix permissions callback
+* Reduce flicker of contextual toolbar
+
 1.1.0 / 2020-08-23
 ===================
 
