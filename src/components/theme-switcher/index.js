@@ -242,26 +242,25 @@ class ThemeSwitcher extends Component {
 								<span
 									className="components-iceberg-theme-switcher__palette"
 									style={ {
-										backgroundImage
-: `linear-gradient(130deg, ${
-												typeof EditorThemes[
+										backgroundImage: `linear-gradient(130deg, ${
+											typeof EditorThemes[
 												this.state.theme
-												] !== "undefined"
+											] !== 'undefined'
 												? EditorThemes[
-												this.state.theme
-												].colors.background
+														this.state.theme
+												  ].colors.background
 												: this.state.themeSettings
-												.colors.background
-											} 48.75%, ${
-												typeof EditorThemes[
+														.colors.background
+										} 48.75%, ${
+											typeof EditorThemes[
 												this.state.theme
-												] !== "undefined"
+											] !== 'undefined'
 												? EditorThemes[
-												this.state.theme
-												].colors.accent
+														this.state.theme
+												  ].colors.accent
 												: this.state.themeSettings
-												.colors.accent
-											} 50%)`,
+														.colors.accent
+										} 50%)`,
 									} }
 								></span>
 								{ icons.caretDown }
