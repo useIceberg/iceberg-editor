@@ -99,7 +99,7 @@ final class Iceberg {
 		$this->define( 'ICEBERG_PLUGIN_DIR', plugin_dir_path( ICEBERG_PLUGIN_FILE ) );
 		$this->define( 'ICEBERG_PLUGIN_FILE', __FILE__ );
 		$this->define( 'ICEBERG_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-		$this->define( 'ICEBERG_VERSION', '1.1.0' );
+		$this->define( 'ICEBERG_VERSION', '1.2.0' );
 	}
 
 	/**
