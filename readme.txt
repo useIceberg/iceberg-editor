@@ -5,9 +5,9 @@ Contributors: richtabor, phpbits
 Donate link: https://useiceberg.com
 Tags: gutenberg, block editor, markdown, writing
 Requires at least: 5.0
-Tested up to: 5.5
+Tested up to: 5.8
 Requires PHP: 5.2.4
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPL-2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
