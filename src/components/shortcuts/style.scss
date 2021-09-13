@@ -53,6 +53,8 @@
 
 	.components-popover__content {
 		min-width: 260px !important;
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
 		margin-right: -12px !important; // @todo, RTL may affect this.
 	}
 
@@ -100,7 +102,7 @@
 
 .components-iceberg-shortcuts__section {
 	border-top: 1px solid var(--iceberg--color--accent);
-	padding: 12px;
+	padding: 2px 0;
 
 	&:first-child {
 		border-top: 0;
@@ -121,7 +123,7 @@
 	align-items: center;
 	display: flex;
 	margin-bottom: 0;
-	padding: 10px 12px;
+	padding: 10px 19px;
 }
 
 .components-iceberg-shortcuts__shortcut-description {
@@ -157,6 +159,7 @@
 .components-iceberg-shortcuts__trigger .components-button {
 	color: var(--iceberg--color--accent) !important;
 	height: 42px;
+	border-radius: 0 !important;
 	min-width: 42px;
 
 	svg {

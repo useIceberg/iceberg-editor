@@ -12,7 +12,8 @@
 
 	.edit-post-options-modal__section-title {
 		font-size: 13px;
-		margin-bottom: 7px;
+		margin-bottom: 10px;
+		margin-top: 30px;
 	}
 
 	.edit-post-options-modal__option {
@@ -67,7 +68,8 @@
 
 .license-help {
 	color: var(--iceberg--color--text);
-	opacity: 0.65;
+	opacity: 0.75;
+	margin-top: 0;
 }
 
 .components-iceberg-options-modal {

@@ -3,6 +3,10 @@
 	padding-top: 50px;
 }
 
+.has-footer .interface-interface-skeleton__body {
+	padding-bottom: 0 !important;
+}
+
 // Add more padding for mobile.
 .block-editor-block-list__layout {
 	padding-left: 25px;
