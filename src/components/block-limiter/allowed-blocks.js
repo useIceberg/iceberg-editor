@@ -14,6 +14,10 @@ const allowedBlocks = [
 	'core/code',
 	'core/more',
 	'coblocks/gist',
+	'tabor/share-on-twitter',
+	'tabor/todo-list',
+	'tabor/todo-item',
+	'tabor/markdown-comment',
 ];
 
 export default allowedBlocks;

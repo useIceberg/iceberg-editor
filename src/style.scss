@@ -62,4 +62,15 @@ $imageWidth: 230px;
 		border-color: transparent;
 		box-shadow: none;
 	}
+
+	[data-type="tabor/todo-list"] {
+		.block-editor-block-list__layout {
+			padding: 0;
+
+			.block-editor-block-list__block.wp-block {
+				margin-top: 0 !important;
+				margin-bottom: 0 !important;
+			}
+		}
+	}
 }
