@@ -2,10 +2,10 @@
 	.components-popover__content {
 		background-color: var(--iceberg--color--background--light);
 		border-color: var(--iceberg--color--accent);
-		border-radius: 2px;
+		border-radius: 4px;
 		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.025);
 		color: var(--iceberg--color--text);
-		padding: 0;
+		padding: 12px 0;
 
 		> div {
 			padding: 0;
@@ -67,7 +67,7 @@
 
 	.components-menu-item__button,
 	.components-menu-item__button.components-button {
-		padding: 8px 12px;
+		padding: 12px ​20px !important;
 	}
 
 	.components-menu-item__info-wrapper svg {
@@ -81,7 +81,10 @@
 .components-iceberg-popover {
 
 	.components-button:not(.is-small):not(.components-circular-option-picker__option):not(.components-color-picker__saturation-pointer):not(.components-color-picker__inputs-toggle) {
-		padding: 8px 12px;
+		padding: 8px ​20px;
+		padding-top: 8px !important;
+		padding-bottom: 8px !important;
+		border-radius: 0;
 		height: auto;
 		justify-content: flex-start;
 
