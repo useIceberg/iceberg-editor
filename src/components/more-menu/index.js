@@ -96,7 +96,10 @@ class MoreMenu extends Component {
 											}
 										} }
 									>
-										{ __( 'Change Iceberg theme', 'iceberg' ) }
+										{ __(
+											'Change Iceberg theme',
+											'iceberg'
+										) }
 									</MenuItem>
 									<MenuItem
 										onClick={ () => {
