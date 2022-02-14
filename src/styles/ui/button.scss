@@ -91,6 +91,10 @@
 		}
 	}
 
+	&.editor-post-save-draft {
+		margin-right: 5px;
+	}
+
 	&.editor-post-save-draft,
 	&.editor-post-switch-to-draft {
 		font-weight: 600;
