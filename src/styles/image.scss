@@ -13,12 +13,12 @@
 		box-shadow: 0 0 0 3px var(--iceberg--color--background), 0 0 0 5px var(--iceberg--color--accent);
 	}
 
-	&:focus::after {
-		display: none;
+	.components-placeholder__fieldset .is-tertiary {
+		margin-bottom: 0;
 	}
 
-	.components-resizable-box__container {
-		display: block;
+	&:focus::after {
+		display: none;
 	}
 
 	&:not(.is-drop-target) {
@@ -26,6 +26,10 @@
 			display: none;
 		}
 	}
+}
+
+.components-resizable-box__handle {
+	display: none;
 }
 
 .wp-block-image.is-focused {

@@ -45,8 +45,8 @@ class Iceberg_Scripts {
 
 		wp_enqueue_script(
 			'iceberg',
-			self::asset_url() . '/build/iceberg.js',
-			array_merge( self::asset_file( 'iceberg', 'dependencies' ), array( 'wp-api', 'wp-compose' ) ),
+			self::asset_url() . '/build/index.js',
+			array_merge( self::asset_file( 'index', 'dependencies' ), array( 'wp-api', 'wp-compose' ) ),
 			self::asset_file( 'iceberg', 'version' ),
 			true
 		);
@@ -72,9 +72,9 @@ class Iceberg_Scripts {
 	public static function styles() {
 		wp_enqueue_style(
 			'iceberg-style',
-			self::asset_url() . '/build/iceberg-style.css',
+			self::asset_url() . '/build/style-index.css',
 			array(),
-			self::asset_file( 'iceberg-style', 'version' )
+			self::asset_file( 'style-index', 'version' )
 		);
 
 		// Add inline style for the editor themes to hook into.

@@ -73,6 +73,10 @@
 }
 
 .components-iceberg-options-modal {
+	p {
+		text-indent: 0 !important;
+	}
+
 	.components-notice {
 		margin: 0;
 		border: none;

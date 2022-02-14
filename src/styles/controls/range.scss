@@ -28,6 +28,10 @@
 
 	.components-range-control__track {
 		background-color: var(--iceberg--color--accent);
+
+		+ span > span {
+			background-color: var(--iceberg--color--accent);
+		}
 	}
 
 	.components-range-control__slider:focus + span[class*="Rail"],

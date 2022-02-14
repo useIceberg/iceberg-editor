@@ -27,6 +27,10 @@
 			width: var(--iceberg--minimized-image--width, $imageWidth);
 		}
 
+		.components-resizable-box__handle  {
+			display: none;
+		}
+
 		&.alignfull,
 		&.alignwide {
 			max-width: var(--iceberg--typography--line-width, 40rem);

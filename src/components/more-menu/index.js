@@ -96,7 +96,7 @@ class MoreMenu extends Component {
 											}
 										} }
 									>
-										{ __( 'Edit editor theme', 'iceberg' ) }
+										{ __( 'Change Iceberg theme', 'iceberg' ) }
 									</MenuItem>
 									<MenuItem
 										onClick={ () => {
@@ -195,13 +195,6 @@ class MoreMenu extends Component {
 									</MenuItem>
 									<CopyContentMenuItem />
 									<CopyContentMarkdownMenuItem />
-									<MenuItem
-										role="menuitem"
-										href="https://useiceberg.com/"
-										target="_new"
-									>
-										{ __( 'Help', 'iceberg' ) }
-									</MenuItem>
 								</MenuGroup>
 								<MenuGroup>
 									<MenuItem

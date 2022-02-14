@@ -4,6 +4,9 @@
 		background: transparent !important;
 		color: var(--iceberg--color--background) !important;
 		height: 38px;
+		padding-left: 8px !important;
+    		padding-right: 8px !important;
+   		min-width: auto !important;
 
 		&:hover,
 		&:focus {

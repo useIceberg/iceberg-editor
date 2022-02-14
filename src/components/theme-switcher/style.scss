@@ -1,14 +1,14 @@
 // Move content to the right while editing the theme.
 .block-editor-writing-flow {
 	transition: padding 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
-	padding-top: 1rem;
+	padding-top: 0;
 }
 
 .block-editor-writing-flow.is-editing-theme {
 	transition: padding 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
 
 	@media (min-width: 782px) {
-		padding-left: 260px;
+		padding-left: 330px;
 	}
 
 	@media (min-width: 1400px) {
@@ -57,6 +57,16 @@
 	padding: 0 !important;
 }
 
+.components-iceberg-theme-switcher__typography {
+
+	svg {
+		position: relative;
+		right: -2px;
+		width: 24px !important;
+		height: 24px !important;
+	}
+}
+
 .components-iceberg-theme-switcher__typography-panel {
 	padding: 0 10px 0 !important;
 }
@@ -64,12 +74,21 @@
 .components-iceberg-theme-switcher__content {
 	margin-top: 8px;
 
+	.components-popover__content {
+		overflow: hidden;
+	}
+
 	.components-menu-item__item {
 		width: 100%;
+		margin-bottom: 2px;
+	}
+
+	.components-menu-item__button {
+		padding: 7px 12px !important;
 	}
 
 	.components-base-control {
-		padding: 0 12px;
+		padding: 0;
 	}
 
 	.components-menu-group + .components-menu-group {
@@ -90,6 +109,12 @@
 		padding-left: 11px !important;
 	}
 
+	.components-color-palette__custom-color {
+		background: none;
+		box-shadow: none;
+		height: auto;
+	}
+
 	.components-range-control__number {
 		display: none;
 	}
@@ -99,17 +124,17 @@
 	}
 
 	.components-iceberg-theme-switcher__font-family {
-		margin-bottom: 25px;
+		margin-bottom: 20px;
 		margin-top: 10px;
 	}
 
 	.components-select-control__input {
-		background: var(--iceberg--color--background--light) url(data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E) no-repeat right 9px top 55%;
+		background: var(--iceberg--color--background--light) url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E') no-repeat right 5px top 55% !important;
 		border-color: var(--iceberg--color--text--darker) !important;
-		color: var(--iceberg--color--text);
+		color: var(--iceberg--color--text) !important;
 		font-size: 13px !important;
 		border-radius: 2px;
-		background-size: 13px 13px;
+		background-size: 16px 16px !important;
 
 		&:focus {
 			border-color: var(--iceberg--color--accent) !important;

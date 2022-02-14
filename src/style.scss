@@ -58,6 +58,10 @@ $imageWidth: 230px;
 	// Responsive
 	@import "./styles/ui/responsive.scss";
 
+	.edit-post-visual-editor__post-title-wrapper {
+		margin-top: 2rem !important;
+	}
+
 	.editor-post-title__block:not(.is-focus-mode).is-selected .editor-post-title__input {
 		border-color: transparent;
 		box-shadow: none;
