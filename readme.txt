@@ -1,17 +1,18 @@
 === Iceberg Editor ===
-Author URI: https://useiceberg.com
-Plugin URI: https://useiceberg.com
-Contributors: richtabor, phpbits
-Donate link: https://useiceberg.com
-Tags: gutenberg, block editor, markdown, writing
-Requires at least: 5.0
-Tested up to: 5.8
-Requires PHP: 5.2.4
-Stable tag: 1.2.0
-License: GPL-2.0
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Contributors:      richtabor, phpbits
+Author URI:        https://useiceberg.com
+Plugin URI:        https://useiceberg.com
+Tags:              gutenberg, block editor, markdown, writing
+Tested up to:      5.9
+Stable tag:        1.1.0
+License:           GPL-2.0-or-later
+License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
+
+With [Iceberg](https://useiceberg.com/), you get what you need to write beautifully in [WordPress](https://wordpress.org), along with many delightful extras you’d never expect. Your next favorite writing application just may be WordPress + Iceberg. Iceberg allows you to write within the WordPress block editor in a way that feels much more natural than working with “blocks”. Our goal is not to remove blocks, but rather to deemphasize them – and any non-essential elements within the editor – to promote a focus on writing.
+
+[Read more about Iceberg &rarr;](https://richtabor.com/iceberg)
 
 == Installation ==
 
@@ -22,7 +23,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 == Frequently Asked Questions ==
 
 = Is Iceberg translatable? =
-Yes! Iceberg is deployed with full translation and localization support via the 'iceberg' text-domain.
+Yes — Iceberg is deployed with full translation and localization support via the 'iceberg' text-domain.
 
 = Where can I ask for help? =
-Please visit our website [website](https://useiceberg.com) to request official support.
+Please reach out to hi@useiceberg.com for help.
