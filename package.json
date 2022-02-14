@@ -1,20 +1,25 @@
 {
 	"name": "iceberg",
-	"version": "1.2.0",
-	"description": "Iceberg is a beautiful, themeable, flexible editor for the Gutenberg block editor.",
-	"author": "IceBerg",
-	"license": "GPL-2.0",
+	"version": "1.1.0",
+	"description": "Iceberg is a beautiful markdown editor for the WordPress block editor (Gutenberg).",
+	"author": {
+		"name": "richtabor",
+		"url": "https://richtabor.com",
+		"role": "developer"
+	},
+	"license": "GPL-2.0-or-later",
 	"keywords": [
 		"WordPress",
 		"gutenberg",
 		"editor"
 	],
 	"homepage": "https://useiceberg.com",
+	"main": "build/index.js",
 	"scripts": {
 		"build": "./bin/build-plugin-zip.sh",
 		"build:assets": "wp-scripts build && npm run make-pot",
 		"check-licenses": "wp-scripts check-licenses",
-		"format:js": "wp-scripts format-js",
+		"format": "wp-scripts format",
 		"lint": "npm run lint:php && npm run lint:css && npm run lint:js",
 		"lint:css": "wp-scripts lint-style",
 		"lint:css-fix": "wp-scripts lint-style '**/*.scss' --fix",
@@ -25,15 +30,16 @@
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
 		"make-pot": "wp i18n make-pot . --skip-audit --exclude=\".github,.wordpress-org,build,dist,node_modules,vendor,wordpress\" --headers='{\"Last-Translator\":\"hi@useiceberg.com\",\"Report-Msgid-Bugs-To\":\"https://github.com/useiceberg/iceberg/issues\"}' --file-comment=\"Copyright (c) $(date +'%Y') Iceberg\" languages/iceberg.pot && wp i18n make-json languages",
 		"packages-update": "wp-scripts packages-update",
-		"setup": "composer install && npm install && NODE_ENV=development wp-scripts start",
-		"start": "NODE_ENV=development wp-scripts start",
-		"test:e2e": "wp-scripts test-e2e",
-		"test:unit": "wp-scripts test-unit-js"
+		"setup": "composer install && npm install",
+		"start": "wp-scripts start src/index.js",
+		"release:patch": "git push && npm version patch --no-git-tag-version && npm run replace:version && git add -u && npm run commit:version && npm run make:tag && npm run commit:tag",
+		"release:minor": "git push && npm version minor --no-git-tag-version && npm run replace:version && git add -u && npm run commit:version && npm run make:tag && npm run commit:tag",
+		"replace:version": "replace-in-files --regex='Stable tag:        \\d+\\.\\d+\\.\\d+' --replacement='Stable tag:        '${npm_package_version}'' readme.txt && replace-in-files --regex='Version:           \\d+\\.\\d+\\.\\d+' --replacement='Version:           '${npm_package_version}'' *.php && git push"
 	},
 	"devDependencies": {
 		"@wordpress/babel-preset-default": "^4.12.1",
 		"@wordpress/blocks": "^6.15.0",
-		"@wordpress/components": "^9.5.0",
+		"@wordpress/components": "^9.9.0",
 		"@wordpress/compose": "^3.14.0",
 		"@wordpress/data": "^4.17.0",
 		"@wordpress/edit-post": "^3.16.0",
@@ -45,33 +51,18 @@
 		"@wordpress/keycodes": "^2.12.0",
 		"@wordpress/plugins": "^2.15.0",
 		"@wordpress/rich-text": "^3.15.0",
-		"@wordpress/scripts": "^7.2.0",
+		"@wordpress/scripts": "^21.0.1",
 		"@wordpress/wordcount": "^2.8.0",
-		"browser-sync-webpack-plugin": "^2.2.2",
 		"classnames": "^2.2.6",
 		"color": "^3.1.2",
-		"cross-env": "^7.0.2",
-		"css-loader": "^3.5.3",
 		"dom-scroll-into-view": "^2.0.1",
 		"eslint-plugin-eslint-comments": "^3.1.2",
-		"ignore-emit-webpack-plugin": "^2.0.2",
 		"lodash": "^4.17.15",
-		"mini-css-extract-plugin": "^0.9.0",
-		"node-sass": "^4.14.0",
-		"optimize-css-assets-webpack-plugin": "^5.0.3",
 		"path": "^0.12.7",
-		"postcss-loader": "^3.0.0",
-		"postcss-preset-env": "^6.7.0",
 		"prettier": "npm:wp-prettier@1.19.1",
-		"replace-in-file-webpack-plugin": "^1.0.6",
-		"sass-loader": "^8.0.2",
-		"showdown": "^1.9.1",
-		"stylelint-config-wordpress": "13.1.0",
-		"webpack-fix-style-only-entries": "^0.4.0",
-		"webpack-merge": "^4.2.2"
+		"showdown": "^1.9.1"
 	},
 	"dependencies": {
-		"browser-sync": "^2.26.7",
 		"wp-cli": "0.0.5"
 	},
 	"lint-staged": {

@@ -55,7 +55,11 @@
 		min-width: 260px !important;
 		padding-top: 0 !important;
 		padding-bottom: 0 !important;
-		margin-right: -12px !important; // @todo, RTL may affect this.
+		margin-right: -12px !important;
+
+		> div {
+			padding: 0;
+		}
 	}
 
 	.components-panel__body {
@@ -63,11 +67,6 @@
 
 		&.is-opened {
 			padding: 0;
-
-			> .components-panel__body-title {
-				margin: 0;
-				opacity: 0.65;
-			}
 		}
 
 		> .components-panel__body-title:hover {
@@ -77,21 +76,24 @@
 	}
 
 	.components-panel__body-title {
-		margin: -4px 0;
+		margin: -3px 0;
 
 		.components-button {
-			font-size: 12px;
+			font-size: 13px;
 		}
 	}
 
 	.components-panel__body-toggle.components-button {
 		justify-content: space-between !important;
+		border: 0 !important;
+		border-radius: 0 !important;
 		color: var(--iceberg--color--text);
 
 		.components-panel__arrow {
 			color: inherit;
 			transform: none;
 			top: 1px;
+			right: 0;
 		}
 
 		span {

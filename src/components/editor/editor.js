@@ -202,7 +202,7 @@ class IcebergEditor extends Component {
 					onClick={ onToggle }
 					shortcut={ displayShortcut.secondary( 'i' ) }
 				>
-					{ __( 'Switch to Iceberg', 'iceberg' ) }
+					{ __( 'Switch to Iceberg editor', 'iceberg' ) }
 				</PluginMoreMenuItem>
 				<KeyboardShortcuts
 					bindGlobal

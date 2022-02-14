@@ -300,7 +300,7 @@ class ThemeEditor extends Component {
 								.focus();
 						} }
 					>
-						{ __( 'Back to editor themes', 'iceberg' ) }
+						{ __( 'Back to themes', 'iceberg' ) }
 						{ icons.back }
 					</MenuItem>
 				</MenuGroup>

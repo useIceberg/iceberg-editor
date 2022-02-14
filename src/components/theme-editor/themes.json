@@ -7,28 +7,36 @@
 			"accent": "#105d72"
 		}
 	},
-	"pumpkin-spice": {
-		"name": "Pumpkin spice",
+	"pumpkin": {
+		"name": "Pumpkin",
 		"colors": {
 			"background": "#1e1d19",
 			"text": "#d6cb99",
 			"accent": "#FF9323"
 		}
 	},
-	"mustard-seed": {
-		"name": "Mustard seed",
+	"mustard": {
+		"name": "Mustard",
 		"colors": {
 			"background": "#151819",
 			"text": "#d5d6d7",
 			"accent": "#daa40b"
 		}
 	},
-	"concord-jam": {
-		"name": "Concord jam",
+	"concord": {
+		"name": "Concord",
 		"colors": {
 			"background": "#171717",
 			"text": "#BFB7C0",
 			"accent": "#f776f0"
+		}
+	},
+	"ink": {
+		"name": "Ink",
+		"colors": {
+			"background": "#05010d",
+			"text": "#c2c7ca",
+			"accent": "#397ee4"
 		}
 	},
         "acai": {

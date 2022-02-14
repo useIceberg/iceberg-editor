@@ -2,28 +2,18 @@
 	.components-popover__content {
 		background-color: var(--iceberg--color--background--light);
 		border-color: var(--iceberg--color--accent);
-		border-radius: 4px;
+		border-radius: 2px;
 		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.025);
 		color: var(--iceberg--color--text);
-		padding: 12px 0;
+		// padding: 10px 0;
 
-		> div {
-			padding: 0;
-		}
+		// > div {
+		// 	padding: 0;
+		// }
 
 		.components-button:not(.is-primary) {
 			font-weight: 400;
 		}
-
-		// .components-menu-group {
-		// 	margin: 0;
-		// 	padding: 12px;
-
-		// 	+ .components-menu-group {
-		// 		margin-top: 0;
-		// 		padding: 9px 12px;
-		// 	}
-		// }
 	}
 
 	&::before,
@@ -34,7 +24,15 @@
 	&.components-iceberg-popover,
 	&.components-autocomplete__popover {
 		.components-popover__content {
-			min-width: 235px;
+			min-width: 220px;
+		}
+
+		.components-menu-item__item {
+			width: 100%;
+		}
+
+		.components-autocomplete__result  {
+			padding-left: 6px !important;
 		}
 	}
 
@@ -52,22 +50,15 @@
 .components-dropdown-menu__menu {
 
 	.components-menu-group {
-		// &:first-child {
-		// 	margin-top: 0;
-		// }
 
 		&:not(:last-child) {
 			border-color: var(--iceberg--color--accent);
 		}
-
-		// &:last-child {
-		// 	margin-bottom: 0;
-		// }
 	}
 
 	.components-menu-item__button,
 	.components-menu-item__button.components-button {
-		padding: 12px ​20px !important;
+		padding: 12px 20px !important;
 	}
 
 	.components-menu-item__info-wrapper svg {
@@ -81,12 +72,11 @@
 .components-iceberg-popover {
 
 	.components-button:not(.is-small):not(.components-circular-option-picker__option):not(.components-color-picker__saturation-pointer):not(.components-color-picker__inputs-toggle) {
-		padding: 8px ​20px;
-		padding-top: 8px !important;
-		padding-bottom: 8px !important;
-		border-radius: 0;
+		padding: 8px 20px;
+		border-radius: 6px;
 		height: auto;
 		justify-content: flex-start;
+		margin: 0 auto;
 
 		&:hover {
 			color: var(--iceberg--color--accent);
@@ -96,7 +86,6 @@
 			justify-self: flex-end;
 			margin-left: auto;
 			position: relative;
-			right: -5px;
 			height: 22px;
 			width: 22px;
 		}

@@ -44,7 +44,7 @@ class ShortcutButton extends Component {
 				<Fragment>
 					<Button
 						icon={ icon }
-						label={ __( 'Switch to Iceberg', 'iceberg' ) }
+						label={ __( 'Switch to Iceberg editor', 'iceberg' ) }
 						shortcut={ displayShortcut.secondary( 'i' ) }
 						onClick={ () => {
 							onToggle();

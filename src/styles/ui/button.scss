@@ -74,6 +74,8 @@
 		background: var(--iceberg--color--background);
 		color: var(--iceberg--color--accent);
 		font-weight: 600;
+		padding-left: 14px !important;
+		padding-right: 14px !important;;
 
 		&:hover,
 		&:focus,
@@ -89,10 +91,16 @@
 		}
 	}
 
+	&.editor-post-save-draft {
+		margin-right: 5px !important;
+	}
+
 	&.editor-post-save-draft,
 	&.editor-post-switch-to-draft {
 		font-weight: 600;
 		margin-right: 0;
+		padding-left: 14px !important;
+		padding-right: 14px !important;
 
 		&:hover,
 		&:focus,
