@@ -1,7 +1,7 @@
 {
 	"name": "iceberg",
 	"version": "1.2.0",
-	"description": "Iceberg is a beautiful, themeable, flexible editor for the Gutenberg block editor.",
+	"description": "Iceberg is a beautiful markdown editor for the WordPress block editor (Gutenberg).",
 	"author": {
 		"name": "richtabor",
 		"url": "https://richtabor.com",
@@ -16,7 +16,7 @@
 	"homepage": "https://useiceberg.com",
 	"main": "build/index.js",
 	"scripts": {
-		"build": "wp-scripts build",
+		"build": "./bin/build-plugin-zip.sh",
 		"build:assets": "wp-scripts build && npm run make-pot",
 		"check-licenses": "wp-scripts check-licenses",
 		"format": "wp-scripts format",

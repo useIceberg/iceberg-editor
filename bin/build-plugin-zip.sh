@@ -26,7 +26,7 @@ warning () {
 	echo -e "\n${YELLOW_BOLD}$1${COLOR_RESET}\n"
 }
 
-status "Time to build Iceberg 🐧"
+status "Time to build the plugin"
 
 if [ -z "$NO_CHECKS" ]; then
 	# Make sure there are no changes in the working tree. Release builds should be
@@ -66,46 +66,14 @@ if [ -z "$NO_CHECKS" ]; then
 	fi
 fi
 
-# # Download all vendor scripts
-# status "Downloading remote vendor scripts... 🛵"
-# vendor_scripts=""
-# # Using `command | while read...` is more typical, but the inside of the `while`
-# # loop will run under a separate process this way, meaning that it cannot
-# # modify $vendor_scripts. See: https://stackoverflow.com/a/16855194
-
-# while IFS='|' read -u 3 url filename; do
-# 	echo "$url"
-# 	echo -n " > vendor/$filename ... "
-# 	http_status=$( curl \
-# 		--location \
-# 		--silent \
-# 		"$url" \
-# 		--output "vendor/_download.tmp.js" \
-# 		--write-out "%{http_code}"
-# 	)
-# 	if [ "$http_status" != 200 ]; then
-# 		error "HTTP $http_status"
-# 		exit 1
-# 	fi
-# 	mv -f "vendor/_download.tmp.js" "vendor/$filename"
-# 	echo -e "${GREEN_BOLD}done!${COLOR_RESET}"
-# 	vendor_scripts="$vendor_scripts vendor/$filename"
-# done
-
 # Run the build; generating translation files.
 status "Installing dependencies..."
 PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true npm install
 
-status "Generating build and translation files... ⽒"
+status "Generating build... ⽒"
 npm run build:assets
 
 mkdir -p dist
-
-# Temporarily modify `gutenberg.php` with production constants defined. Use a
-# temp file because `bin/generate-gutenberg-php.php` reads from `gutenberg.php`
-# so we need to avoid writing to that file at the same time.
-# php bin/generate-gutenberg-php.php > gutenberg.tmp.php
-# mv gutenberg.tmp.php gutenberg.php
 
 build_files=$(ls build/*.{js,css,asset.php})
 
@@ -116,7 +84,6 @@ zip -r ./dist/iceberg.zip \
 	iceberg.php \
 	includes \
 	languages \
-	$vendor_scripts \
 	$build_files \
 	readme.txt \
 	changelog.txt
@@ -127,4 +94,4 @@ git checkout iceberg.php
 # Unzip plugin zip file
 unzip ./dist/iceberg.zip -d "./dist/iceberg/"
 
-success "Done. You've built Iceberg! 🐧"
+success "Done. You've built the plugin!"
