@@ -1,6 +1,6 @@
 {
 	"name": "iceberg",
-	"version": "1.3.0",
+	"version": "1.2.0",
 	"description": "Iceberg is a beautiful markdown editor for the WordPress block editor (Gutenberg).",
 	"author": {
 		"name": "richtabor",
@@ -67,7 +67,7 @@
 	},
 	"dependencies": {
 		"wp-cli": "0.0.5",
-		"replace-in-files-cli": "^1.0.0"
+                "replace-in-files-cli": "^1.0.0"
 	},
 	"lint-staged": {
 		"*.scss": [
