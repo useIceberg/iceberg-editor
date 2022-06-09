@@ -1,6 +1,6 @@
 {
 	"iceberg": {
-		"name": "Iceberg",
+		"name": "Ice",
 		"colors": {
 			"background": "#edebe8",
 			"text": "#1E1E1E",
@@ -8,7 +8,7 @@
 		}
 	},
 	"pumpkin": {
-		"name": "Pumpkin",
+		"name": "Copper",
 		"colors": {
 			"background": "#1e1d19",
 			"text": "#d6cb99",
@@ -16,7 +16,7 @@
 		}
 	},
 	"mustard": {
-		"name": "Mustard",
+		"name": "Saffron",
 		"colors": {
 			"background": "#151819",
 			"text": "#d5d6d7",
@@ -45,6 +45,14 @@
 			"background": "#1F2023",
 			"text": "#E1E4E8",
 			"accent": "#737ee4"
+		}
+	},
+	"shale": {
+		"name": "Cinder",
+		"colors": {
+			"background": "#201D26",
+			"text": "#F0F0F0",
+			"accent": "#ff6363"
 		}
 	}
 }
