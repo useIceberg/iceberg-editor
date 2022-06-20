@@ -4,7 +4,7 @@ Author URI:        https://useiceberg.com
 Plugin URI:        https://useiceberg.com
 Tags:              gutenberg, block editor, markdown, writing
 Tested up to:      5.9
-Stable tag:        1.4.0
+Stable tag:        1.4.1
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
