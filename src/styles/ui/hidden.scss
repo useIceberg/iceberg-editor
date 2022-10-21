@@ -42,7 +42,6 @@
 
 // Hide pinned plugins
 .edit-post-header__settings {
-	padding-right: 0;
 
 	.editor-post-preview__dropdown,
 	.edit-post-pinned-plugins,
@@ -62,6 +61,8 @@
 }
 
 .edit-post-header__settings {
+	gap: 2px;
+
 	> div {
 		&:nth-last-child(2) {
 			display: none !important;
