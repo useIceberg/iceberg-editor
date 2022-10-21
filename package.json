@@ -45,7 +45,7 @@
 		"@wordpress/components": "^9.9.0",
 		"@wordpress/compose": "^3.14.0",
 		"@wordpress/data": "^4.17.0",
-		"@wordpress/edit-post": "^3.16.0",
+		"@wordpress/edit-post": "^3.27.3",
 		"@wordpress/element": "^2.13.1",
 		"@wordpress/eslint-plugin": "^4.1.0",
 		"@wordpress/hooks": "^2.8.0",
