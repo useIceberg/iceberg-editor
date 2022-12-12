@@ -16,7 +16,7 @@
 	"homepage": "https://useiceberg.com",
 	"main": "build/index.js",
 	"scripts": {
-		"build": "./bin/build-plugin-zip.sh",
+		"build": "wp-scripts build src/index.js",
 		"plugin-zip": "wp-scripts plugin-zip",
 		"build:assets": "wp-scripts build && npm run make-pot",
 		"check-licenses": "wp-scripts check-licenses",
