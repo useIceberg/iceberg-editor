@@ -42,7 +42,6 @@
 
 // Hide pinned plugins
 .edit-post-header__settings {
-	padding-right: 0;
 
 	.editor-post-preview__dropdown,
 	.edit-post-pinned-plugins,
@@ -56,12 +55,18 @@
 	}
 }
 
+.block-editor-block-popover__inbetween {
+	display: none !important;
+}
+
 // Hide gear button
 .editor-post-publish-button__button + .components-button {
 	display: none !important;
 }
 
 .edit-post-header__settings {
+	gap: 2px;
+
 	> div {
 		&:nth-last-child(2) {
 			display: none !important;

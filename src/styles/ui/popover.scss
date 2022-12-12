@@ -44,7 +44,11 @@
 
 .components-menu-group + .components-menu-group,
 .components-dropdown-menu__menu .components-menu-group + .components-menu-group {
-	border-color: var(--iceberg--color--accent);
+	border-color: var(--iceberg--color--accent)
+}
+
+.components-popover__content {
+	outline-color: var(--iceberg--color--accent);
 }
 
 .components-dropdown-menu__menu {
@@ -52,13 +56,14 @@
 	.components-menu-group {
 
 		&:not(:last-child) {
-			border-color: var(--iceberg--color--accent);
+			border-color: var(--iceberg--color--accent)
+
 		}
 	}
 
 	.components-menu-item__button,
 	.components-menu-item__button.components-button {
-		padding: 12px 20px !important;
+		padding: 12px 10px !important;
 	}
 
 	.components-menu-item__info-wrapper svg {
@@ -80,6 +85,7 @@
 
 		&:hover {
 			color: var(--iceberg--color--accent);
+			background: var(--iceberg--color--accent--alpha);
 		}
 
 		svg {
