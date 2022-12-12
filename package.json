@@ -17,6 +17,7 @@
 	"main": "build/index.js",
 	"scripts": {
 		"build": "./bin/build-plugin-zip.sh",
+		"plugin-zip": "wp-scripts plugin-zip",
 		"build:assets": "wp-scripts build && npm run make-pot",
 		"check-licenses": "wp-scripts check-licenses",
 		"format": "wp-scripts format",
@@ -66,8 +67,8 @@
 		"showdown": "^1.9.1"
 	},
 	"dependencies": {
-		"wp-cli": "0.0.5",
-		"replace-in-files-cli": "^1.0.0"
+		"replace-in-files-cli": "^1.0.0",
+		"wp-cli": "0.0.5"
 	},
 	"lint-staged": {
 		"*.scss": [
