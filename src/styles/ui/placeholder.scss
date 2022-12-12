@@ -1,7 +1,6 @@
 .components-placeholder {
-	background-image: linear-gradient(45deg, var(--iceberg--color--background--dark) 5.56%, var(--iceberg--color--background) 5.56%, var(--iceberg--color--background) 50%, var(--iceberg--color--background--dark) 50%, var(--iceberg--color--background--dark) 55.56%, var(--iceberg--color--background) 55.56%, var(--iceberg--color--background) 100%);
+	// background-image: linear-gradient(45deg, var(--iceberg--color--background--dark) 5.56%, var(--iceberg--color--background) 5.56%, var(--iceberg--color--background) 50%, var(--iceberg--color--background--dark) 50%, var(--iceberg--color--background--dark) 55.56%, var(--iceberg--color--background) 55.56%, var(--iceberg--color--background) 100%);
 	background-size: 12.73px 12.73px;
-	border-radius: 0;
 	border: 1px solid var(--iceberg--color--background--dark);
 	box-shadow: none;
 	color: var(--iceberg--color--text);
@@ -43,5 +42,9 @@
 		background-color: var(--iceberg--color--background);
 		border: 1px solid var(--iceberg--color--background--dark);
 		color: var(--iceberg--color--text);
+	}
+
+	.components-placeholder__illustration {
+		stroke: var(--iceberg--color--background--dark);
 	}
 }
