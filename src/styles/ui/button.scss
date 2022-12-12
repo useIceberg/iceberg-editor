@@ -115,46 +115,6 @@
 	}
 }
 
-// Supporting core.
-// &:not(.is-gutenberg) {
-
-// 	.components-button:not(.has-icon):not(.components-color-picker__saturation-pointer) {
-// 		padding-left: 19px;
-// 		padding-right: 19px;
-// 	}
-
-// 	.components-button:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):not(.components-color-picker__saturation-pointer):hover {
-// 		background-color: inherit;
-// 		color: var(--iceberg--color--accent--light);
-// 		box-shadow: none;
-// 	}
-
-// 	.components-button.is-primary {
-// 		border: none !important;
-// 	}
-
-// 	.components-iceberg-popover .components-button:not(.is-small):not(.components-circular-option-picker__option):not(.components-color-picker__saturation-pointer):not(.components-color-picker__inputs-toggle):hover {
-// 		color: var(--iceberg--color--accent) !important;
-// 	}
-
-// 	.components-menu-item__shortcut {
-// 		color: inherit;
-// 	}
-
-// 	.components-button:hover .components-menu-item__shortcut {
-// 		color: var(--iceberg--color--accent) !important;
-// 	}
-
-// 	.components-menu-item__button:focus:not(:disabled):not([aria-disabled="true"]),
-// 	.components-menu-item__button.components-button:focus:not(:disabled):not([aria-disabled="true"]) {
-// 		color: var(--iceberg--color--accent);
-// 		border: none;
-// 		box-shadow: none;
-// 		outline-offset: -2px;
-// 		outline: none;
-// 	}
-// }
-
 .components-button.components-color-picker__saturation-pointer {
 	&:focus:not(:disabled) {
 		box-shadow: 0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0, 0, 0, 0.3), 0 0 1px 2px rgba(0, 0, 0, 0.4) !important;
