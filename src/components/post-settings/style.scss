@@ -1,0 +1,218 @@
+#components-iceberg-post-settings {
+	.components-button.components-iceberg-post-settings__trigger {
+		color: var(--iceberg--color--accent);
+	}
+}
+
+
+.components-iceberg-post-settings__content {
+	width: 380px;
+	left: auto;
+	bottom: auto;
+	top: 5px;
+	right: 5px;
+	transform: none;
+	min-height: calc(100vh - 10px);
+
+	.components-modal__content {
+		> div:not(.components-modal__header) {
+			margin-bottom: 25px;
+		}
+	}
+
+	.components-base-control__label {
+		display: block;
+		width: 100%;
+	}
+
+	.post-settings__featured-image {
+		position: relative;
+
+		.components-button {
+			&.is-secondary {
+				display: none;
+			}
+			&.is-destructive {
+				position: absolute;
+				margin: 0;
+				top: 10px;
+				right: 10px;
+				text-indent: -999px;
+				overflow: hidden;
+				min-height: 30px !important;
+				height: 30px !important;
+				width: 30px;
+				color: #fff;
+				fill: currentColor;
+				background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>');
+				background-repeat: no-repeat;
+				background-color: rgba(0, 0, 0, 0.6);
+				background-position: center center;
+				&:hover {
+					background-color: #f05230;
+				}
+
+			}
+		}
+
+		.editor-post-featured-image__preview {
+			padding: 0 !important;
+			border-radius: 0;
+		}
+	}
+
+	.components-iceberg-post-settings__metadata-menu {
+		border-radius: 4px;
+		border: 1px solid var(--iceberg--color--accent--light);
+
+		.components-button {
+			text-align: left;
+			flex-direction: row-reverse;
+			height: auto;
+			padding: 9px 10px 10px 12px;
+			border-radius: 0;
+
+			&:not(:last-of-type) {
+				border-bottom: 1px solid var(--iceberg--color--accent--light);
+			}
+
+			.components-menu-item__info-wrapper {
+				width: 100%;
+			}
+		}
+	}
+
+	.components-base-control__label {
+		text-transform: capitalize;
+	}
+
+	.components-base-control__help {
+		margin-top: 0;
+		strong {
+			span {
+				color: rgb(159, 187, 88);
+			}
+			.to-red {
+				color: rgb(226, 84, 64);
+			}
+		}
+	}
+}
+
+.components-iceberg-seo-preview {
+	font-family: Arial, sans-serif;
+	background: #fff;
+	border: 1px solid #e5eff5;
+	padding: 10px 12px;
+
+	.iceberg-seo-preview-title {
+		color: #1e0fbe;
+		font-size: 18px;
+		line-height: 1.3;
+		text-overflow: ellipses;
+		word-wrap: break-word;
+		-webkit-text-overflow: ellipsis;
+	}
+
+	.iceberg-seo-preview-link {
+		margin: 1px 0 2px;
+		color: #006621;
+		font-size: 13px;
+		line-height: 1.3;
+		word-wrap: break-word;
+	}
+
+	.iceberg-seo-preview-desc {
+		color: #545454;
+		font-size: 13px;
+		line-height: 1.58;
+		word-wrap: break-word;
+	}
+}
+
+.components-iceberg-twitter-preview,
+.components-iceberg-facebook-preview {
+	.iceberg-seo-preview-image {
+		div {
+			width: 100%;
+			height: 160px;
+			background-size: cover;
+			background-position: 50%;
+		}
+	}
+}
+
+.components-iceberg-twitter-preview {
+	overflow: hidden;
+	border: 1px solid #e1e8ed;
+	color: #292f33;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.3;
+	background: #fff;
+	border-radius: 0.42857em;
+	-webkit-font-smoothing: antialiased;
+
+	.iceberg-seo-preview-content {
+		background: #fff;
+		padding: 12px 14px;
+	}
+	.iceberg-seo-preview-title {
+		max-height: 1.3em;
+		overflow: hidden;
+		margin: 0 0 0.15em;
+		font-weight: 700;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.iceberg-seo-preview-link {
+		max-height: 1.3em;
+		overflow: hidden;
+		color: #8899a6;
+		text-transform: lowercase;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+}
+
+.components-iceberg-facebook-preview {
+	background: #fff;
+	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 -1px 0 0 rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.1);
+
+	.iceberg-seo-preview-content {
+		padding: 10px 12px;
+	}
+
+	.iceberg-seo-preview-title {
+		color: #1d2129;
+		max-height: 110px;
+		overflow: hidden;
+		margin-bottom: 5px;
+		font-family: Georgia, serif;
+		font-size: 18px;
+		line-height: 22px;
+		font-weight: 500;
+		word-wrap: break-word;
+	}
+
+	.iceberg-seo-preview-desc {
+		color: #4b4f56;
+		max-height: 80px;
+		overflow: hidden;
+		font-size: 12px;
+		line-height: 16px;
+		letter-spacing: -0.1px;
+	}
+
+	.iceberg-seo-preview-link {
+		overflow: hidden;
+		padding-top: 18px;
+		color: #90949c;
+		font-size: 11px;
+		line-height: 11px;
+		letter-spacing: -0.1px;
+		text-transform: uppercase;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+}

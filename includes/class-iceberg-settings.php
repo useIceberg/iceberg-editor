@@ -80,6 +80,7 @@ class Iceberg_Settings {
 				},
 			)
 		);
+
 	}
 
 	/**
